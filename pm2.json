@@ -1,0 +1,16 @@
+{
+  "apps": [{
+    "name": "E:431103E:431103dcloud",
+    "script": "www/production.js",
+    "cwd": "E:\431103\dcloud",
+    "exec_mode": "cluster",
+    "instances": 0,
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      
+    }
+  }]
+}
