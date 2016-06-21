@@ -1,0 +1,92 @@
+<% include common/header.html %>
+<% include common/silder-menu.html %>
+
+<div class="main-container">
+
+    <div class="padding-md">
+
+        <div class="smart-widget m-top-lg widget-dark-blue">
+            <div class="smart-widget-header">
+                用户管理
+							<span class="smart-widget-option">
+								<span class="refresh-icon-animated">
+									<i class="fa fa-circle-o-notch fa-spin"></i>
+								</span>
+	                            <a href="#" class="widget-toggle-hidden-option">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+	                            <a href="#" class="widget-refresh-option">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+	                            <a href="#" class="widget-remove-option">
+                                    <i class="fa fa-times"></i>
+                                </a>
+	                        </span>
+            </div>
+            <div class="smart-widget-inner">
+                <div class="smart-widget-hidden-section">
+                    <ul class="widget-color-list clearfix">
+                        <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                        <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                        <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                        <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                        <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                        <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                        <li style="background-color:#e36159;" data-color="widget-red"></li>
+                        <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                        <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                        <li style="background-color:#fff;" data-color="reset"></li>
+                    </ul>
+                </div>
+                <div class="smart-widget-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>UserId</th>
+                            <th>用户名</th>
+                            <th>部门/职位</th>
+                            <th>最后登录时间</th>
+                            <th>最后访问IP</th>
+                            <th>操作<%=user[0].appId%></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% user.forEach(function(item){ %>
+                        <tr>
+                            <td><%=item.UserId%></td>
+                            <td><%=item.NickName%></td>
+                            <td>
+                                <% if(item.Job) {
+
+                                %>
+                                <%=item.Department%>/<%=item.Job%>
+                                <% } else { %>
+                                <%=item.Department %>
+                                <% } %>
+                            </td>
+                            <td><%= item.LastTime %></td>
+                            <td><%= item.LastIp %></td>
+
+
+                            <td><a class="label label-warning" href="">删除</a></td>
+                        </tr>
+                        <% }) %>
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <!-- ./smart-widget-inner -->
+        </div>
+
+    </div>
+
+</div>
+
+<% include common/footer.html %>

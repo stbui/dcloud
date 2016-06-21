@@ -1,48 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>New ThinkJS Application</title>
-<style>
-*{padding: 0;margin: 0;font-size: 16px;line-height: 20px;font-family: arial;}
-a, a:visited{color:#337ab7;text-decoration: none;}
-header{padding: 70px 0 70px 0;background-color: #4A6495}
-h1{font-size: 36px;color:#fff;font-weight: normal;}
-code{  padding: 2px 4px;font-size: 90%;color: #c7254e;background-color: #f9f2f4;border-radius: 4px;}
-.content{width: 1000px;margin: auto}
-.wrap{width: 1000px;margin: auto}
-.content{margin-top: 80px;}
-.list{width: 800px;}
-.list .item{position: relative;padding-left: 70px;margin-top: 50px;}
-.list .item .step{position: absolute;width: 36px;height: 36px;top:-3px;left:0;border: 5px solid #4A6495;border-radius: 23px;text-align: center;line-height: 36px;}
-.list .item h2{font-size: 24px;font-weight: normal;}
-.list .item p{line-height: 30px;margin-top: 10px}
-</style>
-</head>
-<body>
-  <header>
-    <div class="wrap">
-      <h1>A New App Created By ThinkJS</h1>
-    </div>
-  </header>
-  <div class="content">
-    <div class="list">
-      <div class="item">
-        <div class="step">1</div>
-        <h2>Generate Files</h2>
-        <p>Run <code>thinkjs</code> command to create module, controler, model, service and so on. visit <a href="https://thinkjs.org/doc/thinkjs_command.html">https://thinkjs.org/doc/thinkjs_command.html</a> to view more infomation.</p>
-      </div>
-      <div class="item">
-        <div class="step">2</div>
-        <h2>Documatation</h2>
-        <p>ThinkJS has html and pdf documents. visit <a href="https://thinkjs.org/doc.html">https://thinkjs.org/doc.html</a></p>
-      </div>
-      <div class="item">
-        <div class="step">3</div>
-        <h2>WebSocket</h2>
-        <p>ThinkJS support <code>socket.io</code> and <code>sockjs</code> WebSocket client and server node. visit <a href="https://thinkjs.org/doc/adapter_websocket.html">https://thinkjs.org/doc/adapter_websocket.html</a></p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+<% include common/header.html %>
+
+<div id="app-list"></div>
+
+<script type="text/javascript">
+  var jAppList = $('#app-list');
+  var arrAppList = [{"id":"hostsshare","name":"hosts"},{"id":"ie6","name":"IE 6"},{"id":"ie7","name":"IE 7"},{"id":"ie8","name":"IE 8"},{"id":"ie9","name":"IE 9"},{"id":"ie10","name":"IE 10"},{"id":"ie11","name":"IE 11"},{"id":"chrome","name":"Chrome"},{"id":"firefox","name":"Firefox"},{"id":"opera","name":"Opera"},{"id":"360se","name":"360浏览器"},{"id":"360chrome","name":"360极速浏览器"},{"id":"liebao","name":"猎豹浏览器"},{"id":"maxthon","name":"傲游浏览器"},{"id":"qqbrowser","name":"QQ浏览器"},{"id":"ucbrowser","name":"UC浏览器"},{"id":"sogou","name":"搜狗浏览器"},{"id":"2345","name":"2345浏览器"},{"id":"theworld","name":"世界之窗"},{"id":"safari","name":"safari浏览器"},{"id":"desktop","name":"我的桌面"},{"id":"431103.com","name":"我的服务器"},{"id":"20","name":"20服务器"},{"id":"19","name":"19服务器"},{"id":"18","name":"18服务器"},{"id":"129","name":"129服务器"}];
+  function initAppList(){
+    var appInfo;
+    var arrHtml;
+    var connectUrl;
+    for(var i=0,c=arrAppList.length;i<c;i++){
+      appInfo = arrAppList[i];
+      connectUrl = '/openapp?id='+encodeURIComponent(appInfo.id);
+      arrHtml = [];
+      arrHtml.push('<div class="app"><div class="app-icon-bg"></div>');
+      arrHtml.push('<a href="'+connectUrl+'" target="_blank" class="app-icon"><img src="/imgs/app/'+appInfo.id+'.png" /></a>');
+      arrHtml.push('<a href="'+connectUrl+'" target="_blank" class="app-name">'+appInfo.name+'</a>');
+      arrHtml.push('</div>');
+      jAppList.append(arrHtml.join(''));
+    }
+  }
+  $('#desktop').on('mousedown', function(){return false;});
+  initAppList();
+</script>
+
+<% include common/footer.html %>
