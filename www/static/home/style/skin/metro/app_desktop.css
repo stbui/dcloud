@@ -1,0 +1,33 @@
+body { position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;}
+body .btn-group .btn { border-radius: 0px;}
+body .frame-main .frame-right .dropdown-menu a:hover,body .frame-main .frame-right .dropdown-menu .this a { background: #5579BA;}
+body .topbar { background: #5579BA;}
+body .topbar .content .topbar_menu { border-color: #4a70b6;}
+body .topbar .content .topbar_menu.this,body .topbar .content .topbar_menu:hover { background: #4467a7; border-color: #4467a7;}
+body .aui_outer .aui_state_focus .aui_title,body .aui_outer .aui_title { background: #5579BA;}
+body .aui_outer .aui_buttons button.aui_state_highlight { background: #5579BA;}
+body .aui_outer .aui_buttons button.aui_state_highlight:hover { background: #6787c1;}
+body .aui_outer .aui_buttons button.aui_state_highlight:active { background: #314a78;}
+body .aui_outer .aui_min:hover,body .aui_outer .aui_max:hover { background: #38558a;}
+body .aui_outer .aui_min:active,body .aui_outer .aui_max:active { background: #1b2942;}
+body #selContainer { border: 1px solid #38558a; background-color: #5579BA;}
+body .file_select { background: #5579BA; border-color: transparent; color: #fff; border-radius: 0px;}
+body .frame-main .frame-left { background: #fafafa;}
+body .frame-main .frame-left .ztree li a { border-color: transparent; height: 23px; line-height: 23px;}
+body .frame-main .frame-left .ztree li a:hover { background: #ffd987;}
+body .frame-main .frame-left .ztree li a.curSelectedNode,body .frame-main .frame-left .ztree li a.curSelectedNode:hover { background: #5579BA; border-color: transparent; color: #fff; border-radius: 0px;}
+body .fileList_list .file2 { background: #fff3d9;}
+body .fileList_icon .file,body .fileList_list .file { border-radius: 0; -webkit-transition: all 0.2s; -moz-transition: all 0.2s; -o-transition: all 0.2s; -ms-transition: all 0.2s; transition: all 0.2s;}
+body .fileList_icon .file.select,body .fileList_icon .file.selectDragTemp,body .fileList_list .file.select,body .fileList_list .file.selectDragTemp { background: #5579BA; border-color: transparent; color: #fff; border-radius: 0px;}
+body .fileList_list .file.select,body .fileList_list .file.selectDragTemp { border-bottom: 1px solid #6787c1 !important;}
+body .fileList_icon .file.hover,body .fileList_list .file.hover { color: #444; background: #ffd987; border-radius: 0; border-color: transparent;}
+body .fileList_icon .file.hover.select,body .fileList_icon .file.hover .selectDragTemp,body .fileList_list .file.hover.select,body .fileList_list .file.hover .selectDragTemp { background: #5579BA; border-color: transparent; color: #fff; border-radius: 0px;}
+body .context-menu-list { box-shadow: 0 10px 40px rgba(0,0,0,0.4); border-radius: 0;}
+body .context-menu-list .context-menu-item { line-height: 25px; height: 25px; padding: 0 15px 0 20px;}
+body .context-menu-list .context-menu-item.hover,body .context-menu-list .context-menu-item.selected.hover { background: #5579BA;}
+body #body .menu_left,body #body .app_menu_left { background: #476caf;}
+body #body .menu_left h1,body #body .app_menu_left h1 { color: #fff; font-weight: 400;}
+body #body .menu_left .setting li,body #body .app_menu_left .setting li { color: #fff;}
+body #body .menu_left .setting li.hover,body #body .app_menu_left .setting li.hover { background: #476caf;}
+body #body .menu_left .setting li.selected,body #body .app_menu_left .setting li.selected { background: #40619c; border-left: 4px solid #fff; color: #fff;}
+body #body .main .nav a:hover,body #body .main .nav a.this { background: #5579BA; border: 1px solid #5579BA;}

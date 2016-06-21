@@ -4,10 +4,10 @@
  * session configs
  */
 export default {
-  name: 'thinkjs',
+  name: 'dCloud',
   type: 'file',
   secret: 'OX@$WZI%',
-  timeout: 24 * 3600,
+  timeout: 0.1 * 3600,
   cookie: { // cookie options
     length: 32,
     httponly: true

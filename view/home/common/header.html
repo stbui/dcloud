@@ -1,23 +1,63 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="/static/home/index.css" />
-    <script type="text/javascript" src="/static/common/jquery-1.11.1.min.js"></script>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="/static/home/style/skin/base/app_desktop.css" rel="stylesheet">
+    <link href="/static/home/style/skin/metro/app_desktop.css" rel="stylesheet">
 </head>
-<body>
 
-<div id="header">
-    <div id="logo">
-        <a href="/"><img src="/imgs/f2etest.png" alt="f2etest" width="24" height="24"><span class="sitename">「stbui」</span></a><span class="sitever"><a href="/changelog" target="_blank">v2.0.0</a></span>
-        <span id="navTab"><a href="/" class="sel">浏览器云</a> <a href="http://172.16.97.13:21000" class="sel">gitlab</a></span>
-    </div>
-    <div id="options">
-        <span id="username">User1466011150920</span> | <a href="/logout">注销</a>
+<body style="overflow:hidden;" oncontextmenu="return core.contextmenu();">
 
-        | <a href="/help" class="">帮助</a> | <a href="/install" class="">安装到电脑</a> | <a href="/local" class="">代理到本地</a> | <a href="/stat" class="">统计</a> | <a href="/api" class="">API</a>
+<div class="topbar">
+    <div class="content">
+        <div class="top_left">
+            <a href="./" class="topbar_menu title"><i class="icon-cloud"></i>dCloud</a>
+             <a class='topbar_menu ' href='index.php?desktop' target='_self'><i class='font-icon menu-desktop'></i>桌面</a>
+            <!--<a class="topbar_menu " href="/explorer" target="_self"><i class="font-icon menu-explorer"></i>文件管理</a>-->
+            <!--<a class="topbar_menu" href="/editor" target="_self"><i class="font-icon menu-editor"></i>编辑器</a>-->
+            <!-- <a class='topbar_menu ' href='./lib/plugins/adminer/' target='_blank'>adminer</a> -->
+        </div>
+        <div class="top_right">
+            <!--<div class="menu_group">-->
+                <!--<a id="topbar_language" data-toggle="dropdown" href="#" class="topbar_menu">-->
+                    <!--<i class="font-icon icon-flag"></i>&nbsp;<b class="caret"></b>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu topbar_language fadein pull-right" role="menu" aria-labelledby="topbar_language">-->
+                    <!--<li><a href='javascript:core.language("en");' class="">English</a></li>-->
+                    <!--<li><a href='javascript:core.language("zh_CN");' class="this">简体中文</a></li>-->
+                    <!--<li><a href='javascript:core.language("zh_TW");' class="">繁體中文</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="menu_group">
+                <a href="#" id="topbar_user" data-toggle="dropdown" class="topbar_menu"><i class="font-icon icon-user"></i><%=username %>&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu menu-topbar_user fadein pull-right" role="menu" aria-labelledby="topbar_user">
 
+                    <li><a target="_blank" href="/admin/user"><i class="font-icon icon-cog"></i>系统设置</a></li>
+                    <li><a href="javascript:core.setting('member');"><i class="font-icon icon-group"></i>用户管理</a></li>
+                    <li><a href="javascript:core.setting('user');"><i class="font-icon icon-user"></i>个人中心</a></li>
+                    <li><a href="javascript:core.setting('theme');"><i class="font-icon icon-dashboard"></i>主题切换</a>
+                    </li>
+                    <li><a href="javascript:core.fullScreen();"><i class="font-icon icon-fullscreen"></i>全屏/退出全屏</a>
+                    </li>
+                    <li><a href="javascript:core.setting('help');"><i class="font-icon icon-question"></i>使用帮助</a></li>
+                    <li><a href="javascript:core.setting('about');"><i class="font-icon icon-info-sign"></i>关于作品</a>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="/user/logout"><i class="font-icon icon-signout"></i>退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="clear:both"></div>
     </div>
 </div>

@@ -1,0 +1,69 @@
+<% include common/header.html %>
+
+<div class='bodymain html5_drag_upload_box desktop'>
+    <img class="background" src="/static/home/images/wall_page/7.jpg"/>
+    <div class="fileContiner fileList_icon hidden">
+        <div class="file systemBox menuDefault"
+             data-app={"type":"app","width":"","height":"","content":"core.explorer('',LNG.my_computer);"} data-path="">
+            <div class="ico" filetype="oexe" style="background-image:url(/static/home/images/app/computer.png)"></div>
+            <div class="titleBox"><span>我的电脑</span></div>
+        </div>
+        <div class="file systemBox menuRecycleButton" title="系统设置"
+             data-app={"type":"app","width":"","height":"","content":"core.explorer('',LNG.recycle);"}  data-path="">
+            <div class="ico" filetype="oexe" style="background-image:url(/static/home/images/app/recycle.png)"></div>
+            <div class="titleBox" ><span>回收站</span></div>
+        </div>
+        <div class="file systemBox menuDefault" title="系统设置"
+             data-app={"type":"app","width":"","height":"","content":"core.setting();"}  data-path="">
+            <div class="ico" filetype="oexe" style="background-image:url(/static/home/images/app/setting.png)"></div>
+            <div class="titleBox" ><span>系统设置</span></div>
+        </div>
+        <div class="file systemBox menuDefault" title="应用商店"
+             data-app={"type":"app","width":"","height":"","content":"core.appStore();"}  data-path="">
+            <div class="ico" filetype="oexe" style="background-image:url(/static/home/images/app/market.png)"></div>
+            <div class="titleBox"><span>应用商店</span></div>
+        </div>
+    </div>
+</div>
+<!-- html5拖拽上传list -->
+
+<a href="#" class="start"></a>
+<div id="taskbar" style="display:block;"><div id="desktop"></div></div>
+<div class="taskbar_right">
+    <div class="copyright dropdown-toggle"><i class="icon-info-sign"></i></div>
+    <div class="tab_hide_all"></div>
+</div>
+<div id="menuwin">
+    <div id="startmenu"></div>
+    <ul id="programs">
+        <li><a href="#" onclick="ui.pathOpen.openIE('/','我的文档');">home</a></li>
+        <li><div id="leftspliter"></div></li>
+        <li><a href="#" onclick="core.setting('help');">使用帮助</a></li>
+        <li><a href="#" onclick="core.setting('user');">系统设置</a></li>
+        <li class="search"></li>
+    </ul>
+    <ul id="links">
+        <li class="icon"></li>
+        <li><a href="#" onclick="core.explorer('{user_share}:101/','我的共享');"><span>我的共享</span></a></li>
+        <li><div id="rightspliter"></div></li>
+        <li><a href="#" onclick="core.setting('wall');"><span>更换壁纸</span></a></li>
+        <li><a href="#" onclick="core.setting('theme');"><span>主题设置</span></a></li>
+        <li><a href="/logout" style="margin-top:70px;"><span>退出</span></a></li>
+    </ul>
+</div>
+
+<script src="/static/home/js/lib/seajs/sea.js?ver=3.3"></script>
+<script src="/desktop/commonjs"></script>
+<script type="text/javascript">
+    G.this_path = "/desktop/";
+    seajs.config({
+        base: "/static/home/js/",
+        preload: ["lib/jquery-1.8.0.min"],
+        map:[
+            [ /^(.*\.(?:css|js))(.*)$/i,'$1$2?ver='+G.version]
+        ]
+    });
+    seajs.use("app/src/desktop/main");
+</script>
+
+<% include common/footer.html %>

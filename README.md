@@ -1,21 +1,20 @@
 
 云桌面客户端
 
-## Install dependencies
+### 安装依赖
 
 ```
 npm install
 ```
 
-## Start server
+### 启动服务
 
 ```
 npm start
 ```
 
-## Deploy with pm2
+## pm2 管理
 
-Use pm2 to deploy app on production enviroment.
 
 ```
 pm2 startOrReload pm2.json

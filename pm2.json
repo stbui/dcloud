@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "E:431103E:431103dcloud",
+    "name": "dcloud",
     "script": "www/production.js",
     "cwd": "E:\431103\dcloud",
     "exec_mode": "cluster",
