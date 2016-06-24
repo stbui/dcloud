@@ -50,7 +50,8 @@
                             <th>部门/职位</th>
                             <th>最后登录时间</th>
                             <th>最后访问IP</th>
-                            <th>操作<%=user[0].appId%></th>
+                            <th>客户端服务器账户</th>
+                            <th>操作></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -67,11 +68,16 @@
                                 <%=item.Department %>
                                 <% } %>
                             </td>
-                            <td><%= item.LastTime %></td>
+                            <td>
+                                <% if(item.LastTime) { %>
+                                <%=think.datetime(item.LastTime, "YYYY-MM-DD HH:mm:ss") %>
+                                <% } else { %>
+                                未登陆
+                                <% } %>
+                            </td>
                             <td><%= item.LastIp %></td>
-
-
-                            <td><a class="label label-warning" href="">删除</a></td>
+                            <td>更新 更新于：<%=think.datetime()%></td>
+                            <td><a class="label label-warning" href="/admin/user/del?UserId=<%=item.UserId%>">删除</a></td>
                         </tr>
                         <% }) %>
 

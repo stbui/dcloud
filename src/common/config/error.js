@@ -4,6 +4,6 @@
  */
 export default {
   //key: value
-  key: "errno", //error number
-  msg: "errmsg" //error message
+  key: "resultCode", //error number
+  msg: "restultMsg" //error message
 };

@@ -9,7 +9,7 @@
 						<div class="smart-widget-header">
 							客户端服务器配置
 							<span class="smart-widget-option">
-								<a class="" href="/server/add">添加服务器</a>
+								<a class="" href="/admin/server/add">添加服务器</a>
 								<span class="refresh-icon-animated">
 									<i class="fa fa-circle-o-notch fa-spin"></i>
 								</span>
@@ -51,6 +51,7 @@
 							          		<th>服务器IP</th>
 											<th>服务器端口</th>
 							          		<th>服务器状态</th>
+											<th>同步用户</th>
 											<th>部署应用</th>
 											<th>操作</th>
 						        		</tr>
@@ -68,9 +69,16 @@
 											<label class="label label-primary"><%= item.port %></label>
 											<% } %>
 										</td>
-										<td><label class="label label-danger">离线</label></td>
-										<td><a href="/download/client">下载</a></td>
-										<td><a class="label" href="/server/add/id/<%= item.id %>">修改</a> <a class="label label-warning" href="/server/del/id/<%= item.id %>">删除</a></td>
+										<td>
+											<%if (item.status== 1) { %>
+											<a href="/api/server/runStatus?id=<%= item.id %>" class="label label-info serverStatus">在线</a></td>
+											<% } else { %>
+											<a href="/api/server/runStatus?id=<%= item.id %>" class="label label-danger serverStatus">离线</a></td>
+											<% } %>
+
+										<td><a href="/admin/user/syncAllRemoteUsers/ip/<%= item.ip %>">同步</a> 更新于:2015.05.01</td>
+										<td><a href="/admin/download/client">下载</a></td>
+										<td><a class="label" href="/admin/server/add?id=<%= item.id %>">修改</a> <a class="label label-warning" href="/admin/server/del?id=<%= item.id %>">删除</a></td>
 									</tr>
 									<% }) %>
 
@@ -112,6 +120,25 @@
 </div>
 
 </div>
+
+<script>
+	$('.serverStatus').on('click', function(e){
+		e.preventDefault();
+		var $this = $(this);
+
+		var url = $this.attr('href');
+
+		$.ajax({
+			url: url,
+			success:function(data){
+				if(data.resultCode == 0) {
+					$this.removeClass('label-danger').addClass('label-info').text('在线');
+				}
+			}
+		});
+	});
+
+</script>
 
 
 <% include common/footer.html %>

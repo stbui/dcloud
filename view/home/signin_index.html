@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/ionicons.min.css" rel="stylesheet">
+    <link href="/static/css/simplify.min.css" rel="stylesheet">
+</head>
+
+<body class="overflow-hidden light-background">
+<div class="wrapper no-navigation preload">
+    <div class="sign-in-wrapper">
+        <div class="sign-in-inner">
+            <div class="login-brand text-center">
+                <strong class="text-skin">d</strong>Cloud
+            </div>
+
+            <form method="post" id="signin">
+                <div class="form-group m-bottom-md">
+                    <input type="text" class="form-control" name="UserId" placeholder="用户账号" value="<%=userInfo.UserId%>">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="RemotePassword" placeholder="用户密码" value="<%=userInfo.RemotePassword%>">
+                </div>
+
+                <div class="m-top-md p-top-sm">
+                    <button type="submit" class="btn btn-success">登录</button>
+                    <button type="button" id="register" class="btn">注册</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
+
+
+<script src="/static/lib/jquery-1.11.1.min.js"></script>
+<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+
+<script src='/static/lib/jquery.slimscroll.min.js'></script>
+<script src='/static/lib/jquery.popupoverlay.min.js'></script>
+
+<script>
+
+    $('button[type=submit]').on('click', function (e) {
+        e.preventDefault();
+        var $form = $('#signin').serializeArray();
+
+        if($form[0].value == '') {
+            alert('登陆失败');
+            return false;
+        }
+
+        if($form[1].value == '') {
+            alert('登陆失败');
+            return false;
+        }
+
+        $('#signin').submit();
+    });
+
+    $('#register').on('click', function(e){
+        var $form = $('#signin').serializeArray();
+
+        $.ajax({
+            url: '/api/user/register',
+            url: '/signin/register',
+            type:'POST',
+            data: $form,
+            success: function (data) {
+                if(data.resultCode == 0) {
+                    $('#signin').submit();
+                } else {
+                    alert('注册失败');
+                }
+            }
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

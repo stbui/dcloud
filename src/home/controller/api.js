@@ -1,45 +1,30 @@
 'use strict';
 
 import Base from './base.js';
+import child_process from 'child_process';
 
 export default class extends Base {
   /**
    * index action
    * @return {Promise} []
    */
-  indexAction(){
+  async indexAction(){
+    const userInfo = await this.session('userInfo');
+
     let json = {
-      userId: '1',
-      ApiKey:'54339b2c75b3059afbb0d2ecee0fea3d',
+      userId: userInfo.UserId,
+      ApiKey: userInfo.ApiKey,
       version:'1.0.0'
     };
 
     return this.success(json);
   }
 
-  versionAction(){
-    let json = {
-      name: 'dCloud',
-      version:'1.0.0',
-      author: 'stbui.com'
-    };
 
-    return this.success(json);
-  }
+  async getallappAction() {
+    const program = await this.model('program').select();
 
-  getallappAction() {
-    let json = [{
-      id: '1',
-      name:'IE 6',
-      server: '192.168.159.137',
-      icon: ''
-    },{
-      id: '2',
-      name:'IE 6',
-      server: '192.168.159.137'
-    }];
-
-    return this.success(json);
+    return this.success(program);
   }
 
 
@@ -51,20 +36,62 @@ export default class extends Base {
     return this.success();
   }
 
-  gethostAction() {
-    let json = {
-      host:'172.16.97.13',
-      port:'8888',
-      mode:'forward',
-      hosts:''
-    };
+  async gethostAction() {
+    const server = await this.model('server').select();
 
-    return this.success(json);
+    return this.success(server);
   }
 
   gethostpacAction() {
 
     return this.success();
   }
+
+  getapikeyAction() {
+
+    return this.success({apiKey:think.uuid()});
+  }
+
+
+  serverAction() {
+    const spawn = child_process.spawn;
+
+    //const cli = spawn(cmd[0], cmd.slice(1) || [], {
+    //  env: process.env,
+    //  cwd: data.path
+    //});
+    //let cli = spawn('free', ['-m']);
+
+    //spawn(process.platform === "win32" ? "npm.cmd" : "npm", ['install'], {
+    //  stdio: 'inherit',
+    //  cwd: srcPath
+    //});
+
+    let cli = spawn('service.cmd',['tomcat','stop']);
+
+    cli.stdout.setEncoding('UTF-8');
+    cli.stdout.on('data', (data) => {
+      return this.success(data);
+    });
+
+    cli.stderr.setEncoding('UTF-8');
+    cli.stderr.on('data', (data) => {
+      return this.error(6001,data);
+    });
+
+    cli.on('close', () => {
+
+    });
+
+  }
+
+  syncallremoteusersAction() {
+    return this.action('signin','syncallremoteusers');
+  }
+
+  pathlistAction() {
+    return this.action('desktop','pathlist');
+  }
+
 
 }

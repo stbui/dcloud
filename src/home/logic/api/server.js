@@ -9,8 +9,7 @@ export default class extends think.logic.base {
    * index action logic
    * @return {} []
    */
-  async indexAction(){
-
-
+  indexAction(){
+   
   }
 }

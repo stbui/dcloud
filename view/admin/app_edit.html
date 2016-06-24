@@ -1,0 +1,164 @@
+<% include common/header.html %>
+<% include common/silder-menu.html %>
+
+<div class="main-container">
+
+    <div class="padding-md">
+
+        <div class="smart-widget widget-dark-blue">
+            <div class="smart-widget-header">
+                应用程序
+                            <span class="smart-widget-option">
+								<a class="" href="/admin/app">返回</a>
+								<span class="refresh-icon-animated">
+									<i class="fa fa-circle-o-notch fa-spin"></i>
+								</span>
+	                            <a href="#" class="widget-toggle-hidden-option">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+	                            <a href="#" class="widget-refresh-option">
+                                    <i class="fa fa-refresh"></i>
+                                </a>
+	                            <a href="#" class="widget-remove-option">
+                                    <i class="fa fa-times"></i>
+                                </a>
+	                        </span>
+            </div>
+            <div class="smart-widget-inner">
+                <div class="smart-widget-hidden-section">
+                    <ul class="widget-color-list clearfix">
+                        <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                        <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                        <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                        <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                        <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                        <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                        <li style="background-color:#e36159;" data-color="widget-red"></li>
+                        <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                        <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                        <li style="background-color:#fff;" data-color="reset"></li>
+                    </ul>
+                </div>
+                <div class="smart-widget-body">
+
+                    <form id="app" method="post" class="form-horizontal no-margin form-border">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">应用名称</label>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="text" name="name" class="form-control" placeholder="" value="<%=app.name%>">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">应用图标</label>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="text" name="icon" class="form-control" placeholder="" value="<%=app.icon%>">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">所属服务</label>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <select class="form-control" name="serverId" id="serverId">
+                                            <option value="0">请选择服务</option>
+                                            <% server.forEach(function(item){ %>
+                                            <option value="<%=item.id%>" <% if(item.id == app.serverId) { %>selected<% } %>><%=item.name%> / <%=item.ip%></option>
+                                            <% }) %>
+                                        </select>
+                                        <!--<input type="text" name="icon" class="form-control" placeholder="" value="<%=app.serverName%>">-->
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">程序路径</label>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <input type="text" name="path" class="form-control" placeholder="" value="<%=app.path%>">
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">配置参数</label>
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" name="config" class="form-control" placeholder="" value="<%=app.config%>">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-lg-2 control-label">配置参数</label>-->
+                            <!--<div class="col-lg-10">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-lg-6">-->
+                                        <!--<input type="text" name="proxy" class="form-control" placeholder="" value="<%=app.proxy%>">-->
+                                    <!--</div>-->
+                                    <!--<div class="col-lg-6">-->
+                                        <!--<span class="help-block"></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">代理</label>
+                            <div class="col-lg-10">
+                                <div class="checkbox inline-block">
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" name="proxy" id="proxy" class="checkbox-grey" <% if(app.proxy=='on'){%>checked<%}%>>
+                                        <label for="proxy"></label>
+                                    </div>
+                                    <div class="inline-block vertical-top">
+                                        开启
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label"></label>
+                            <div class="col-lg-10">
+                                <button type="submit" class="btn btn-danger" data-toggle="modal">保存</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<% include common/footer.html %>

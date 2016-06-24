@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>dCloud Admin</title>
+    <title>dCloud</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
     <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
     
     <link href="/static/home/style/skin/base/app_desktop.css" rel="stylesheet">
@@ -23,7 +21,7 @@
     <div class="content">
         <div class="top_left">
             <a href="./" class="topbar_menu title"><i class="icon-cloud"></i>dCloud</a>
-             <a class='topbar_menu ' href='index.php?desktop' target='_self'><i class='font-icon menu-desktop'></i>桌面</a>
+             <a class='topbar_menu ' href='/desktop' target='_self'><i class='font-icon menu-desktop'></i>桌面</a>
             <!--<a class="topbar_menu " href="/explorer" target="_self"><i class="font-icon menu-explorer"></i>文件管理</a>-->
             <!--<a class="topbar_menu" href="/editor" target="_self"><i class="font-icon menu-editor"></i>编辑器</a>-->
             <!-- <a class='topbar_menu ' href='./lib/plugins/adminer/' target='_blank'>adminer</a> -->
@@ -43,18 +41,15 @@
                 <a href="#" id="topbar_user" data-toggle="dropdown" class="topbar_menu"><i class="font-icon icon-user"></i><%=username %>&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu menu-topbar_user fadein pull-right" role="menu" aria-labelledby="topbar_user">
 
-                    <li><a target="_blank" href="/admin/user"><i class="font-icon icon-cog"></i>系统设置</a></li>
-                    <li><a href="javascript:core.setting('member');"><i class="font-icon icon-group"></i>用户管理</a></li>
+                    <li><a target="_blank" href="/admin/index"><i class="font-icon icon-cog"></i>系统设置</a></li>
                     <li><a href="javascript:core.setting('user');"><i class="font-icon icon-user"></i>个人中心</a></li>
-                    <li><a href="javascript:core.setting('theme');"><i class="font-icon icon-dashboard"></i>主题切换</a>
                     </li>
                     <li><a href="javascript:core.fullScreen();"><i class="font-icon icon-fullscreen"></i>全屏/退出全屏</a>
                     </li>
                     <li><a href="javascript:core.setting('help');"><i class="font-icon icon-question"></i>使用帮助</a></li>
-                    <li><a href="javascript:core.setting('about');"><i class="font-icon icon-info-sign"></i>关于作品</a>
                     </li>
                     <li role="presentation" class="divider"></li>
-                    <li><a href="/user/logout"><i class="font-icon icon-signout"></i>退出</a></li>
+                    <li><a href="/signin/logout"><i class="font-icon icon-signout"></i>退出</a></li>
                 </ul>
             </div>
         </div>

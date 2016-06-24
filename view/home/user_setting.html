@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" menu="menubody" style="zoom: 1; background-attachment: fixed;"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>KodExplorer - Powered by KodExplorer</title>
+
+	<link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+	<link href="/static/home/style/skin/base/app_desktop.css" rel="stylesheet">
+	<link href="/static/home/style/skin/metro/app_setting.css" rel="stylesheet">
+
+</head>
+<body class="setting_page" oncontextmenu="return core.contextmenu();"><input id="FrameCall" type="hidden" action="1" value="1" onclick="FrameCall.api()">
+<div id="body">
+	<div class="menu_left">
+		<h1>选项</h1>
+		<ul class="setting">
+
+			<li id="user" class="selected"><i class="font-icon icon-user"></i>个人中心</li>
+			<li id="help" class=""><i class="font-icon icon-question"></i>使用帮助</li>
+		</ul>
+	</div>
+	<div class="main"><div class="h1"><i class="font-icon icon-user"></i>个人中心</div>
+		<div class="nav">
+			<a href="javascript:;" class="this" data-page="setting_basic" draggable="false">基础设置</a>
+			<a href="javascript:;" class="" data-page="setting_menu" draggable="false">修改密码</a>
+			<div style="clear:both;"></div>
+		</div>
+
+		<div class="section setting_menu system_setting">
+			<div class="box">
+				<span>用户名</span>
+				<input type="text" id="password_now" name="Name" value="">
+				<div class="line"></div>
+				<span>部门</span>
+				<input type="text" id="password_now" name="Name" value="">
+				<div class="line"></div>
+				<span>职位</span>
+				<input type="password" id="password_new" value=""><div class="upasswordinfo"></div>
+				<a onclick="Setting.tools();" href="javascript:void(0);" class="save button" draggable="false">保存</a>
+			</div>
+
+
+			<div style="clear:both;"></div>
+		</div>
+
+		<div class="section setting_menu hidden">
+			<div class="box">
+				<span>原密码</span>
+				<input type="text" id="password_now" value="">
+				<div class="line"></div>
+				<span>修改为</span>
+				<input type="password" id="password_new" value=""><div class="upasswordinfo"></div>
+				<a onclick="Setting.tools();" href="javascript:void(0);" class="save button" draggable="false">保存</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--<script src="/static/home/js/lib/seajs/sea.js?ver=3.3"></script>-->
+<!--<script src="/api/js"></script>-->
+<!--<script type="text/javascript">-->
+	<!--G.this_path = "/desktop/";-->
+	<!--seajs.config({-->
+		<!--base: "/static/home/js/",-->
+		<!--preload: ["lib/jquery-1.8.0.min"],-->
+		<!--map:[-->
+			<!--[ /^(.*\.(?:css|js))(.*)$/i,'$1$2?ver='+G.version]-->
+		<!--]-->
+	<!--});-->
+	<!--seajs.use("app/src/setting/main");-->
+<!--</script>-->
+
+<% include common/footer.html %>
+
