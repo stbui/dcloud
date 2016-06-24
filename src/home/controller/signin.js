@@ -30,6 +30,7 @@ export default class extends think.controller.base {
             RemotePassword: ''
         };
 
+
         this.assign('userInfo', userInfo);
         return this.display();
     }
@@ -43,8 +44,11 @@ export default class extends think.controller.base {
         const appusers = await this.model('appusers').thenAdd(_post, _post);
         if(appusers.type != "exist") {
             // 客户端服务器账号同步
-            this.syncallremoteusers();
+            think.log('客户端服务器账号同步','WARNING');
+            let userInfo = {UserId:_post.UserId,RemotePassword:_post.RemotePassword};
+            await this.syncallremoteusers(userInfo);
 
+            think.log('注册完成','WARNING');
             return this.success(appusers,this.locale('query_success'));
         }
 
@@ -90,18 +94,19 @@ export default class extends think.controller.base {
 
 
     async syncallremoteusersAction() {
+        const _userInfo = await this.session('userInfo');
+        const _syncallremoteusers = await this.syncallremoteusers(_userInfo);
 
-        return this.json(await this.syncallremoteusers());
+        return this.json(_syncallremoteusers);
     }
 
     /*
     * 同步当前用户，用户需要登陆
     *
     * */
-    async syncallremoteusers() {
+    async syncallremoteusers(userInfo) {
         const server = await this.model('server').select();
         const config = await this.model('config').where({id: 1}).select();
-        const userInfo = await this.session('userInfo');
 
         let resultRemote = [];
         let params = {
@@ -121,6 +126,8 @@ export default class extends think.controller.base {
                     ip:server[i].ip,
                     msg:'同步失败'
                 });
+
+                think.log('客户端服务器账号同步：'+server[i].ip+' 同步失败','WARNING');
             }
 
             if (resultData.statusCode == 200) {
@@ -128,6 +135,8 @@ export default class extends think.controller.base {
                     ip:server[i].ip,
                     msg:'同步成功'
                 });
+
+                think.log('客户端服务器账号同步：'+server[i].ip+' 同步成功','WARNING');
             }
         }
 

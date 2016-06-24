@@ -54,25 +54,35 @@ export default class extends Base {
     }
 
     async runstatusAction() {
+        const _this = this;
         const _get = this.get();
         let server = await this.model('server').where(_get).find();
 
         let url = 'http://'+server.ip+':'+ server.port +'/setuser.asp';
 
-        let resultData = await this.getApiData(url);
-        if(resultData.statusCode == 404) {
+        think.log('检测客户端服务器通信状态','WARNING');
+        let resultData = await this.getApiData(url).then(function(content){
+            think.log('检测客户端服务器通信状态：'+ content.statusCode,'WARNING');
+            if(content.statusCode == 200) {
+                // 更新数据状态
+                _this.model('server').where(_get).update({status:1});
+
+                return _this.success(null,_this.locale('query_success'));
+            }else {
+                // 更新数据状态
+                this.model('server').where(_get).update({status:0});
+
+                return _this.error(5002,_this.locale('query_fail'));
+            }
+
+        }).catch(function(err){
+            think.log('检测客户端服务器通信状态：'+ _this.locale('query_fail'),'WARNING');
             // 更新数据状态
-            this.model('server').where(_get).update({status:0});
+            _this.model('server').where(_get).update({status:0});
 
-            return this.error(5002,'通信失败');
-        }
+            return _this.error(5002,_this.locale('query_fail'));
+        });
 
-        if(resultData.statusCode == 200) {
-            // 更新数据状态
-            this.model('server').where(_get).update({status:1});
-
-            return this.success(null,'通信成功');
-        }
     }
 
     getApiData(url) {
