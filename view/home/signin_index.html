@@ -33,6 +33,7 @@
                 <div class="m-top-md p-top-sm">
                     <button type="submit" class="btn btn-success">登录</button>
                     <button type="button" id="register" class="btn">注册</button>
+                    <button type="button" id="testRegister" class="btn">免注册</button>
                 </div>
 
             </form>
@@ -86,6 +87,21 @@
         });
 
     });
+
+    $('#testRegister').on('click', function(e){
+
+        $.ajax({
+            url: '/signin/autologin',
+            type:'POST',
+            success: function (data) {
+                if(data.resultCode == 0) {
+                    window.location.href = '/desktop';
+                }
+            }
+        });
+
+    });
+
 
 </script>
 

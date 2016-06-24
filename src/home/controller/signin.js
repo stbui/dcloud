@@ -45,23 +45,23 @@ export default class extends think.controller.base {
             // 客户端服务器账号同步
             this.syncallremoteusers();
 
-            return this.success(appusers,'操作成功');
+            return this.success(appusers,this.locale('query_success'));
         }
 
-        return this.error(5000,'操作失败');
+        return this.error(5000,this.locale('query_fail'));
     }
 
     /*
-     * 用户自动登录
+     * 自动登录
      *
      * */
     async autologinAction() {
+        const appusers = await this.model('appusers').autoLogin();
+        await this.session('userInfo', appusers);
 
-        let user = await this.model('appusers').autoLogin();
+        delete appusers.RemotePassword;
 
-        await this.session('userInfo', user);
-
-        return this.success(user);
+        return this.success(appusers,this.locale('query_success'));
     }
 
     /*
@@ -71,7 +71,7 @@ export default class extends think.controller.base {
     async logoutAction() {
         let is_login = await this.islogin();
         if (is_login) {
-            await this.session('userInfo', null);
+            this.session('userInfo', null);
         }
 
         this.redirect('/signin');
