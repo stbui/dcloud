@@ -16,8 +16,8 @@ export default class extends think.controller.base {
             const _post = this.post();
             const appusers = await this.model('appusers').where(_post).find();
 
-            if(appusers) {
-                this.model('appusers').where(_post).update({LastTime:think.datetime(), LastIp:this.ip()});
+            if (appusers) {
+                this.model('appusers').where(_post).update({LastTime: think.datetime(), LastIp: this.ip()});
 
                 this.session('userInfo', appusers);
             }
@@ -36,23 +36,23 @@ export default class extends think.controller.base {
     }
 
     /*
-    * 新用户注册
-    *
-    * */
+     * 新用户注册
+     *
+     * */
     async registerAction() {
         const _post = this.post();
         const appusers = await this.model('appusers').thenAdd(_post, _post);
-        if(appusers.type != "exist") {
+        if (appusers.type != "exist") {
             // 客户端服务器账号同步
-            think.log('客户端服务器账号同步','WARNING');
-            let userInfo = {UserId:_post.UserId,RemotePassword:_post.RemotePassword};
+            think.log('客户端服务器账号同步', 'WARNING');
+            let userInfo = {UserId: _post.UserId, RemotePassword: _post.RemotePassword};
             await this.syncallremoteusers(userInfo);
 
-            think.log('注册完成','WARNING');
-            return this.success(appusers,this.locale('query_success'));
+            think.log('注册完成', 'WARNING');
+            return this.success(appusers, this.locale('query_success'));
         }
 
-        return this.error(5000,this.locale('query_fail'));
+        return this.error(5000, this.locale('query_fail'));
     }
 
     /*
@@ -63,9 +63,9 @@ export default class extends think.controller.base {
         const appusers = await this.model('appusers').autoLogin();
         await this.session('userInfo', appusers);
 
-        delete appusers.RemotePassword;
+        //delete appusers.RemotePassword;
 
-        return this.success(appusers,this.locale('query_success'));
+        return this.success(appusers, this.locale('query_success'));
     }
 
     /*
@@ -101,51 +101,50 @@ export default class extends think.controller.base {
     }
 
     /*
-    * 同步当前用户，用户需要登陆
-    *
-    * */
+     * 同步当前用户，用户需要登陆
+     *
+     * */
     async syncallremoteusers(userInfo) {
         const server = await this.model('server').select();
-        const config = await this.model('config').where({id: 1}).select();
+        const config = await this.model('config').find();
 
         let resultRemote = [];
         let params = {
-            key: config[0].apiKey,
+            key: config.apiKey,
             username: userInfo.UserId,
             password: userInfo.RemotePassword
         };
 
 
-        for(var i in server) {
+        for (var i in server) {
 
-            let url = 'http://' + server[i].ip + ':'+ server[i].port+'/setuser.asp?' + this.setUrlParam(params);
+            let url = 'http://' + server[i].ip + ':' + server[i].port + '/setuser.asp?' + this.setUrlParam(params);
             let resultData = await this.getApiData(url);
-
-            if (resultData.statusCode == 404) {
-                resultRemote.push({
-                    ip:server[i].ip,
-                    msg:'同步失败'
-                });
-
-                think.log('客户端服务器账号同步：'+server[i].ip+' 同步失败','WARNING');
-            }
 
             if (resultData.statusCode == 200) {
                 resultRemote.push({
-                    ip:server[i].ip,
-                    msg:'同步成功'
+                    key: config.apiKey,
+                    username: userInfo.UserId,
+                    ip: server[i].ip,
+                    status: false,
+                    msg: this.locale('sync_success')
                 });
 
-                think.log('客户端服务器账号同步：'+server[i].ip+' 同步成功','WARNING');
+                think.log('客户端服务器账号同步：' + server[i].ip + this.locale('sync_success'), 'WARNING');
+            } else {
+                resultRemote.push({
+                    key: config.apiKey,
+                    username: userInfo.UserId,
+                    ip: server[i].ip,
+                    status: false,
+                    msg: this.locale('sync_fail')
+                });
+
+                think.log('客户端服务器账号同步：' + server[i].ip + this.locale('sync_fail'), 'WARNING');
             }
         }
 
-        let json = {
-            config:params,
-            server:resultRemote
-        };
-
-        return json;
+        return this.success(resultRemote, this.locale('query_success'));
     }
 
 

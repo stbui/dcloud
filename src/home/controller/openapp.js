@@ -9,9 +9,7 @@ export default class extends Base {
      */
     async indexAction(){
         const data = this.get();
-
-        let config = await this.model('config').where({id:1}).select();
-        config = config[0];
+        const config = await this.model('config').find();
 
         let program = '';
         program += data.path;
@@ -34,6 +32,10 @@ export default class extends Base {
         this.redirect(url);
 
         return this.success(params);
+    }
+
+    setproxyAction() {
+
     }
 
     setUrlParam(obj) {

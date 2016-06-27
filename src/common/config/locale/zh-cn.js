@@ -3,6 +3,8 @@
 export default {
   "query_success":"操作成功",
   "query_fail":"操作失败",
+  "sync_success":"同步成功",
+  "sync_fail":"同步失败",
   "user_islogin":"用户没有登陆",
   "share_can_upload": "\u5141\u8bb8\u4e0a\u4f20",
   "move_error": "\u79fb\u52a8\u5931\u8d25",

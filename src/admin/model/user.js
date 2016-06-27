@@ -20,14 +20,14 @@ export default class extends think.model.relation {
 
   }
 
-  /*
 
-   */
   async getAppLogs() {
     let data = await this.model('applogs').join({
       table: 'appusers',
       on:['UserId','UserId']
     })
   }
+
+
 
 }

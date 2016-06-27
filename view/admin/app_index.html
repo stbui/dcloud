@@ -67,10 +67,10 @@
                             <td><%= item.path%></td>
                             <td>显示</td>
                             <td>
-                                <%if (item.proxy == 'on') { %>
-                                <label class="label label-primary">开启</label>
+                                <%if (item.proxy == 'on' || item.proxy == 1) { %>
+                                <a class="label label-primary" href="/admin/app/proxy?id=<%= item.id %>">开启</a>
                                 <% } else { %>
-                                <label class="label">关闭</label>
+                                <a class="label" href="/admin/app/proxy?id=<%= item.id %>">关闭</a>
                                 <% } %>
                             </td>
                             <td><%= item.config%></td>

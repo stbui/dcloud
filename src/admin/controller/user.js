@@ -8,7 +8,7 @@ export default class extends Base {
      * index action
      * @return {Promise} []
      */
-    indexAction(){
+    indexAction() {
         let user = this.model('appusers').select();
 
         this.assign('user', user);
@@ -24,41 +24,57 @@ export default class extends Base {
     }
 
     /*
-    * todo：所有用户同步
-    * 单用户同步
-    * */
+     * 单台客户端服务器用户同步
+     * @param ip
+     * @return json
+     */
     async syncallremoteusersAction() {
         const _server = this.get();
         const user = await this.model('appusers').select();
+        const config = await this.model('config').find();
 
-        const config = await this.model('config').where({id:1}).select();
+        let resultRemoteUsers = [];
 
+        for (var i in user) {
+            let params = {
+                key: config.apiKey,
+                username: user[i].UserId,
+                password: user[i].RemotePassword
 
-        let params = {
-            key:config[0].apiKey,
-            username:user[0].UserId,
-            password:user[0].RemotePassword
+            };
 
-        };
+            let url = 'http://' + _server.ip + '/setuser.asp?' + this.setUrlParam(params);
 
-        let url = 'http://'+_server.ip+'/setuser.asp?'+this.setUrlParam(params);
-        let resultData = await this.getApiData(url);
+            let resultData = await this.getApiData(url);
 
-        if(resultData.statusCode == 404) {
-            return this.error(5002,'404 Not Found');
+            if (resultData.statusCode == 200) {
+                resultRemoteUsers.push({
+                    userId: user[i].UserId,
+                    key: config.apiKey,
+                    ip: _server.ip,
+                    status: true
+                });
+
+            } else {
+                resultRemoteUsers.push({
+                    userId: user[i].UserId,
+                    key: config.apiKey,
+                    ip: _server.ip,
+                    status: false
+                });
+            }
         }
 
-        if(resultData.statusCode == 200) {
-            return this.success(null,'注册成功');
-        }
+        this.model('server').where({ip:_server.ip}).update({syncUserDate:think.datetime()});
 
+        return this.success(resultRemoteUsers, this.locale('query_success'));
     }
 
     setUrlParam(obj) {
         let str = [];
 
-        for(var i in obj) {
-            str.push(i+'='+encodeURIComponent(obj[i]));
+        for (var i in obj) {
+            str.push(i + '=' + encodeURIComponent(obj[i]));
         }
 
         return str.join('&');
