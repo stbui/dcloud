@@ -38,15 +38,21 @@
     <ul id="programs">
         <li><a href="/desktop">我的桌面</a></li>
         <li><div id="leftspliter"></div></li>
+        <li><a class="topbar_menu " href="/" target="_self"><i class="font-icon menu-explorer"></i>jsunit</a></li>
+        <li><a class="topbar_menu" href="/" target="_self"><i class="font-icon menu-editor"></i>WebDriver云</a></li>
         <li><a href="#" onclick="core.setting('help');">使用帮助</a></li>
         <li class="search"></li>
     </ul>
     <ul id="links">
+        <li class="icon"></li>
+        <li><a href="javascript:core.fullScreen();"><span>全屏/退出全屏</span></a>
+        <li><a href="javascript:core.setting('user');"><span>个人中心</span></a></li>
+        <li><a target="_blank" href="/admin/index"><span>系统设置</span></a></li>
         <li><a href="/logout" style="margin-top:70px;"><span>退出</span></a></li>
     </ul>
 </div>
 
-<script src="/static/home/js/lib/seajs/sea.js?ver=3.3"></script>
+<script src="/static/home/js/lib/seajs/sea.js"></script>
 <script src="/desktop/commonjs"></script>
 <script type="text/javascript">
     G.this_path = "/desktop/";

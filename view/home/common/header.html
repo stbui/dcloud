@@ -22,8 +22,8 @@
         <div class="top_left">
             <a href="./" class="topbar_menu title"><i class="icon-cloud"></i>dCloud</a>
              <a class='topbar_menu ' href='/desktop' target='_self'><i class='font-icon menu-desktop'></i>桌面</a>
-            <a class="topbar_menu " href="/" target="_self"><i class="font-icon menu-explorer"></i>jsunit</a>
-            <a class="topbar_menu" href="/" target="_self"><i class="font-icon menu-editor"></i>WebDriver云</a>
+            <!--<a class="topbar_menu " href="/" target="_self"><i class="font-icon menu-explorer"></i>jsunit</a>-->
+            <!--<a class="topbar_menu" href="/" target="_self"><i class="font-icon menu-editor"></i>WebDriver云</a>-->
             <!-- <a class='topbar_menu ' href='./lib/plugins/adminer/' target='_blank'>adminer</a> -->
         </div>
         <div class="top_right">
@@ -41,14 +41,11 @@
                 <a href="#" id="topbar_user" data-toggle="dropdown" class="topbar_menu"><i class="font-icon icon-user"></i><%=username %>&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu menu-topbar_user fadein pull-right" role="menu" aria-labelledby="topbar_user">
 
-                    <li><a target="_blank" href="/admin/index"><i class="font-icon icon-cog"></i>代理设置</a></li>
+                    <!--<li><a target="_blank" href="/admin/index"><i class="font-icon icon-cog"></i>代理设置</a></li>-->
                     <li><a target="_blank" href="/admin/index"><i class="font-icon icon-cog"></i>系统设置</a></li>
                     <li><a href="javascript:core.setting('user');"><i class="font-icon icon-user"></i>个人中心</a></li>
-                    </li>
                     <li><a href="javascript:core.fullScreen();"><i class="font-icon icon-fullscreen"></i>全屏/退出全屏</a>
-                    </li>
                     <li><a href="javascript:core.setting('help');"><i class="font-icon icon-question"></i>使用帮助</a></li>
-                    </li>
                     <li role="presentation" class="divider"></li>
                     <li><a href="/signin/logout"><i class="font-icon icon-signout"></i>退出</a></li>
                 </ul>

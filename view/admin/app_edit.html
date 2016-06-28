@@ -47,10 +47,12 @@
                     <form id="app" method="post" class="form-horizontal no-margin form-border">
                         <div class="form-group">
                             <label class="col-lg-2 control-label">应用名称</label>
+
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-lg-3">
-                                        <input type="text" name="name" class="form-control" placeholder="" value="<%=app.name%>">
+                                        <input type="text" name="name" class="form-control" placeholder=""
+                                               value="<%=app.name%>">
                                     </div>
                                     <div class="col-lg-9">
                                         <span class="help-block"></span>
@@ -60,10 +62,12 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">应用图标</label>
+
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <input type="text" name="icon" class="form-control" placeholder="" value="<%=app.icon%>">
+                                        <input type="text" name="icon" class="form-control" placeholder=""
+                                               value="<%=app.icon%>">
                                     </div>
                                     <div class="col-lg-6">
                                         <span class="help-block"></span>
@@ -73,13 +77,16 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">所属服务</label>
+
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <select class="form-control" name="serverId" id="serverId">
                                             <option value="0">请选择服务</option>
                                             <% server.forEach(function(item){ %>
-                                            <option value="<%=item.id%>" <% if(item.id == app.serverId) { %>selected<% } %>><%=item.name%> / <%=item.ip%></option>
+                                            <option value="<%=item.id%>"
+                                            <% if(item.id == app.serverId) { %>selected<% } %>><%=item.name%> /
+                                            <%=item.ip%></option>
                                             <% }) %>
                                         </select>
                                         <!--<input type="text" name="icon" class="form-control" placeholder="" value="<%=app.serverName%>">-->
@@ -92,10 +99,12 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">程序路径</label>
+
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <input type="text" name="path" class="form-control" placeholder="" value="<%=app.path%>">
+                                        <input type="text" name="path" class="form-control" placeholder=""
+                                               value="<%=app.path%>">
                                     </div>
                                     <div class="col-lg-6">
                                         <span class="help-block"></span>
@@ -105,10 +114,12 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label">配置参数</label>
+
                             <div class="col-lg-10">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <input type="text" name="config" class="form-control" placeholder="" value="<%=app.config%>">
+                                        <input type="text" name="config" class="form-control" placeholder=""
+                                               value="<%=app.config%>">
                                     </div>
                                     <div class="col-lg-6">
                                         <span class="help-block"></span>
@@ -117,24 +128,26 @@
                             </div>
                         </div>
                         <!--<div class="form-group">-->
-                            <!--<label class="col-lg-2 control-label">配置参数</label>-->
-                            <!--<div class="col-lg-10">-->
-                                <!--<div class="row">-->
-                                    <!--<div class="col-lg-6">-->
-                                        <!--<input type="text" name="proxy" class="form-control" placeholder="" value="<%=app.proxy%>">-->
-                                    <!--</div>-->
-                                    <!--<div class="col-lg-6">-->
-                                        <!--<span class="help-block"></span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                        <!--<label class="col-lg-2 control-label">配置参数</label>-->
+                        <!--<div class="col-lg-10">-->
+                        <!--<div class="row">-->
+                        <!--<div class="col-lg-6">-->
+                        <!--<input type="text" name="proxy" class="form-control" placeholder="" value="<%=app.proxy%>">-->
+                        <!--</div>-->
+                        <!--<div class="col-lg-6">-->
+                        <!--<span class="help-block"></span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
                         <!--</div>-->
                         <div class="form-group">
                             <label class="col-lg-2 control-label">代理</label>
+
                             <div class="col-lg-10">
                                 <div class="checkbox inline-block">
                                     <div class="custom-checkbox">
-                                        <input type="checkbox" name="proxy" id="proxy" class="checkbox-grey" <% if(app.proxy=='on'){%>checked<%}%>>
+                                        <input type="checkbox" name="proxy" id="proxy" class="checkbox-grey" <%
+                                        if(app.proxy=='on'){%>checked<%}%>>
                                         <label for="proxy"></label>
                                     </div>
                                     <div class="inline-block vertical-top">
@@ -145,6 +158,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label"></label>
+
                             <div class="col-lg-10">
                                 <button type="submit" class="btn btn-danger" data-toggle="modal">保存</button>
                             </div>

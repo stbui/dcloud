@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-06-25 17:49:36
+Date: 2016-06-28 09:16:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `applogs` (
   PRIMARY KEY (`logId`),
   KEY `UserId` (`LogTime`,`UserId`) USING BTREE,
   KEY `appOrder` (`LogTime`,`appId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for appusers
@@ -48,6 +48,7 @@ CREATE TABLE `appusers` (
   `Company` varchar(255) DEFAULT NULL,
   `Department` varchar(255) DEFAULT NULL,
   `Location` varchar(255) DEFAULT NULL,
+  `syncServerDate` datetime DEFAULT NULL,
   PRIMARY KEY (`UserId`),
   KEY `ActiveTime` (`ActiveTime`) USING BTREE,
   KEY `Company` (`Company`),
@@ -82,8 +83,9 @@ CREATE TABLE `program` (
   `proxy` varchar(255) NOT NULL,
   `icon` varchar(255) NOT NULL,
   `serverId` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Table structure for server
@@ -96,6 +98,7 @@ CREATE TABLE `server` (
   `port` int(5) NOT NULL,
   `status` int(1) NOT NULL,
   `appid` int(11) NOT NULL,
+  `syncUserDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=gbk;
 
