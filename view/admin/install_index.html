@@ -1,0 +1,138 @@
+<% include common/header.html %>
+<% include common/silder-menu.html %>
+
+<link rel="stylesheet" href="/static/lib/xterm/xterm.css"/>
+<!--<link rel="stylesheet" href="/static/lib/xterm/addons/fullscreen/fullscreen.css"/>-->
+
+<div class="main-container">
+
+    <div class="padding-md">
+        <div class="row">
+            <div class="alert">
+                <p><label class="label label-danger">安装所有应用：</label>自动安装Tomcat Guacamole Mysql应用，如若出错请分别安装</p>
+
+                <p><label class="label label-danger">安装Guacamole：</label>自动安装Tomcat Guacamole Mysql应用，如若出错请分别安装</p>
+
+                <p><label class="label label-danger">安装Mysql：</label>自动安装Tomcat Guacamole Mysql应用，如若出错请分别安装</p>
+            </div>
+        </div>
+
+
+        <a id="tomcat" class="btn btn-primary" href="/admin/install/tomcat">安装 Tomcat</a>
+        <a id="guacamole" class="btn btn-primary" href="/admin/install/guacamole">安装 Guacamole</a>
+        <a id="mysql" class="btn btn-primary" href="/admin/install/mysql">安装 Mysql</a>
+        <a id="allApp" class="btn btn-primary" href="/admin/install/all">安装所有应用</a>
+        <a id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole 配置文件</a>
+
+        <div id="terminal-container"></div>
+        <div id="term"></div>
+    </div>
+
+</div>
+
+<script src="/static/admin/js/socket.io.js"></script>
+<script src="/static/lib/xterm/xterm.js"></script>
+<!--<script src="/static/lib/xterm/addons/attach/attach.js"></script>-->
+<!--<script src="/static/lib/xterm/addons/fit/fit.js"></script>-->
+<!--<script src="/static/lib/xterm/addons/fullscreen/fullscreen.js"></script>-->
+
+
+<script>
+
+    var terminalContainer = document.getElementById('terminal-container');
+    var term;
+    var shellprompt = '[dCloud]$ ';
+
+    createTerminal();
+
+    function createTerminal() {
+        term = new Terminal({
+            cursorBlink: true
+        });
+
+        term.open(terminalContainer);
+
+        term.prompt = function () {
+            term.write('\r\n' + shellprompt);
+        };
+
+        term.prompt();
+        term.write('请选择您要安装的应用' );
+    }
+
+
+    function runFakeTerminal() {
+        term.on('key', function (key, ev) {
+            var printable = (
+                    !ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey
+            );
+
+            if (ev.keyCode == 13) {
+                term.prompt();
+            } else if (ev.keyCode == 8) {
+                /*
+                 * Do not delete the prompt
+                 */
+                if (term.x > 2) {
+                    term.write('\b \b');
+                }
+            } else if (printable) {
+                term.write(key);
+            }
+        });
+
+        term.on('paste', function (data, ev) {
+            term.write(data);
+        });
+
+    }
+
+
+    var socket = io.connect(location.origin);
+    socket.on('launcher', function (output) {
+        term.prompt();
+        term.write(output);
+    });
+
+
+    $('#tomcat').click(function (e) {
+        e.preventDefault();
+        socket.emit('launcher', {cmd: 'tomcat'});
+    });
+    $('#guacamole').click(function (e) {
+        e.preventDefault();
+        socket.emit('launcher', {cmd: 'guacamole'});
+    });
+    $('#mysql').click(function (e) {
+        e.preventDefault();
+        socket.emit('launcher', {cmd: 'mysql'});
+    });
+    $('#allApp').click(function (e) {
+        e.preventDefault();
+        socket.emit('launcher', {cmd: 'allApp'});
+    });
+
+    function installApp(e) {
+        var $this = $(e.target);
+
+        var url = $this.attr('href');
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    alert('安装成功')
+                }
+
+            }, error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
+
+<script>
+
+</script>
+
+<% include common/footer.html %>

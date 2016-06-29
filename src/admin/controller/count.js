@@ -9,6 +9,6 @@ export default class extends Base {
    * @return {Promise} []
    */
   indexAction(){
-    return this.success();
+    return this.display('index/index');
   }
 }

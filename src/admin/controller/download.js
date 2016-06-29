@@ -4,29 +4,21 @@ import Base from './base.js';
 import fs from 'fs';
 
 export default class extends Base {
-    /**
-     * index action
-     * @return {Promise} []
-     */
-    indexAction() {
-    }
 
     async clientAction() {
-        let filePath = think.RESOURCE_PATH + '/probe.js';
-
+        let filePath = think.ROOT_PATH + '/bin/probe.js';
         let probe = await this.probe();
 
+        // 生成配置文件
         fs.writeFileSync(filePath, probe, 'utf-8');
 
         this.download(filePath,'probe.asp');
-
-        //return this.success(probe, this.locale('query_success'));
     }
 
     async probeAction() {
         let probe = await this.probe();
 
-        return this.success(probe, this.locale('query_success'));
+        return this.json(probe);
     }
 
     async shellAction() {

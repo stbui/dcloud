@@ -8,7 +8,7 @@ export default class extends think.model.base {
         //SELECT * FROM `program` LEFT JOIN server ON program.serverId=server.id
         //return this.join("server ON program.serverId=server.id").select();
 
-        return this.field(['program.*','server.name as serverName']).join({
+        return this.field(['program.*','server.name as serverName, server.accessToken as serverAccessToken']).join({
             table: 'server',
             join: 'left',
             on: ['serverId','id']

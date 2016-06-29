@@ -29,7 +29,7 @@ export default class extends Base {
 
         if (this.isPost()) {
             const data = this.post();
-            console.log(data);
+
             this.model('program').where(_program).update(data);
 
             this.redirect('/admin/app/index');

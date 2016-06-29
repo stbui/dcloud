@@ -1,4 +1,11 @@
-# 云桌面客户端
+# web云桌面
+
+远程桌面解决方案的开源项目，通过浏览器就能操作虚拟机，适用于Chrome、Firefox、IE9+等浏览器（浏览器需要支持HTML5）， 由于使
+用 HTML5只要在一个服务器安装成功，你访问你的桌面就是访问一个 web 浏览器
+
+### 效果图
+
+### Demo
 
 ### 数据库配置
 
@@ -27,13 +34,35 @@ http://127.0.0.1:8361
 ```
 
 ## pm2 管理
-
-
 ```
 pm2 startOrReload pm2.json
 ```
 
 
-https://github.com/quietshu/cssosx
+### 开源项目
+guacamole
+thinkjs
+socket.io
+xterm
+pm2
 
-https://github.com/os-js/OS.js
+### 打赏我
+
+### 关于我
+
+
+### 即将实现
+代理软件改为```electron```开发
+通过安装引导页自动安装guacamole tomcat apache
+
+### 待完善
+完善服务端管理
+jslint 未实现
+webdrive 未实现
+
+
+### 参考
+- https://thinkjs.org/
+- https://github.com/quietshu/cssosx
+- https://github.com/os-js/OS.js
+- http://www.kancloud.cn/kancloud/create-voting-app/63976

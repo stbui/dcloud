@@ -22,7 +22,8 @@ export default class extends Base {
             filelist.push({
                 name: v.name,
                 path: v.path,
-                group:v.serverName,
+                //group:v.serverName,
+                group:v.serverAccessToken,
                 ext: 'oexe',
                 type: 'url',
                 icon: v.icon

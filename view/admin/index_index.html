@@ -5,9 +5,20 @@
 <div class="main-container">
 
     <div class="padding-md">
-        <a class="btn btn-primary" href="/api/server/start">启动服务</a>
-        <a class="btn btn-primary" href="/api/server/restart">重启服务</a>
-        <a class="btn btn-primary" href="/api/server/stop">停止服务</a>
+        <div class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-primary" href="/api/server/start">启动服务</a>
+                <a class="btn btn-primary" href="/api/server/restart">重启服务</a>
+                <a class="btn btn-primary" href="/api/server/stop">停止服务</a>
+                <a id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole 配置文件</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                服务器状态
+            </div>
+        </div>
+
     </div>
 
 </div>

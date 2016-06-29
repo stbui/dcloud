@@ -32,15 +32,21 @@ export default class extends Base {
     return this.success(null,this.locale('query_success'));
   }
 
+  /*
+  * 生成 Guacamole 服务端配置文件
+  * @return {string} 返回配置文件数据
+  * */
   async configAction() {
+    const _get = this.get();
     const server = await this.model('server').select();
     const config = await this.model('config').where({id:1}).find();
 
+    let buffer;
     let _configStr = '';
 
     for(var i in server) {
       _configStr += `
-    <config name="${server[i].name}" protocol="rdp">
+    <config name="${server[i].accessToken}" protocol="rdp">
         <param name="hostname" value="${server[i].ip}" />
         <param name="port" value="3389" />
         <param name="enable-drive" value="true" />
@@ -50,9 +56,16 @@ export default class extends Base {
 
     let configs = `<configs>\r${_configStr}\r</configs>`;
 
-    fs.writeFileSync(config.guacamoleConfig,configs,'utf-8');
+    try{
+      if(_get.type == 'write') {
+        fs.writeFileSync(config.guacamoleConfig,configs,'utf-8');
+      }
 
-    let buffer = fs.readFileSync(config.guacamoleConfig,'utf-8');
+      buffer = fs.readFileSync(config.guacamoleConfig,'utf-8');
+    } catch(err) {
+      buffer = configs;
+    }
+
 
     return this.json(buffer);
   }
@@ -67,7 +80,7 @@ export default class extends Base {
   }
 
   cli(command, option) {
-    const spawn = child_process.spawn;
+    const {spawn} = child_process;
 
     let cmd = process.platform === "win32" ? "service.cmd" : "service";
     let cli = spawn(cmd,option);
@@ -85,7 +98,5 @@ export default class extends Base {
     cli.on('close', () => {
 
     });
-
-    return this.success();
   }
 }

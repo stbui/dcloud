@@ -20,23 +20,35 @@ export default class extends Base {
      * @return {Promise} []
      */
     addAction() {
-        let data = null;
 
-        if (this.isPost()) {
-            data = this.post();
-            if (think.isEmpty(this.get('id'))) {
-                this.model('server').add(data);
-            } else {
-                this.model('server').where(this.get()).update(data);
+        if(this.isPost()) {
+            const _post = this.post();
+
+            _post.accessToken = think.uuid();
+            this.model('server').add(_post);
+
+            this.redirect('/admin/server/index');
+        }
+
+        return this.display();
+    }
+
+    editAction() {
+        const _get = this.get();
+
+        if(this.isPost()) {
+            const _post = this.post();
+
+            if (!think.isEmpty(_get.id)) {
+                this.model('server').where(_get).update(_post);
             }
 
-            this.assign('server', '');
-        } else {
-            data = this.get();
-            let server = this.model('server').where(data).find();
-            this.assign('server', server);
-
+            this.redirect('/admin/server/index');
         }
+
+        const serverData = this.model('server').where(_get).find();
+
+        this.assign('server', serverData);
 
         return this.display();
     }
@@ -81,7 +93,7 @@ export default class extends Base {
     getApiData(url) {
         let fn = think.promisify(request.get);
         return fn({
-            url: url,
+            url: url
         });
     }
 }
