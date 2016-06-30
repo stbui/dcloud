@@ -7,10 +7,9 @@ export default class extends Base {
      * index action
      * @return {Promise} []
      */
-    indexAction(){
+    indexAction() {
         return this.display();
     }
-
 
 
     async pathlistAction() {
@@ -18,12 +17,13 @@ export default class extends Base {
 
         let filelist = [];
 
-        program.forEach((v,k)=>{
+        program.forEach((v, k)=> {
             filelist.push({
                 name: v.name,
-                path: v.path,
+                //path: v.path,
+                path: v.serverProbePath+'\\'+v.id+'.bat',
                 //group:v.serverName,
-                group:v.serverAccessToken,
+                group: v.serverAccessToken,
                 ext: 'oexe',
                 type: 'url',
                 icon: v.icon
@@ -31,9 +31,9 @@ export default class extends Base {
         });
 
 
-        let json ={
+        let json = {
             "code": true,
-            "use_time":this.locale(),
+            "use_time": this.locale(),
             "data": {
                 "folderlist": [],
                 "filelist": [],
@@ -84,8 +84,7 @@ export default class extends Base {
             "movietheme": "webplayer"
         };
 
-        let json = 'LNG='+JSON.stringify(LNG)+';AUTH=' + JSON.stringify(AUTH)+';G=' + JSON.stringify(G);
-
+        let json = 'LNG=' + JSON.stringify(LNG) + ';AUTH=' + JSON.stringify(AUTH) + ';G=' + JSON.stringify(G);
 
 
         return this.json(json);

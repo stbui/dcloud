@@ -59,4 +59,4 @@ ln -s /var/lib/guacamole/guacamole.war /usr/local/Tomcat/webapps
 
 # 验证Guacamole安装
 
-echo "http://192.168.159.133:8080/guacamole/"
+echo "http://127.0.0.1:8080/guacamole/"

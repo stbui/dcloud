@@ -8,15 +8,16 @@ export default class extends Base {
    * @return {Promise} []
    */
   async indexAction(){
-    const userInfo = await this.session('userInfo');
+    //const userInfo = await this.session('userInfo');
+    //
+    //let json = {
+    //  userId: userInfo.UserId,
+    //  ApiKey: userInfo.ApiKey,
+    //  version:'1.0.0'
+    //};
 
-    let json = {
-      userId: userInfo.UserId,
-      ApiKey: userInfo.ApiKey,
-      version:'1.0.0'
-    };
 
-    return this.success(json);
+    return this.display();
   }
 
 

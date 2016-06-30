@@ -55,7 +55,7 @@
                                                value="<%= server.name %>">
                                     </div>
                                     <div class="col-lg-3">
-                                        <span class="help-block">名称不能重复</span>
+                                        <span class="help-block">用于区分不同服务器名称</span>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                                value="<%= server.ip %>">
                                     </div>
                                     <div class="col-lg-9">
-                                        <span class="help-block"></span>
+                                        <span class="help-block">客户端服务器IP</span>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,22 @@
                                                value="<%= server.port %>">
                                     </div>
                                     <div class="col-lg-9">
-                                        <span class="help-block"></span>
+                                        <span class="help-block">默认80端口</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">探针部署路径</label>
+
+                            <div class="col-lg-10">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" name="probePath" class="form-control" placeholder="C:\www"
+                                               value="<%= server.probePath %>">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="help-block">部署在客户端服务器脚本路径</span>
                                     </div>
                                 </div>
                             </div>

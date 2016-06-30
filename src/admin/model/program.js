@@ -17,7 +17,7 @@ export default class extends think.model.base {
     }
 
     getSingleList(data) {
-        return this.field(['program.*','server.id as serverId']).join({
+        return this.field(['program.*','server.id as serverId, server.ip as serverIp']).join({
             table: 'server',
             join: 'left',
             on: ['serverId','id']

@@ -6,97 +6,119 @@ import child_process from 'child_process';
 
 export default class extends Base {
 
-  runstatusAction() {
+    runstatusAction() {
 
-    return this.action('admin/server','runstatus');
-  }
+        return this.action('admin/server', 'runstatus');
+    }
 
-  restartAction() {
-    this.cli('server',['tomcat','restart']);
-    this.cli('server',['guacd','restart']);
+    restartAction() {
+        this.cli('server', ['tomcat', 'restart']);
+        this.cli('server', ['guacd', 'restart']);
 
-    return this.success(null,this.locale('query_success'));
-  }
+        return this.success(null, this.locale('query_success'));
+    }
 
-  startAction() {
-    this.cli('server',['tomcat','start']);
-    this.cli('server',['guacd','start']);
+    startAction() {
+        this.cli('server', ['tomcat', 'start']);
+        this.cli('server', ['guacd', 'start']);
 
-    return this.success(null,this.locale('query_success'));
-  }
+        return this.success(null, this.locale('query_success'));
+    }
 
-  stopAction() {
-    this.cli('server',['tomcat','stop']);
-    this.cli('server',['guacd','stop']);
+    stopAction() {
+        this.cli('server', ['tomcat', 'stop']);
+        this.cli('server', ['guacd', 'stop']);
 
-    return this.success(null,this.locale('query_success'));
-  }
+        return this.success(null, this.locale('query_success'));
+    }
 
-  /*
-  * Éú³É Guacamole ·şÎñ¶ËÅäÖÃÎÄ¼ş
-  * @return {string} ·µ»ØÅäÖÃÎÄ¼şÊı¾İ
-  * */
-  async configAction() {
-    const _get = this.get();
-    const server = await this.model('server').select();
-    const config = await this.model('config').where({id:1}).find();
+    /*
+     * ç”Ÿæˆ Guacamole æœåŠ¡ç«¯é…ç½®æ–‡ä»¶
+     * @return {string} è¿”å›é…ç½®æ–‡ä»¶æ•°æ®
+     * */
+    async configAction() {
+        const _get = this.get();
+        const server = await this.model('server').select();
+        const config = await this.model('config').where({id: 1}).find();
 
-    let buffer;
-    let _configStr = '';
+        let buffer;
+        let _configStr = '';
 
-    for(var i in server) {
-      _configStr += `
+        for (var i in server) {
+            _configStr += `
     <config name="${server[i].accessToken}" protocol="rdp">
         <param name="hostname" value="${server[i].ip}" />
         <param name="port" value="3389" />
         <param name="enable-drive" value="true" />
         <param name="drive-path" value="/home/guacdshare" />
     </config>`;
+        }
+
+        let configs = `<configs>\r${_configStr}\r</configs>`;
+
+        try {
+            if (_get.type == 'write') {
+                fs.writeFileSync(config.guacamoleConfig, configs, 'utf-8');
+            }
+
+            buffer = fs.readFileSync(config.guacamoleConfig, 'utf-8');
+        } catch (err) {
+            fs.writeFileSync(think.ROOT_PATH+'/bin/noauth-config.xml', configs, 'utf-8');
+            buffer =`é…ç½®æ–‡ä»¶å†™å…¥å¤±è´¥ï¼Œè¯·åœ¨é¡¹ç›®æ ¹ç›®å½•ä¸­çš„ bin/noauth-config.xml æ‰¾åˆ°é…ç½®æ–‡ä»¶ï¼Œå¹¶æ‰‹åŠ¨è¦†ç›–é…ç½®æ–‡ä»¶\r\n${configs}`;
+        }
+
+
+        return this.json(buffer);
     }
 
-    let configs = `<configs>\r${_configStr}\r</configs>`;
+    readconfigAction(path) {
+        if (think.isEmpty(path)) {
+            return this.error(1000);
+        }
 
-    try{
-      if(_get.type == 'write') {
-        fs.writeFileSync(config.guacamoleConfig,configs,'utf-8');
-      }
+        let buffer = fs.readFileSync(path, 'utf-8');
 
-      buffer = fs.readFileSync(config.guacamoleConfig,'utf-8');
-    } catch(err) {
-      buffer = configs;
+        this.json(buffer);
+    }
+
+    writeconfigAction(path) {
+        if (think.isEmpty(path)) {
+            return this.error(1000);
+        }
+
+        let buffer = fs.writeFileSync(path, 'utf-8');
+
+        this.json(buffer);
     }
 
 
-    return this.json(buffer);
-  }
+    cliAction() {
+        const _get = this.get();
 
-  cliAction() {
-    const _get = this.get();
+        this.cli('server', [_get.server, _get.type]);
 
-    this.cli('server',[_get.server,_get.type]);
+        return this.success(null, this.locale('query_success'));
 
-    return this.success(null,this.locale('query_success'));
+    }
 
-  }
+    cli(command, option) {
+        const {spawn} = child_process;
 
-  cli(command, option) {
-    const {spawn} = child_process;
+        let cmd = process.platform === "win32" ? "service.cmd" : "service";
+        let cli = spawn(cmd, option);
 
-    let cmd = process.platform === "win32" ? "service.cmd" : "service";
-    let cli = spawn(cmd,option);
+        cli.stdout.setEncoding('UTF-8');
+        cli.stdout.on('data', (data) => {
+            return this.success(data);
+        });
 
-    cli.stdout.setEncoding('UTF-8');
-    cli.stdout.on('data', (data) => {
-      return this.success(data);
-    });
+        cli.stderr.setEncoding('UTF-8');
+        cli.stderr.on('data', (data) => {
+            return this.error(6001, data);
+        });
 
-    cli.stderr.setEncoding('UTF-8');
-    cli.stderr.on('data', (data) => {
-      return this.error(6001,data);
-    });
+        cli.on('close', () => {
 
-    cli.on('close', () => {
-
-    });
-  }
+        });
+    }
 }

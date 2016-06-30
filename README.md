@@ -1,19 +1,19 @@
 # web云桌面
 
-远程桌面解决方案的开源项目，通过浏览器就能操作虚拟机，适用于Chrome、Firefox、IE9+等浏览器（浏览器需要支持HTML5）， 由于使
+HTML5 远程桌面解决方案，通过浏览器就能操作远程服务器，适用于Chrome、Firefox、IE9+等浏览器（浏览器需要支持HTML5）， 由于使
 用 HTML5只要在一个服务器安装成功，你访问你的桌面就是访问一个 web 浏览器
 
 ### 效果图
+![image](doc/desktop.jpg)
+![image](doc/browse.jpg)
+![image](doc/server.jpg)
+![image](doc/program.jpg)
 
 ### Demo
-
-### 数据库配置
-
-修改数据库配置文件
+```bash
+http://dcloud.stbui.com
 ```
-src/common/config/db.js
 
-```
 
 ### 安装依赖
 
@@ -40,11 +40,6 @@ pm2 startOrReload pm2.json
 
 
 ### 开源项目
-guacamole
-thinkjs
-socket.io
-xterm
-pm2
 
 ### 打赏我
 

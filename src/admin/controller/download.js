@@ -39,14 +39,20 @@ export default class extends Base {
     probe() {
         const configData = this.model('config').find();
 
-        let buffer = this.getProbeContent(configData.apiKey);
+        let options = {
+            apiKey:configData.apiKey,
+            domain:'http://172.16.97.13:8361',
+            url:'http://www.baidu.com',
+            param:''
+        };
 
-        return buffer;
+        return this.getProbeContent(options);
     }
 
 
-    getProbeContent(apiKey) {
-        let domain = 'http://172.16.97.13:8361';
+    getProbeContent(options) {
+        let {apiKey,domain,url,param} = options;
+
 
         let str = `
 <%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
@@ -67,6 +73,7 @@ username = request.QueryString("username")
 password = request.QueryString("password")
 shellName = request.QueryString("shellName")
 shellPath = request.QueryString("shellPath")
+appId = request.QueryString("appId")
 
 if apiKey <> "" and key = apiKey and username <> "" then
     setUserPassword username,password
@@ -77,10 +84,11 @@ if apiKey <> "" and key = apiKey and username <> "" then
     end if
 
 elseif appid <> "" then
-    response.write file_get_contents(domin&"?userId="&username&"&appId="&appid, "userId="&username&"&appId="&appid)
+    response.write file_get_contents(domain&"?userId="&username&"&appId="&appid, "userId="&username&"&appId="&appid)
 
 elseif shellName <> "" and shellPath <> "" then
-    shell_content(shellName,shellPath)
+    shell_content shellName,shellPath
+    response.write "{""resultCode"":""0"",""resultMsg"":""创建成功""}"
 else
     response.write "{""resultCode"":""5000"",""resultMsg"":""校验失败""}"
 end if
@@ -127,12 +135,19 @@ Function shell_content(name, path)
 
     fileName = name&".bat"
 
-    content ="@echo off"&vbcrlf
+
+    content =":: Author:  dCloud <bright>"&vbcrlf
+    content =content&":: WebSite:  http://dcloud.stbui.com"&vbcrlf
+    content =content&":: 2016.06.30"&vbcrlf
+    content =content&" "&vbcrlf
+    content =content&" "&vbcrlf
+
     content =content&"set f2etestDomain=${domain}"&vbcrlf
     content =content&"set appid=ie6"&vbcrlf
     content =content&""&vbcrlf
     content =content&""&vbcrlf
-    content =content&"start /MAX "" "&path&" """&vbcrlf
+    content =content&"start /MAX """" "&""""&path&"""" &" ""${url}"" ""${param}"" "&vbcrlf
+    content =content&""&vbcrlf
     content =content&""&vbcrlf
 
     CreateFile fileName, content
