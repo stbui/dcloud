@@ -4,10 +4,10 @@ HTML5 远程桌面解决方案，通过浏览器就能操作远程服务器，�
 用 HTML5只要在一个服务器安装成功，你访问你的桌面就是访问一个 web 浏览器
 
 ### 效果图
-![image](doc/desktop.jpg)
-![image](doc/browse.jpg)
-![image](doc/server.jpg)
-![image](doc/program.jpg)
+![image](https://raw.githubusercontent.com/stbui/dcloud/master/bin/desktop.jpg)
+![image](https://raw.githubusercontent.com/stbui/dcloud/master/bin/browse.jpg)
+![image](https://raw.githubusercontent.com/stbui/dcloud/master/bin/server.jpg)
+![image](https://raw.githubusercontent.com/stbui/dcloud/master/bin/program.jpg)
 
 ### Demo
 ```bash
