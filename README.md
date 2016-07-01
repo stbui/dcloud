@@ -47,13 +47,13 @@ pm2 startOrReload pm2.json
 
 
 ### 即将实现
-代理软件改为```electron```开发
-通过安装引导页自动安装guacamole tomcat apache
 
-### 待完善
-完善服务端管理
 jslint 未实现
 webdrive 未实现
+
+### help
+查看
+intro.md
 
 
 ### 参考

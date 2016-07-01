@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-06-28 09:16:08
+Date: 2016-07-01 19:46:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,8 +99,10 @@ CREATE TABLE `server` (
   `status` int(1) NOT NULL,
   `appid` int(11) NOT NULL,
   `syncUserDate` datetime DEFAULT NULL,
+  `accessToken` varchar(255) NOT NULL,
+  `probePath` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Table structure for wd_browsers
