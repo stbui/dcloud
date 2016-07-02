@@ -14,8 +14,8 @@ export default class extends Base {
             this.model('config').where({id:1}).update(data);
         }
 
-        let config = this.model('config').where({id:1}).select();
-        this.assign('config',config);
+        const configData = this.model('config').find();
+        this.assign('config',configData);
 
         return this.display();
     }

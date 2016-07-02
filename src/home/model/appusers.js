@@ -5,10 +5,9 @@
 export default class extends think.model.base {
 
     async autoLogin(){
-
         const userInfo = await this.select();
 
-        let random = parseInt(Math.random() * 10);
+        let random = parseInt(Math.random() * userInfo.length);
         let user = userInfo[random];
 
         return user;

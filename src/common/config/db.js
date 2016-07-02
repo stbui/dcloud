@@ -7,11 +7,11 @@ export default {
   type: 'mysql',
   adapter: {
     mysql: {
-      host: '172.16.97.13',
+      host: '127.0.0.1',
       port: '',
-      database: 'f2etest',
-      user: 'guacamole',
-      password: 'eWrXNxEZU4GNM2P2',
+      database: 'dcloud',
+      user: 'root',
+      password: 'root',
       prefix: '',
       encoding: 'utf8'
     },

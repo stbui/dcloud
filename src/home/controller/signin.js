@@ -44,6 +44,7 @@ export default class extends think.controller.base {
         const appusers = await this.model('appusers').thenAdd(_post, _post);
         if (appusers.type != "exist") {
             // 客户端服务器账号同步
+            // debug 在服务器没有开启时，json数据没有返回
             think.log('客户端服务器账号同步', 'WARNING');
             let userInfo = {UserId: _post.UserId, RemotePassword: _post.RemotePassword};
             await this.syncallremoteusers(userInfo);
