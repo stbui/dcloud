@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\home\\logic\\api\\user.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAWE,W,0BAAa,CAEZ,C;;mBAED,c,6BAAiB;AACf,SAAK,YAAL,GAAoB,MAApB;;AAEA,SAAK,KAAL,GAAa;AACX,cAAO,UADI;AAEX,sBAAe;AAFJ,KAAb;AAKD,G;;;EAjB0B,MAAM,KAAN,CAAY,I",
+    "file": "..\\..\\..\\..\\src\\home\\logic\\api\\user.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * logic\n * @param  {} []\n * @return {}     []\n */\nexport default class extends think.logic.base {\n  /**\n   * index action logic\n   * @return {} []\n   */\n  indexAction(){\n   \n  }\n\n  registerAction() {\n    this.allowMethods = \"post\";\n\n    this.rules = {\n      UserId:\"required\",\n      RemotePassword:\"byteLength:6,32|required\"\n    };\n\n  }\n\n}"
+    ]
+}

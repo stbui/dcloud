@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\session.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;kBAKe;AACb,QAAM,QADO;AAEb,QAAM,MAFO;AAGb,UAAQ,UAHK;AAIb,WAAS,KAAK,IAJD;;AAMb,UAAQ,E;AACN,YAAQ,EADF;AAEN,cAAU;AAFJ,GANK;AAUb,WAAS;AACP,UAAM;AACJ,YAAM,MAAM,YAAN,GAAqB;AADvB;AADC;AAVI,C",
+    "file": "..\\..\\..\\src\\common\\config\\session.js",
+    "sourcesContent": [
+        "'use strict';\n\n/**\n * session configs\n */\nexport default {\n  name: 'dCloud',\n  type: 'file',\n  secret: 'OX@$WZI%',\n  timeout: 24 * 3600,\n  //timeout: 60,\n  cookie: { // cookie options\n    length: 32,\n    httponly: true\n  },\n  adapter: {\n    file: {\n      path: think.RUNTIME_PATH + '/session'\n    }\n  }\n};"
+    ]
+}

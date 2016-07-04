@@ -47,9 +47,9 @@ pm2 startOrReload pm2.json
 
 
 ### 即将实现
-
-jslint 未实现
-webdrive 未实现
+代理
+jslint
+webdrive
 
 ### help
 查看

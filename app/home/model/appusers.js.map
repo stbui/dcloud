@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\model\\appusers.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAMU,S;;gBACI,Q,EAEF,M,EACA,I;;;;;;mCAHmB,KAAK,MAAL,E;;;AAAjB,oC;AAEF,kC,GAAS,SAAS,KAAK,MAAL,KAAgB,SAAS,MAAlC,C;AACT,gC,GAAO,SAAS,MAAT,C;6DAEJ,I;;;;;;;;;;;;;;;;;qBAGL,M;+FAAO,I;gBACH,I;;;;;;mCAAa,KAAK,KAAL,CAAW,IAAX,EAAiB,IAAjB,E;;;AAAb,gC;8DAEC,I;;;;;;;;;;;;;;;;;;EAdc,MAAM,KAAN,CAAY,I",
+    "file": "..\\..\\..\\src\\home\\model\\appusers.js",
+    "sourcesContent": [
+        "'use strict';\r\n/**\r\n * model\r\n */\r\nexport default class extends think.model.base {\r\n\r\n    async autoLogin(){\r\n        const userInfo = await this.select();\r\n\r\n        let random = parseInt(Math.random() * userInfo.length);\r\n        let user = userInfo[random];\r\n\r\n        return user;\r\n    }\r\n\r\n    async signin(data) {\r\n        const user = await this.where(data).find();\r\n\r\n        return user;\r\n    }\r\n\r\n}"
+    ]
+}

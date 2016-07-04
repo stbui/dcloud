@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\service\\user.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAOE,I,mBAAa;AAAA;;AAAA,sCAAL,IAAK;AAAL,UAAK;AAAA;;AACX,2DAAM,IAAN,kDAAc,IAAd;AACD,G;;;EAP0B,MAAM,OAAN,CAAc,I",
+    "file": "..\\..\\..\\src\\admin\\service\\user.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default class extends think.service.base {\n  /**\n   * init\n   * @return {}         []\n   */\n  init(...args){\n    super.init(...args);\n  }\n}"
+    ]
+}

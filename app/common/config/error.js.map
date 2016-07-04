@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\error.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;kBAIe;;AAEb,OAAK,YAFQ,E;AAGb,OAAK,Y;AAHQ,C",
+    "file": "..\\..\\..\\src\\common\\config\\error.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * err config\n */\nexport default {\n  //key: value\n  key: \"resultCode\", //error number\n  msg: \"restultMsg\" //error message\n};"
+    ]
+}

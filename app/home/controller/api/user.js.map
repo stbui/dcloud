@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\home\\controller\\api\\user.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAIQ,W;;UACE,Q;;;;;;;qBAAiB,KAAK,OAAL,CAAa,UAAb,C;;;AAAjB,sB;+CAEC,KAAK,OAAL,CAAa,QAAb,C;;;;;;;;;;;;;;;;;mBAGT,Y,2BAAe;;AAEb,QAAG,KAAK,MAAL,EAAH,EAAkB;AAChB,UAAM,QAAQ,KAAK,IAAL,EAAd;;AAEA,WAAK,KAAL,CAAW,UAAX,EAAuB,KAAvB,CAA6B,KAA7B,EAAoC,MAApC,CAA2C,KAA3C;AACD;;AAED,WAAO,KAAK,OAAL,CAAa,IAAb,EAAkB,MAAlB,CAAP;AACD,G;;mBAEK,c;;UAEE,K,EACA,Q;;;;;;AADA,mB,GAAQ,KAAK,IAAL,E;;qBACS,KAAK,KAAL,CAAW,UAAX,EAAuB,OAAvB,CAA+B,KAA/B,EAAsC,KAAtC,C;;;AAAjB,sB;;oBACH,SAAS,IAAT,IAAiB,O;;;;;gDACX,KAAK,OAAL,CAAa,QAAb,EAAsB,MAAtB,C;;;gDAGF,KAAK,KAAL,CAAW,IAAX,EAAgB,MAAhB,C;;;;;;;;;;;;;;;;;;EA3BkB,MAAM,UAAN,CAAiB,I",
+    "file": "..\\..\\..\\..\\src\\home\\controller\\api\\user.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default class extends think.controller.base {\n\n  async indexAction() {\n    const _session = await this.session('userInfo');\n\n    return this.success(_session);\n  }\n\n  modifyAction() {\n\n    if(this.isPost()) {\n      const _post = this.post();\n\n      this.model('appusers').where(_post).update(_post);\n    }\n\n    return this.success(null,'操作成功');\n  }\n\n  async registerAction() {\n\n    const _post = this.post();\n    const appusers = await this.model('appusers').thenAdd(_post, _post);\n    if(appusers.type != \"exist\") {\n      return this.success(appusers,'操作成功');\n    }\n\n    return this.error(5000,'操作失败');\n  }\n\n}"
+    ]
+}

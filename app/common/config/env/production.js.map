@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\common\\config\\env\\production.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;kBAEe,E",
+    "file": "..\\..\\..\\..\\src\\common\\config\\env\\production.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default {\n  \n};"
+    ]
+}

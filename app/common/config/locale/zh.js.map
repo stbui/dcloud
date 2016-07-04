@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\common\\config\\locale\\zh.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;kBAEe;AACb,yBAAsB;AADT,C",
+    "file": "..\\..\\..\\..\\src\\common\\config\\locale\\zh.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default {\n  validate_serverStatus:'ͨ��ʧ��'\n};"
+    ]
+}

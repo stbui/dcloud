@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\controller\\login.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;;;;;;mBAOE,W,0BAAa;AACX,WAAO,KAAK,OAAL,EAAP;AACD,G;;mBAEK,e;;UACE,Q,EAEF,M,EAEA,I;;;;;;qBAJmB,KAAK,KAAL,CAAW,UAAX,EAAuB,MAAvB,E;;;AAAjB,sB;AAEF,oB,GAAS,SAAS,KAAK,MAAL,KAAgB,EAAzB,C;AAET,kB,GAAO,SAAS,MAAT,C;;qBAEL,KAAK,OAAL,CAAa,UAAb,EAAyB,IAAzB,C;;;;AAEN,mBAAK,QAAL,CAAc,UAAd;;+CAEO,KAAK,OAAL,CAAa,IAAb,C;;;;;;;;;;;;;;;;;mBAGH,Y;;;;;;;qBACE,KAAK,OAAL,CAAa,UAAb,EAAyB,IAAzB,C;;;gDAGC,KAAK,OAAL,CAAa,gBAAb,C",
+    "file": "..\\..\\..\\src\\home\\controller\\login.js",
+    "sourcesContent": [
+        "'use strict';\r\n\r\nimport Base from './base.js';\r\n\r\nexport default class extends Base {\r\n  /**\r\n   * index action\r\n   * @return {Promise} []\r\n   */\r\n  indexAction(){\r\n    return this.display();\r\n  }\r\n\r\n  async autologinAction() {\r\n    const userInfo = await this.model('appusers').select();\r\n\r\n    let random = parseInt(Math.random() * 10);\r\n\r\n    let user = userInfo[random];\r\n\r\n    await this.session('userInfo', user);\r\n\r\n    this.redirect('/desktop');\r\n\r\n    return this.success(user);\r\n  }\r\n\r\n  async logoutAction() {\r\n    await this.session('userInfo', null);\r\n\r\n    //this.redirect('/desktop');\r\n    return this.success('logout success');\r\n  }\r\n}"
+    ]
+}

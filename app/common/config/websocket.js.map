@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\websocket.js"
+    ],
+    "names": [],
+    "mappings": ";;;kBACe;AACb,MAAI,IADS,E;AAEb,QAAM,WAFO;AAGb,gBAAc,EAHD;AAIb,gBAAc,EAJD;AAKb,WAAS,SALI;AAMb,QAAM,EANO,E;AAOb,YAAU;AACR,UAAM,oBADE;AAER,WAAO,qBAFC;AAGR,cAAU;AAHF;AAPG,C",
+    "file": "..\\..\\..\\src\\common\\config\\websocket.js",
+    "sourcesContent": [
+        "\nexport default {\n  on: true, //是否开启 WebSocket\n  type: \"socket.io\",\n  allow_origin: \"\",\n  sub_protocal: \"\",\n  adapter: undefined,\n  path: \"\", //url path for websocket\n  messages: {\n    open: 'admin/install/open',\n    close: 'admin/install/close',\n    launcher: 'admin/install/launcher'\n  }\n};"
+    ]
+}

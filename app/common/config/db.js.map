@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\db.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;kBAKe;AACb,QAAM,OADO;AAEb,WAAS;AACP,WAAO;AACL,YAAM,WADD;AAEL,YAAM,EAFD;AAGL,gBAAU,QAHL;AAIL,YAAM,MAJD;AAKL,gBAAU,MALL;AAML,cAAQ,EANH;AAOL,gBAAU;AAPL,KADA;AAUP,WAAO;AAVA;AAFI,C",
+    "file": "..\\..\\..\\src\\common\\config\\db.js",
+    "sourcesContent": [
+        "'use strict';\r\n/**\r\n * db config\r\n * @type {Object}\r\n */\r\nexport default {\r\n  type: 'mysql',\r\n  adapter: {\r\n    mysql: {\r\n      host: '127.0.0.1',\r\n      port: '',\r\n      database: 'dcloud',\r\n      user: 'root',\r\n      password: 'root',\r\n      prefix: '',\r\n      encoding: 'utf8'\r\n    },\r\n    mongo: {\r\n\r\n    }\r\n  }\r\n};"
+    ]
+}

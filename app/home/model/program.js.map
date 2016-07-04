@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\model\\program.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAMI,O,sBAAU;;;;AAIN,eAAO,KAAK,KAAL,CAAW,CAAC,WAAD,EAAa,yGAAb,CAAX,EAAoI,IAApI,CAAyI;AAC5I,mBAAO,QADqI;AAE5I,kBAAM,MAFsI;AAG5I,gBAAI,CAAC,UAAD,EAAY,IAAZ;AAHwI,SAAzI,EAIJ,MAJI,EAAP;AAKH,K;;qBAED,a,0BAAc,I,EAAM;AAChB,eAAO,KAAK,KAAL,CAAW,CAAC,WAAD,EAAa,uBAAb,CAAX,EAAkD,IAAlD,CAAuD;AAC1D,mBAAO,QADmD;AAE1D,kBAAM,MAFoD;AAG1D,gBAAI,CAAC,UAAD,EAAY,IAAZ;AAHsD,SAAvD,EAIJ,KAJI,CAIE,IAJF,EAIQ,IAJR,EAAP;AAKH,K;;;EAnBwB,MAAM,KAAN,CAAY,I",
+    "file": "..\\..\\..\\src\\home\\model\\program.js",
+    "sourcesContent": [
+        "'use strict';\r\n/**\r\n * model\r\n */\r\nexport default class extends think.model.base {\r\n\r\n    getList() {\r\n        //SELECT * FROM `program` LEFT JOIN server ON program.serverId=server.id\r\n        //return this.join(\"server ON program.serverId=server.id\").select();\r\n\r\n        return this.field(['program.*','server.name as serverName, server.accessToken as serverAccessToken, server.probePath as serverProbePath']).join({\r\n            table: 'server',\r\n            join: 'left',\r\n            on: ['serverId','id']\r\n        }).select();\r\n    }\r\n\r\n    getSingleList(data) {\r\n        return this.field(['program.*','server.id as serverId']).join({\r\n            table: 'server',\r\n            join: 'left',\r\n            on: ['serverId','id']\r\n        }).where(data).find();\r\n    }\r\n\r\n}"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\config.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;kBAIe;;;AAGX,QAAM;AAHK,C",
+    "file": "..\\..\\..\\src\\common\\config\\config.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * config\n */\nexport default {\n  //key: value\n  //default_module: \"admin\"\n    port: 8361\n};"
+    ]
+}

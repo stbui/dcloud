@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\common\\config\\locale\\en.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;kBAEe;AACb,QAAK;AADQ,C",
+    "file": "..\\..\\..\\..\\src\\common\\config\\locale\\en.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default {\n  test:'1'\n};"
+    ]
+}

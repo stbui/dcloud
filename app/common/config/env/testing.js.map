@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\common\\config\\env\\testing.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;kBAEe,E",
+    "file": "..\\..\\..\\..\\src\\common\\config\\env\\testing.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default {\n  \n};"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\controller\\base.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBASU,Q;;gBAEE,Q;;;;;;mCAAiB,KAAK,OAAL,E;;;AAAjB,oC;;gCAEC,Q;;;;;6DACM,KAAK,QAAL,CAAc,SAAd,C;;;;mCAGW,KAAK,OAAL,CAAa,UAAb,C;;;AAAtB,iCAAK,Q;;;AAEL,iCAAK,MAAL,CAAY,UAAZ,EAAwB,KAAK,QAAL,CAAc,MAAtC;;;;;;;;;;;;;;;;;qBAGJ,O,sBAAU;AACN,YAAI,SAAS,KAAK,KAAL,CAAW,QAAX,EAAqB,KAArB,CAA2B,EAAC,IAAI,CAAL,EAA3B,EAAoC,MAApC,EAAb;AACA,aAAK,MAAL,CAAY,QAAZ,EAAsB,MAAtB;AACH,K;;qBAEK,O;;gBACE,Q,EACA,M;;;;;;mCADiB,KAAK,OAAL,CAAa,UAAb,C;;;AAAjB,oC;AACA,kC,GAAS,MAAM,OAAN,CAAc,QAAd,IAA0B,KAA1B,GAAkC,I;8DAExC,M;;;;;;;;;;;;;;;;;;EA3Bc,MAAM,UAAN,CAAiB,I",
+    "file": "..\\..\\..\\src\\home\\controller\\base.js",
+    "sourcesContent": [
+        "'use strict';\n\n\n\nexport default class extends think.controller.base {\n    /**\n     * some base method in here\n     */\n\n    async __before() {\n\n        let is_login = await this.islogin();\n\n        if (!is_login) {\n            return this.redirect('/signin');\n        }\n\n        this.userInfo = await this.session('userInfo');\n\n        this.assign('username', this.userInfo.UserId);\n    }\n\n    __after() {\n        let config = this.model('config').where({id: 1}).select();\n        this.assign('config', config);\n    }\n\n    async islogin() {\n        let userInfo = await this.session('userInfo');\n        let result = think.isEmpty(userInfo) ? false : true;\n\n        return result;\n    }\n\n}"
+    ]
+}

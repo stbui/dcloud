@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\home\\controller\\api\\config.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;mBAIQ,W;;UACE,O;;;;;;qBAAgB,KAAK,KAAL,CAAW,QAAX,EAAqB,KAArB,CAA2B,EAAC,IAAG,CAAJ,EAA3B,EAAmC,IAAnC,E;;;AAAhB,qB;;;AAEN,qBAAO,QAAQ,IAAR,CAAP;;+CAEO,KAAK,OAAL,CAAa,OAAb,C",
+    "file": "..\\..\\..\\..\\src\\home\\controller\\api\\config.js",
+    "sourcesContent": [
+        "'use strict';\n\nimport Base from '../base.js';\n\nexport default class extends Base {\n\n  async indexAction(){\n    const program = await this.model('config').where({id:1}).find();\n\n    delete program['id'];\n\n    return this.success(program);\n  }\n}"
+    ]
+}
