@@ -1,0 +1,42 @@
+<div class="file_upload">
+    <div class="top_nav">
+        <a href="javascript:void(0);" class="menu this tab_upload">{{LNG.upload_local}}</a>
+        <a href="javascript:void(0);" class="menu tab_download">{{LNG.download_from_server}}</a>
+        <div style="clear:both"></div>
+    </div>
+    <div class="upload_box">
+        <div class="btns">
+            <div id="picker">{{LNG.upload_select}}</div>
+            <div class=\"upload_box_tips\">
+                <a href=\"javascript:void(0);\" class=\"upload_box_clear\">{{LNG.upload_clear}}</a>
+                <!--
+                | <a href=\"javascript:void(0);\" class=\"upload_box_setting\">
+                {{LNG.upload_setting}}<b class=\"caret\"></b></a>
+                -->
+            </div>
+            <div style="clear:both"></div>
+        </div>
+
+        <div class=\"upload_box_config hidden\">
+        <i>{{LNG.upload_tips}}</i>
+        <div class=\"upload_check_box\">
+            <b>{{LNG.upload_exist}}</b>
+            <label><input type=\"radio\" name=\"existing\" value=\"rename\" checked=\"checked\">{{LNG.upload_exist_rename}}</label>
+            <label><input type=\"radio\" name=\"existing\" value=\"replace\">{{LNG.upload_exist_replace}}</label>
+            <label><input type=\"radio\" name=\"existing\" value=\"skip\">{{LNG.upload_exist_skip}}</label>
+        </div>
+    </div>
+    <div id="uploader" class="wu-example">
+        <div id="thelist" class="uploader-list"></div>
+    </div>
+</div>
+<div class="download_box hidden">
+    <div class="list">{{LNG.download_address}}<input type="text" name="url"/>
+        <button class="btn btn-default btn-sm" type="button">{{LNG.download}}</button>
+    </div>
+    <div style="clear:both"></div>
+    <div id="downloader">
+        <div id="download_list" class="uploader-list"></div>
+    </div>
+</div>
+</div>
