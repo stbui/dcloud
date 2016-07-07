@@ -195,7 +195,7 @@ if %url% equ desktop (
 )
 
 rem 设置代理
-set proxypath="HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
+set proxypath="HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
 reg add %proxypath% /v "ProxyEnable" /t REG_DWORD /d 0 /f>nul
 set proxydef=
 if %proxyurl% equ "" set proxydef=1

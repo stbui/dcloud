@@ -26,9 +26,9 @@ var _base = require('./base.js');
 
 var _base2 = _interopRequireDefault(_base);
 
-var _request = require('request');
+var _http = require('http');
 
-var _request2 = _interopRequireDefault(_request);
+var _http2 = _interopRequireDefault(_http);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -99,16 +99,22 @@ var _class = function (_Base) {
 
 
     _class.prototype.delAction = function delAction() {
-        var data = this.get();
+        var _get = this.get();
 
-        var result = this.model('server').where(data).delete();
+        this.model('server').where(get).delete();
 
         this.action('server', 'index');
     };
 
-    _class.prototype.runstatusAction = function () {
+    /*
+     * 检测客户端服务器运行状态
+     *
+     * */
+
+
+    _class.prototype.checkremoteserverstateAction = function () {
         var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-            var _get, server, json, url, resultData;
+            var _get, serverData, ip, port, url, resultData;
 
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
@@ -119,34 +125,31 @@ var _class = function (_Base) {
                             return this.model('server').where(_get).find();
 
                         case 3:
-                            server = _context.sent;
-                            json = {
-                                name: server.name,
-                                ip: server.ip,
-                                port: server.port
-                            };
-                            url = 'http://' + json.ip + ':' + json.port + '/setuser.asp';
-                            _context.next = 8;
-                            return this.getApiData(url).catch(function (e) {
+                            serverData = _context.sent;
+                            ip = serverData.ip;
+                            port = serverData.port;
+                            url = 'http://' + ip + ':' + port;
+                            _context.next = 9;
+                            return global.request(url).catch(function (e) {
                                 return e;
                             });
 
-                        case 8:
+                        case 9:
                             resultData = _context.sent;
 
-                            if (!(resultData.statusCode == 200)) {
-                                _context.next = 14;
+                            if (!(resultData.code == 'ETIMEDOUT')) {
+                                _context.next = 15;
                                 break;
                             }
 
                             this.model('server').where(_get).update({ status: 1 });
-                            return _context.abrupt('return', this.success(json, this.locale('query_success')));
+                            return _context.abrupt('return', this.fail(this.locale('query_fail'), undefined));
 
-                        case 14:
+                        case 15:
                             this.model('server').where(_get).update({ status: 0 });
-                            return _context.abrupt('return', this.error(5000, this.locale('query_success'), json));
+                            return _context.abrupt('return', this.success(undefined, this.locale('query_success')));
 
-                        case 16:
+                        case 17:
                         case 'end':
                             return _context.stop();
                     }
@@ -154,19 +157,12 @@ var _class = function (_Base) {
             }, _callee, this);
         }));
 
-        function runstatusAction() {
+        function checkremoteserverstateAction() {
             return ref.apply(this, arguments);
         }
 
-        return runstatusAction;
+        return checkremoteserverstateAction;
     }();
-
-    _class.prototype.getApiData = function getApiData(url) {
-        var fn = think.promisify(_request2.default.get);
-        return fn({
-            url: url
-        });
-    };
 
     return _class;
 }(_base2.default);

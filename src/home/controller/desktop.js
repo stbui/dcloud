@@ -13,7 +13,7 @@ export default class extends Base {
 
 
     async pathlistAction() {
-        const program = await this.model('program').getList();
+        const program = await this.model('program').getList({'program.status':1});
 
         let filelist = [];
 
@@ -21,7 +21,7 @@ export default class extends Base {
             filelist.push({
                 name: v.name,
                 //path: v.path,
-                path: v.serverProbePath+'\\'+v.id+'.bat',
+                path: v.serverProbePath+'\\app\\'+v.id+'.bat',
                 //group:v.serverName,
                 group: v.serverAccessToken,
                 ext: 'oexe',

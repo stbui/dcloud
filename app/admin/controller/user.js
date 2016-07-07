@@ -26,10 +26,6 @@ var _base = require('./base.js');
 
 var _base2 = _interopRequireDefault(_base);
 
-var _request = require('request');
-
-var _request2 = _interopRequireDefault(_request);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _class = function (_Base) {
@@ -69,72 +65,39 @@ var _class = function (_Base) {
 
     _class.prototype.syncallremoteusersAction = function () {
         var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-            var _server, user, config, resultRemoteUsers, i, params, url, resultData;
+            var _get2, ip, appusersData, _config, remoteUserUrl, url;
 
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            _server = this.get();
-                            _context.next = 3;
+                            _get2 = this.get();
+                            ip = _get2.ip;
+                            _context.next = 4;
                             return this.model('appusers').select();
 
-                        case 3:
-                            user = _context.sent;
-                            _context.next = 6;
-                            return this.model('config').find();
-
-                        case 6:
-                            config = _context.sent;
-                            resultRemoteUsers = [];
-                            _context.t0 = _regenerator2.default.keys(user);
-
-                        case 9:
-                            if ((_context.t1 = _context.t0()).done) {
-                                _context.next = 19;
-                                break;
-                            }
-
-                            i = _context.t1.value;
-                            params = {
-                                key: config.apiKey,
-                                username: user[i].UserId,
-                                password: user[i].RemotePassword
-
-                            };
-                            url = 'http://' + _server.ip + '/setuser.asp?' + this.setUrlParam(params);
-                            _context.next = 15;
-                            return this.getApiData(url);
-
-                        case 15:
-                            resultData = _context.sent;
+                        case 4:
+                            appusersData = _context.sent;
+                            _config = this.config('api');
+                            remoteUserUrl = _config.remoteUserUrl;
+                            url = remoteUserUrl.replace('${ip}', ip);
 
 
-                            if (resultData.statusCode == 200) {
-                                resultRemoteUsers.push({
-                                    userId: user[i].UserId,
-                                    key: config.apiKey,
-                                    ip: _server.ip,
-                                    status: true
-                                });
-                            } else {
-                                resultRemoteUsers.push({
-                                    userId: user[i].UserId,
-                                    key: config.apiKey,
-                                    ip: _server.ip,
-                                    status: false
-                                });
-                            }
-                            _context.next = 9;
-                            break;
+                            appusersData.forEach(function (item) {
+                                // win2003 密码字符不能大于14
+                                var UserId = item.UserId;
+                                var RemotePassword = item.RemotePassword;
 
-                        case 19:
+                                var formData = { username: UserId, password: RemotePassword };
+                                global.request(url, formData);
+                            });
 
-                            this.model('server').where({ ip: _server.ip }).update({ syncUserDate: think.datetime() });
+                            // 最后同步时间
+                            this.model('server').where({ ip: ip }).update({ syncUserDate: think.datetime() });
 
-                            return _context.abrupt('return', this.success(resultRemoteUsers, this.locale('query_success')));
+                            return _context.abrupt('return', this.success(undefined, this.locale('query_success')));
 
-                        case 21:
+                        case 11:
                         case 'end':
                             return _context.stop();
                     }
@@ -148,26 +111,6 @@ var _class = function (_Base) {
 
         return syncallremoteusersAction;
     }();
-
-    _class.prototype.setUrlParam = function setUrlParam(obj) {
-        var str = [];
-
-        for (var i in obj) {
-            str.push(i + '=' + encodeURIComponent(obj[i]));
-        }
-
-        return str.join('&');
-    };
-
-    _class.prototype.getApiData = function getApiData(url) {
-        var fn = think.promisify(_request2.default.get);
-        return fn({
-            url: url,
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) Chrome/47.0.2526.111 Safari/537.36"
-            }
-        });
-    };
 
     return _class;
 }(_base2.default);

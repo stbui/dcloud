@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\common\\config\\config.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;kBAIe;;;AAGX,QAAM;AAHK,C",
+    "mappings": "AAAA;;;;;;kBAIe;;;AAGX,UAAM,IAHK;;AAKX,SAAK;AACD,0BAAiB,2BADhB;AAED,uBAAc;AAFb;AALM,C",
     "file": "..\\..\\..\\src\\common\\config\\config.js",
     "sourcesContent": [
-        "'use strict';\n/**\n * config\n */\nexport default {\n  //key: value\n  //default_module: \"admin\"\n    port: 8361\n};"
+        "'use strict';\n/**\n * config\n */\nexport default {\n  //key: value\n  //default_module: \"admin\"\n    port: 8361,\n\n    api: {\n        remoteProgramUrl:'http://${ip}:3000/app/add',\n        remoteUserUrl:'http://${ip}:3000/user/add'\n    }\n};"
     ]
 }

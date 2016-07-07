@@ -4,22 +4,22 @@
  */
 export default class extends think.model.base {
 
-    getList() {
+    getList(data) {
         //SELECT * FROM `program` LEFT JOIN server ON program.serverId=server.id
         //return this.join("server ON program.serverId=server.id").select();
 
-        return this.field(['program.*','server.name as serverName, server.accessToken as serverAccessToken, server.probePath as serverProbePath']).join({
+        return this.field(['program.*', 'server.id as serverId,server.name as serverName,server.ip as serverIp, server.accessToken as serverAccessToken, server.probePath as serverProbePath']).join({
             table: 'server',
             join: 'left',
-            on: ['serverId','id']
-        }).select();
+            on: ['serverId', 'id']
+        }).where(data).select();
     }
 
     getSingleList(data) {
-        return this.field(['program.*','server.id as serverId']).join({
+        return this.field(['program.*', 'server.id as serverId,server.name as serverName,server.ip as serverIp, server.accessToken as serverAccessToken, server.probePath as serverProbePath']).join({
             table: 'server',
             join: 'left',
-            on: ['serverId','id']
+            on: ['serverId', 'id']
         }).where(data).find();
     }
 

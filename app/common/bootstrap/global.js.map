@@ -1,7 +1,12 @@
 {
     "version": 3,
-    "sources": [],
+    "sources": [
+        "..\\..\\..\\src\\common\\bootstrap\\global.js"
+    ],
     "names": [],
-    "mappings": "",
-    "sourcesContent": []
+    "mappings": ";;AAaA;;;;;;AAEA,OAAO,IAAP,GAAc,eAAO;AACjB,WAAO,QAAP;AACH,CAFD,C;;;;;;;;;;;;;AAIA,OAAO,OAAP,GAAiB,UAAC,GAAD,EAAM,QAAN,EAAgB,MAAhB,EAA2B;AACxC,QAAI,KAAK,MAAM,SAAN,mBAAT;AACA,WAAO,GAAG;AACN,gBAAQ,UAAU,MADZ;AAEN,aAAK,GAFC;AAGN,cAAM;AAHA,KAAH,CAAP;AAKH,CAPD;;AASA,OAAO,WAAP,GAAqB,UAAC,GAAD,EAAQ;AACzB,QAAI,MAAM,EAAV;;AAEA,SAAK,IAAI,CAAT,IAAc,GAAd,EAAmB;AACf,YAAI,IAAJ,CAAS,IAAI,GAAJ,GAAU,mBAAmB,IAAI,CAAJ,CAAnB,CAAnB;AACH;;AAED,WAAO,IAAI,IAAJ,CAAS,GAAT,CAAP;AACH,CARD",
+    "file": "..\\..\\..\\src\\common\\bootstrap\\global.js",
+    "sourcesContent": [
+        "/**\n * this file will be loaded before server started\n * you can define global functions used in controllers, models, templates\n */\n\n/**\n * use global.xxx to define global functions\n *\n * global.fn1 = function(){\n *\n * }\n */\n\nimport request from 'request';\n\nglobal.test = obj => {\n    return 'global'\n};\n\nglobal.request = (url, formData, method) => {\n    let fn = think.promisify(request);\n    return fn({\n        method: method || 'POST',\n        url: url,\n        form: formData\n    });\n};\n\nglobal.setUrlParam = (obj)=> {\n    let str = [];\n\n    for (var i in obj) {\n        str.push(i + '=' + encodeURIComponent(obj[i]));\n    }\n\n    return str.join('&');\n};"
+    ]
 }

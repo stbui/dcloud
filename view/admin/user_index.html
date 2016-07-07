@@ -8,39 +8,15 @@
         <div class="smart-widget widget-dark-blue">
             <div class="smart-widget-header">
                 用户管理
-							<span class="smart-widget-option">
-								<span class="refresh-icon-animated">
-									<i class="fa fa-circle-o-notch fa-spin"></i>
-								</span>
-	                            <a href="#" class="widget-toggle-hidden-option">
-                                    <i class="fa fa-cog"></i>
-                                </a>
-	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-	                            <a href="#" class="widget-refresh-option">
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-	                            <a href="#" class="widget-remove-option">
-                                    <i class="fa fa-times"></i>
-                                </a>
-	                        </span>
+							<!--<span class="smart-widget-option">-->
+                                <!--<a href="#" class="widget-refresh-option">-->
+                                    <!--<i class="fa fa-refresh"></i> 同步账号-->
+                                <!--</a>-->
+                                <!--同步时间：- -->
+	                        <!--</span>-->
             </div>
             <div class="smart-widget-inner">
-                <div class="smart-widget-hidden-section">
-                    <ul class="widget-color-list clearfix">
-                        <li style="background-color:#20232b;" data-color="widget-dark"></li>
-                        <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
-                        <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
-                        <li style="background-color:#2baab1;" data-color="widget-green"></li>
-                        <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
-                        <li style="background-color:#fbc852;" data-color="widget-orange"></li>
-                        <li style="background-color:#e36159;" data-color="widget-red"></li>
-                        <li style="background-color:#7266ba;" data-color="widget-purple"></li>
-                        <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
-                        <li style="background-color:#fff;" data-color="reset"></li>
-                    </ul>
-                </div>
+
                 <div class="smart-widget-body">
                     <table class="table table-striped">
                         <thead>
@@ -50,8 +26,8 @@
                             <th>部门/职位</th>
                             <th>最后登录时间</th>
                             <th>最后访问IP</th>
-                            <th>客户端服务器账户</th>
-                            <th>操作></th>
+                            <!--<th>客户端服务器账户</th>-->
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -76,7 +52,7 @@
                                 <% } %>
                             </td>
                             <td><%= item.LastIp %></td>
-                            <td>更新 更新于：<%=think.datetime()%></td>
+                            <!--<td>更新 更新于：<%=think.datetime()%></td>-->
                             <td><a class="label label-warning" href="/admin/user/del?UserId=<%=item.UserId%>">删除</a>
                             </td>
                         </tr>

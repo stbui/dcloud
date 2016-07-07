@@ -27,24 +27,16 @@ export default class extends Base {
 
     async editAction() {
         const _get = this.get();
-        const _post = this.post();
 
         let programData, serverData;
 
-
         if (this.isPost()) {
+            const _post = this.post();
+            // 更新数据
             this.model('program').where(_get).update(_post);
 
-            // 在客户端服务器生成bat文件
-            let options = _post;
-            //options = {name: 3, path: 3, ip: 4};
-
-            programData = await this.model('program').getSingleList({'program.id': _get.id});
-            options.name = _get.id;
-            options.ip = programData.serverIp;
-
-            let result = await this.remoteServerCreateFile(options);
-
+            // 在客户端服务器生成命令文件
+            this.action('home/proxy', 'remotegeneratecmdsingle');
             this.redirect('/admin/app/index');
         }
 
@@ -58,11 +50,21 @@ export default class extends Base {
     }
 
     delAction() {
-        return this.display();
+        const _get = this.get();
+        this.model('program').where(_get).delete();
+
+        this.redirect('/admin/app/index');
     }
 
+    /*
+     *  应用显示状态
+     * */
     async shownAction() {
         const _get = this.get();
+
+        if (think.isEmpty(_get)) {
+            return this.fail()
+        }
 
         const programData = this.model('program');
         const row = await programData.where({id: _get.id}).find();
@@ -73,60 +75,8 @@ export default class extends Base {
             await programData.where({id: _get.id}).update({status: 1});
         }
 
-        return this.success(row)
+        return this.success(row.status, this.locale('query_success'));
     }
 
-    async proxyAction() {
-        const _get = this.get();
 
-        const programData = this.model('program');
-        const row = await programData.where({id: _get.id}).find();
-
-        if (row.proxy == 1) {
-            await programData.where({id: _get.id}).update({proxy: 0});
-        } else {
-            await programData.where({id: _get.id}).update({proxy: 1});
-        }
-
-        return this.success(row)
-    }
-
-    async remoteservercreatefileAction() {
-        const _get = this.get();
-        const _post = this.post();
-
-        let options = {id: 2, name: 3, path: 3, ip: 4};
-
-        if (think.isEmpty(_post)) {
-            options = _post;
-        }
-
-        options = _get;
-
-        let programData = await this.model('program').getSingleList({'program.id': options.id});
-
-        options.ip = programData.serverIp;
-
-        let result = await this.remoteServerCreateFile(options);
-
-        this.json(result);
-    }
-
-    remoteServerCreateFile(options) {
-        // 在客户端服务器生成文件
-        // http://xxx/setuser.asp?shellName=ie&shellPath=c:\\2.bat
-        let {name,path,ip} = options;
-
-        name = name.replace(/\s+/g, '');
-
-        let url = 'http://' + ip + '/setuser.asp?shellName=' + encodeURIComponent(name) + '&shellPath=' + encodeURIComponent(path);
-        const result = this.getApiData(url);
-
-        return result;
-    }
-
-    getApiData(url) {
-        let fn = think.promisify(request.get);
-        return fn({url: url});
-    }
 }

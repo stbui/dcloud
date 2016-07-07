@@ -1,7 +1,7 @@
 'use strict';
 
 import Base from './base.js';
-import request from 'request';
+
 
 export default class extends Base {
     /**
@@ -29,65 +29,24 @@ export default class extends Base {
      * @return json
      */
     async syncallremoteusersAction() {
-        const _server = this.get();
-        const user = await this.model('appusers').select();
-        const config = await this.model('config').find();
+        const {ip} = this.get();
+        const appusersData = await this.model('appusers').select();
 
-        let resultRemoteUsers = [];
+        const {remoteUserUrl} = this.config('api');
+        let url = remoteUserUrl.replace('${ip}', ip);
 
-        for (var i in user) {
-            let params = {
-                key: config.apiKey,
-                username: user[i].UserId,
-                password: user[i].RemotePassword
-
-            };
-
-            let url = 'http://' + _server.ip + '/setuser.asp?' + this.setUrlParam(params);
-
-            let resultData = await this.getApiData(url);
-
-            if (resultData.statusCode == 200) {
-                resultRemoteUsers.push({
-                    userId: user[i].UserId,
-                    key: config.apiKey,
-                    ip: _server.ip,
-                    status: true
-                });
-
-            } else {
-                resultRemoteUsers.push({
-                    userId: user[i].UserId,
-                    key: config.apiKey,
-                    ip: _server.ip,
-                    status: false
-                });
-            }
-        }
-
-        this.model('server').where({ip:_server.ip}).update({syncUserDate:think.datetime()});
-
-        return this.success(resultRemoteUsers, this.locale('query_success'));
-    }
-
-    setUrlParam(obj) {
-        let str = [];
-
-        for (var i in obj) {
-            str.push(i + '=' + encodeURIComponent(obj[i]));
-        }
-
-        return str.join('&');
-    }
-
-    getApiData(url) {
-        let fn = think.promisify(request.get);
-        return fn({
-            url: url,
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) Chrome/47.0.2526.111 Safari/537.36"
-            }
+        appusersData.forEach((item)=> {
+            // win2003 密码字符不能大于14
+            let {UserId,RemotePassword} = item;
+            let formData = {username: UserId, password: RemotePassword};
+            global.request(url, formData);
         });
+
+        // 最后同步时间
+        this.model('server').where({ip: ip}).update({syncUserDate: think.datetime()});
+
+
+        return this.success(undefined, this.locale('query_success'));
     }
 
 }

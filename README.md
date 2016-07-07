@@ -38,8 +38,20 @@ http://127.0.0.1:8361
 pm2 startOrReload pm2.json
 ```
 
+### 关联项目
+
+服务器探针
+```
+https://github.com/stbui/dcloud-probe
+```
 
 ### 开源项目
+- [x] socketio
+- [x] bootstrap
+- [x] seajs
+- [x] jquery
+- [x] nw
+
 
 ### 打赏我
 
@@ -47,9 +59,16 @@ pm2 startOrReload pm2.json
 
 
 ### 即将实现
-代理
-jslint
-webdrive
+- [x] 初始化安装
+- [x] 服务器账号同步
+- [x] 应用程序远程执行
+- [x] Guacamole 服务管理
+- [x] Guacamole 配置文件管理
+- [ ] 服务器探针
+- [ ] jslint
+- [ ] webdrive
+- [ ] ssh
+
 
 ### help
 查看

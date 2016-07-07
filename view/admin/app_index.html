@@ -8,40 +8,12 @@
         <div class="smart-widget widget-dark-blue">
             <div class="smart-widget-header">
                 应用程序
-							<span class="smart-widget-option">
-                                <a class="" href="/admin/app/add">添加应用程序</a>
-								<span class="refresh-icon-animated">
-									<i class="fa fa-circle-o-notch fa-spin"></i>
-								</span>
-	                            <a href="#" class="widget-toggle-hidden-option">
-                                    <i class="fa fa-cog"></i>
-                                </a>
-	                            <a href="#" class="widget-collapse-option" data-toggle="collapse">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-	                            <a href="#" class="widget-refresh-option">
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-	                            <a href="#" class="widget-remove-option">
-                                    <i class="fa fa-times"></i>
-                                </a>
-	                        </span>
+                <span class="smart-widget-option">
+                    <a href="/proxy/remoteGenerateCmd"><i class="fa fa-refresh"></i> 部署应用</a>
+                    <a href="/admin/app/add"><i class="fa fa-windows"></i> 添加应用程序</a>
+                </span>
             </div>
             <div class="smart-widget-inner">
-                <div class="smart-widget-hidden-section">
-                    <ul class="widget-color-list clearfix">
-                        <li style="background-color:#20232b;" data-color="widget-dark"></li>
-                        <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
-                        <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
-                        <li style="background-color:#2baab1;" data-color="widget-green"></li>
-                        <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
-                        <li style="background-color:#fbc852;" data-color="widget-orange"></li>
-                        <li style="background-color:#e36159;" data-color="widget-red"></li>
-                        <li style="background-color:#7266ba;" data-color="widget-purple"></li>
-                        <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
-                        <li style="background-color:#fff;" data-color="reset"></li>
-                    </ul>
-                </div>
                 <div class="smart-widget-body">
                     <table class="table table-striped">
                         <thead>
@@ -52,8 +24,6 @@
                             <th>所属服务</th>
                             <th style="width: 30%">程序路径</th>
                             <th>显示</th>
-                            <th>代理</th>
-                            <th>配置参数</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -65,17 +35,18 @@
                             <td><%= item.name%></td>
                             <td><%= item.serverName%></td>
                             <td><%= item.path%></td>
-                            <td>显示</td>
                             <td>
-                                <%if (item.proxy == 'on' || item.proxy == 1) { %>
-                                <a class="label label-primary" href="/admin/app/proxy?id=<%= item.id %>">开启</a>
+                                <%if (item.status== 1) { %>
+                                <a href="/admin/app/shown?id=<%= item.id %>"
+                                   class="label label-info status">显示</a>
                                 <% } else { %>
-                                <a class="label" href="/admin/app/proxy?id=<%= item.id %>">关闭</a>
+                                <a href="/admin/app/shown?id=<%= item.id %>" class="label status">隐藏</a>
                                 <% } %>
                             </td>
-                            <td><%= item.config%></td>
-                            <td><a class="label" href="/admin/app/edit?id=<%= item.id %>">修改</a> <a
-                                    class="label label-warning" href="/admin/app/del?id=<%= item.id %>">删除</a></td>
+                            <td>
+                                <a class="label" href="/admin/app/edit?id=<%= item.id %>">修改</a>
+                                <a class="label label-warning" href="/admin/app/del?id=<%= item.id %>">删除</a>
+                            </td>
                         </tr>
                         <% }) %>
                         </tbody>
@@ -88,5 +59,29 @@
     </div>
 
 </div>
+
+
+<script>
+    $('.status').on('click',function(e){
+        e.preventDefault();
+
+        var $this = $(e.target);
+        var url = $this.attr('href');
+
+        $.ajax({
+            url:url,
+            success:function(data){
+                if(data.data == 0) {
+                    $this.addClass('label-info').text('显示');
+                } else {
+                    $this.removeClass('label-info').text('隐藏');
+                }
+            }
+
+        });
+    });
+
+
+</script>
 
 <% include common/footer.html %>

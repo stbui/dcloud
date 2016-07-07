@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\common\\controller\\req.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;qBAII,I,mBAAO;AACH,eAAO,CAAP;AACH,K;;;EAJwB,MAAM,UAAN,CAAiB,I",
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;EAE6B,MAAM,UAAN,CAAiB,I",
     "file": "..\\..\\..\\src\\common\\controller\\req.js",
     "sourcesContent": [
-        "'use strict';\r\n\r\nexport default class extends think.controller.base {\r\n\r\n    demo() {\r\n        return 2;\r\n    }\r\n}"
+        "'use strict';\r\n\r\nexport default class extends think.controller.base {\r\n\r\n}"
     ]
 }

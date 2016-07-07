@@ -1,7 +1,8 @@
 'use strict';
 
 import Base from './base.js';
-import request from 'request';
+import http from 'http';
+
 
 export default class extends Base {
     /**
@@ -21,7 +22,7 @@ export default class extends Base {
      */
     addAction() {
 
-        if(this.isPost()) {
+        if (this.isPost()) {
             const _post = this.post();
 
             _post.accessToken = think.uuid();
@@ -36,7 +37,7 @@ export default class extends Base {
     editAction() {
         const _get = this.get();
 
-        if(this.isPost()) {
+        if (this.isPost()) {
             const _post = this.post();
 
             if (!think.isEmpty(_get.id)) {
@@ -58,42 +59,36 @@ export default class extends Base {
      *
      * */
     delAction() {
-        let data = this.get();
+        let _get = this.get();
 
-        let result = this.model('server').where(data).delete();
+        this.model('server').where(get).delete();
 
         this.action('server', 'index');
     }
 
-    async runstatusAction() {
+    /*
+     * 检测客户端服务器运行状态
+     *
+     * */
+    async checkremoteserverstateAction() {
         const _get = this.get();
-        let server = await this.model('server').where(_get).find();
+        const serverData = await this.model('server').where(_get).find();
+        const {ip,port} = serverData;
 
-        let json = {
-            name: server.name,
-            ip: server.ip,
-            port: server.port
-        };
 
-        let url = 'http://' + json.ip + ':' + json.port + '/setuser.asp';
-
-        let resultData = await this.getApiData(url).catch((e)=> {
+        let url = 'http://' + ip + ':' + port;
+        let resultData = await global.request(url).catch((e)=> {
             return e
         });
 
-        if (resultData.statusCode == 200) {
+
+        if (resultData.code == 'ETIMEDOUT') {
             this.model('server').where(_get).update({status: 1});
-            return this.success(json, this.locale('query_success'));
+            return this.fail(this.locale('query_fail'), undefined);
         } else {
             this.model('server').where(_get).update({status: 0});
-            return this.error(5000, this.locale('query_success'), json);
+            return this.success(undefined, this.locale('query_success'));
         }
     }
 
-    getApiData(url) {
-        let fn = think.promisify(request.get);
-        return fn({
-            url: url
-        });
-    }
 }

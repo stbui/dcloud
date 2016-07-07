@@ -57,7 +57,7 @@ var _class = function (_Base) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return this.model('program').getList();
+                            return this.model('program').getList({ 'program.status': 1 });
 
                         case 2:
                             program = _context.sent;
@@ -68,7 +68,7 @@ var _class = function (_Base) {
                                 filelist.push({
                                     name: v.name,
                                     //path: v.path,
-                                    path: v.serverProbePath + '\\' + v.id + '.bat',
+                                    path: v.serverProbePath + '\\app\\' + v.id + '.bat',
                                     //group:v.serverName,
                                     group: v.serverAccessToken,
                                     ext: 'oexe',
