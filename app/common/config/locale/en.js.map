@@ -4,9 +4,9 @@
         "..\\..\\..\\..\\src\\common\\config\\locale\\en.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;kBAEe;AACb,QAAK;AADQ,C",
+    "mappings": "AAAA;;;kBAEe,E",
     "file": "..\\..\\..\\..\\src\\common\\config\\locale\\en.js",
     "sourcesContent": [
-        "'use strict';\n\nexport default {\n  test:'1'\n};"
+        "'use strict';\n\nexport default {\n\n};"
     ]
 }

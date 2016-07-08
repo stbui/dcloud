@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\common\\config\\view.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;kBAIe;AACb,QAAM,KADO;AAEb,gBAAc,WAFD;AAGb,YAAU,OAHG;AAIb,aAAW,GAJE;AAKb,aAAW,MAAM,SAAN,GAAkB,OALhB;AAMb,WAAS;AACP,SAAK;AADE;AANI,C",
+    "mappings": "AAAA;;;;;;kBAIe;AACX,UAAM,KADK;AAEX,kBAAc,WAFH;AAGX,cAAU,OAHC;AAIX,eAAW,GAJA;AAKX,eAAW,MAAM,SAAN,GAAkB,OALlB;AAMX,aAAS;AACL,aAAK;AADA;AANE,C",
     "file": "..\\..\\..\\src\\common\\config\\view.js",
     "sourcesContent": [
-        "'use strict';\n/**\n * template config\n */\nexport default {\n  type: 'ejs',\n  content_type: 'text/html',\n  file_ext: '.html',\n  file_depr: '_',\n  root_path: think.ROOT_PATH + '/view',\n  adapter: {\n    ejs: {}\n  }\n};"
+        "'use strict';\n/**\n * template config\n */\nexport default {\n    type: 'ejs',\n    content_type: 'text/html',\n    file_ext: '.html',\n    file_depr: '_',\n    root_path: think.ROOT_PATH + '/view',\n    adapter: {\n        ejs: {}\n    }\n};"
     ]
 }

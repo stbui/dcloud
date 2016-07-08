@@ -1,7 +1,6 @@
 'use strict';
 
 import Base from './base.js';
-import request from 'request';
 
 export default class extends Base {
     /**

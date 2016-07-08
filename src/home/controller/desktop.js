@@ -13,48 +13,9 @@ export default class extends Base {
 
 
     async pathlistAction() {
-        const program = await this.model('program').getList({'program.status':1});
+        const program = await this.model('program').getList({'program.status': 1});
 
-        let filelist = [];
-
-        program.forEach((v, k)=> {
-            filelist.push({
-                name: v.name,
-                //path: v.path,
-                path: v.serverProbePath+'\\app\\'+v.id+'.bat',
-                //group:v.serverName,
-                group: v.serverAccessToken,
-                ext: 'oexe',
-                type: 'url',
-                icon: v.icon
-            })
-        });
-
-
-        let json = {
-            "code": true,
-            "use_time": this.locale(),
-            "data": {
-                "folderlist": [],
-                "filelist": [],
-                "info": {
-                    "path_type": "",
-                    "role": "",
-                    "id": "",
-                    "name": ""
-                },
-                "path_read_write": "writeable",
-                "user_space": {
-                    "size_max": 0.1,
-                    "size_use": 1048576
-                }
-            }
-        };
-
-        json.data.filelist = filelist;
-
-        return this.json(json);
-
+        return this.success(program, this.locale('query_success'));
     }
 
     commonjsAction() {
@@ -73,7 +34,7 @@ export default class extends Base {
             "app_host": this.http.host,
             "myhome": think.ROOT_PATH,
             "upload_max": 2097152,
-            "version": "3.21",
+            "version": "1.0.0",
             "version_desc": "product",
             "json_data": "",
             "theme": "metro\/",

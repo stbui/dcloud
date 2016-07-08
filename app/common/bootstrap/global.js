@@ -26,6 +26,7 @@ global.request = function (url, formData, method) {
     return fn({
         method: method || 'POST',
         url: url,
+        timeout: 200,
         form: formData
     });
 };
@@ -34,7 +35,7 @@ global.setUrlParam = function (obj) {
     var str = [];
 
     for (var i in obj) {
-        str.push(i + '=' + encodeURIComponent(obj[i]));
+        str.push(i + '=' + encodeURI(obj[i]));
     }
 
     return str.join('&');

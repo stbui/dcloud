@@ -1,27 +1,24 @@
--- MySQL dump 10.13  Distrib 5.5.40, for Win32 (x86)
---
--- Host: localhost    Database: dcloud
--- ------------------------------------------------------
--- Server version	5.5.40
+/*
+Navicat MySQL Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+Source Server         : 127.0.0.1
+Source Server Version : 50547
+Source Host           : localhost:3306
+Source Database       : dcloud
 
---
--- Table structure for table `applogs`
---
+Target Server Type    : MYSQL
+Target Server Version : 50547
+File Encoding         : 65001
 
+Date: 2016-07-08 17:05:06
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for applogs
+-- ----------------------------
 DROP TABLE IF EXISTS `applogs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `applogs` (
   `logId` bigint(20) NOT NULL AUTO_INCREMENT,
   `UserId` varchar(100) DEFAULT '',
@@ -32,24 +29,15 @@ CREATE TABLE `applogs` (
   KEY `UserId` (`LogTime`,`UserId`) USING BTREE,
   KEY `appOrder` (`LogTime`,`appId`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `applogs`
---
+-- ----------------------------
+-- Records of applogs
+-- ----------------------------
 
-LOCK TABLES `applogs` WRITE;
-/*!40000 ALTER TABLE `applogs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `applogs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `appusers`
---
-
+-- ----------------------------
+-- Table structure for appusers
+-- ----------------------------
 DROP TABLE IF EXISTS `appusers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appusers` (
   `UserId` varchar(100) NOT NULL,
   `RemotePassword` varchar(64) DEFAULT NULL,
@@ -73,24 +61,35 @@ CREATE TABLE `appusers` (
   KEY `Job` (`Job`),
   KEY `Gender` (`Gender`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `appusers`
---
+-- ----------------------------
+-- Records of appusers
+-- ----------------------------
+INSERT INTO `appusers` VALUES ('12301', '123456', null, '2016-06-24 20:26:29', '2016-06-24 20:26:30', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12302', '123465', null, '2016-06-24 20:26:48', '2016-06-24 20:26:49', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12303', '123456', null, '2016-06-24 20:27:48', '2016-06-27 12:33:44', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12305', '123465', null, '2016-06-24 20:29:16', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12306', '123465', null, '2016-06-24 20:29:54', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12307', '123456', null, '2016-06-24 20:36:51', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12308', '123456', null, '2016-06-24 20:37:40', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12309', '123456', null, '2016-06-24 20:38:01', '2016-06-24 13:47:11', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12310', '123456', null, '2016-06-24 20:38:06', '2016-06-27 12:34:03', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12311', '123456', null, '2016-06-24 20:38:09', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12312', '123456', null, '2016-06-24 20:38:12', '2016-06-24 20:38:18', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12313', '123465', null, '2016-06-24 20:39:37', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12314', '123465', null, '2016-06-24 20:39:46', '2016-06-24 20:39:47', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12315', '123456', null, '2016-06-24 20:55:00', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12316', '123456', null, '2016-06-24 20:55:24', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12317', '123456', null, '2016-06-24 20:55:28', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12318', '123465', null, '2016-06-24 20:56:26', '2016-06-24 13:56:27', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12319', '123456', null, '2016-06-24 20:57:24', '2016-06-24 13:57:25', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12320', '123456', null, '2016-06-24 20:58:06', '2016-06-24 21:01:28', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('User1467362486321', '748fb6a72579d27b5ea53b8d0939c39c', '2db107c5f586d5d8b78311a04dc774c1', '2016-07-01 16:41:26', '2016-07-01 20:03:43', '127.0.0.1', 'stbui', null, null, null, null, null, null, null);
 
-LOCK TABLES `appusers` WRITE;
-/*!40000 ALTER TABLE `appusers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `appusers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `config`
---
-
+-- ----------------------------
+-- Table structure for config
+-- ----------------------------
 DROP TABLE IF EXISTS `config`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(11) NOT NULL,
@@ -99,83 +98,76 @@ CREATE TABLE `config` (
   `guacamoleConfig` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=gbk;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `config`
---
+-- ----------------------------
+-- Records of config
+-- ----------------------------
+INSERT INTO `config` VALUES ('1', 'dCloud', '9c4fa840209097f905542173304f6b8d', 'http://172.16.97.13:20000/guacamole/client.xhtml', '/etc/guacamole/noauth-config.xml');
 
-LOCK TABLES `config` WRITE;
-/*!40000 ALTER TABLE `config` DISABLE KEYS */;
-/*!40000 ALTER TABLE `config` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `program`
---
-
+-- ----------------------------
+-- Table structure for program
+-- ----------------------------
 DROP TABLE IF EXISTS `program`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `program` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `config` varchar(255) NOT NULL,
-  `proxy` varchar(255) NOT NULL,
   `icon` varchar(255) NOT NULL,
   `serverId` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=gbk;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `program`
---
+-- ----------------------------
+-- Records of program
+-- ----------------------------
+INSERT INTO `program` VALUES ('1', 'IE 6', 'iexplore', '/static/home/images/app/ie6.png', '11', '1');
+INSERT INTO `program` VALUES ('2', 'IE 7', '', '/static/home/images/app/ie7.png', '11', '0');
+INSERT INTO `program` VALUES ('3', 'IE 8', '', '/static/home/images/app/ie8.png', '11', '0');
+INSERT INTO `program` VALUES ('4', 'IE 9', '', '/static/home/images/app/ie9.png', '11', '0');
+INSERT INTO `program` VALUES ('5', 'IE 10', '', '/static/home/images/app/ie10.png', '11', '0');
+INSERT INTO `program` VALUES ('6', 'IE 11', '', '/static/home/images/app/ie11.png', '11', '0');
+INSERT INTO `program` VALUES ('7', 'chrome', '', '/static/home/images/app/chrome.png', '11', '0');
+INSERT INTO `program` VALUES ('8', 'firefox', 'C:\\Program Files\\Mozilla Firefox\\firefox.exe', '/static/home/images/app/firefox.png', '11', '1');
+INSERT INTO `program` VALUES ('9', 'opera', '', '/static/home/images/app/opera.png', '11', '1');
+INSERT INTO `program` VALUES ('10', '360浏览器', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\360Chrome\\Chrome\\Application\\360chrome.exe', '/static/home/images/app/360se.png', '11', '1');
+INSERT INTO `program` VALUES ('11', '360极速浏览器', 'C:\\Program Files\\360Chrome\\Chrome\\Application\\360chrome.exe', '/static/home/images/app/360chrome.png', '11', '1');
+INSERT INTO `program` VALUES ('12', '猎豹浏览器', 'C:\\Program Files\\liebao\\liebao.exe', '/static/home/images/app/liebao.png', '11', '1');
+INSERT INTO `program` VALUES ('13', '傲游浏览器', 'C:\\Program Files\\Maxthon\\Bin\\Maxthon.exe', '/static/home/images/app/maxthon.png', '11', '1');
+INSERT INTO `program` VALUES ('14', 'QQ浏览器', 'C:\\Program Files\\Tencent\\QQBrowser\\QQBrowser.exe', '/static/home/images/app/qqbrowser.png', '11', '1');
+INSERT INTO `program` VALUES ('15', 'UC浏览器', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\SogouExplorer\\SogouExplorer.exe', '/static/home/images/app/ucbrowser.png', '11', '1');
+INSERT INTO `program` VALUES ('16', '搜狗浏览器', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\SogouExplorer\\SogouExplorer.exe', '/static/home/images/app/sogou.png', '11', '1');
+INSERT INTO `program` VALUES ('17', '2345浏览器', 'C:\\Program Files\\2345Soft\\2345Explorer\\2345Explorer.exe', '/static/home/images/app/2345.png', '11', '1');
+INSERT INTO `program` VALUES ('18', '世界之窗', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\TheWorld6\\Application\\TheWorld.exe', '/static/home/images/app/theworld.png', '11', '1');
+INSERT INTO `program` VALUES ('19', '我的桌面', '', '', '0', '0');
 
-LOCK TABLES `program` WRITE;
-/*!40000 ALTER TABLE `program` DISABLE KEYS */;
-/*!40000 ALTER TABLE `program` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `server`
---
-
+-- ----------------------------
+-- Table structure for server
+-- ----------------------------
 DROP TABLE IF EXISTS `server`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `server` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `ip` varchar(15) NOT NULL,
-  `port` int(5) NOT NULL,
-  `status` int(1) NOT NULL,
-  `appid` int(11) NOT NULL,
-  `syncUserDate` datetime DEFAULT NULL,
+  `port` int(5) NOT NULL DEFAULT '80',
   `accessToken` varchar(255) NOT NULL,
   `probePath` varchar(255) DEFAULT NULL,
+  `syncUserDate` datetime DEFAULT NULL,
+  `status` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=gbk;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=gbk;
 
---
--- Dumping data for table `server`
---
+-- ----------------------------
+-- Records of server
+-- ----------------------------
+INSERT INTO `server` VALUES ('11', 'netname-86dfa86', '192.168.159.137', '3000', 'YFtTew6WoBU5BWuFBQwOKg9zTN2GD6UY', 'C:\\release', '2016-07-07 19:07:12', '1');
+INSERT INTO `server` VALUES ('41', 'DESKTOP-SE7CR98', '172.16.97.13', '3000', '7BCNs_6zlE16jC02G5YBwvhKJLnMt3gy', 'C:\\Users\\431103.com\\AppData\\Roaming\\npm\\node_modules\\nw\\nwjs', null, '1');
+INSERT INTO `server` VALUES ('16', 'demo', '127.0.0.1', '3000', 't_NX20erY_6y5aLYESXSJIcFjh1J19li', 'E:\\', '2016-07-07 14:50:20', '0');
 
-LOCK TABLES `server` WRITE;
-/*!40000 ALTER TABLE `server` DISABLE KEYS */;
-/*!40000 ALTER TABLE `server` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `wd_browsers`
---
-
+-- ----------------------------
+-- Table structure for wd_browsers
+-- ----------------------------
 DROP TABLE IF EXISTS `wd_browsers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_browsers` (
   `browser_id` int(11) NOT NULL AUTO_INCREMENT,
   `browser_name` varchar(20) DEFAULT '',
@@ -184,24 +176,15 @@ CREATE TABLE `wd_browsers` (
   PRIMARY KEY (`browser_id`),
   UNIQUE KEY `node_id` (`node_id`,`browser_name`,`browser_version`)
 ) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wd_browsers`
---
+-- ----------------------------
+-- Records of wd_browsers
+-- ----------------------------
 
-LOCK TABLES `wd_browsers` WRITE;
-/*!40000 ALTER TABLE `wd_browsers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wd_browsers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `wd_jsunit`
---
-
+-- ----------------------------
+-- Table structure for wd_jsunit
+-- ----------------------------
 DROP TABLE IF EXISTS `wd_jsunit`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_jsunit` (
   `task_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `userid` varchar(255) DEFAULT NULL,
@@ -231,24 +214,15 @@ CREATE TABLE `wd_jsunit` (
   `test_result_data` longtext,
   PRIMARY KEY (`task_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1120 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wd_jsunit`
---
+-- ----------------------------
+-- Records of wd_jsunit
+-- ----------------------------
 
-LOCK TABLES `wd_jsunit` WRITE;
-/*!40000 ALTER TABLE `wd_jsunit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wd_jsunit` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `wd_logs`
---
-
+-- ----------------------------
+-- Table structure for wd_logs
+-- ----------------------------
 DROP TABLE IF EXISTS `wd_logs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_logs` (
   `log_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
@@ -257,24 +231,15 @@ CREATE TABLE `wd_logs` (
   `log_time` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2535 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wd_logs`
---
+-- ----------------------------
+-- Records of wd_logs
+-- ----------------------------
 
-LOCK TABLES `wd_logs` WRITE;
-/*!40000 ALTER TABLE `wd_logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wd_logs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `wd_nodes`
---
-
+-- ----------------------------
+-- Table structure for wd_nodes
+-- ----------------------------
 DROP TABLE IF EXISTS `wd_nodes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `wd_nodes` (
   `node_id` int(11) NOT NULL AUTO_INCREMENT,
   `work_status` tinyint(4) DEFAULT '0',
@@ -287,24 +252,7 @@ CREATE TABLE `wd_nodes` (
   PRIMARY KEY (`node_id`),
   UNIQUE KEY `node_ip` (`node_ip`,`node_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `wd_nodes`
---
-
-LOCK TABLES `wd_nodes` WRITE;
-/*!40000 ALTER TABLE `wd_nodes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wd_nodes` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-07-02 23:32:26
+-- ----------------------------
+-- Records of wd_nodes
+-- ----------------------------

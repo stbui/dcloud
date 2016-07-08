@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\admin\\logic\\system.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAWI,W,0BAAa;AACT,YAAI,QAAQ;AACR,kBAAK;AADG,SAAZ;AAIH,K;;;EAVwB,MAAM,KAAN,CAAY,I",
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAWI,W,0BAAc,CAEb,C;;;EAPwB,MAAM,KAAN,CAAY,I",
     "file": "..\\..\\..\\src\\admin\\logic\\system.js",
     "sourcesContent": [
-        "'use strict';\r\n/**\r\n * logic\r\n * @param  {} []\r\n * @return {}     []\r\n */\r\nexport default class extends think.logic.base {\r\n    /**\r\n     * index action logic\r\n     * @return {} []\r\n     */\r\n    indexAction(){\r\n        let rules = {\r\n            name:'required'\r\n        }\r\n\r\n    }\r\n}"
+        "'use strict';\r\n/**\r\n * logic\r\n * @param  {} []\r\n * @return {}     []\r\n */\r\nexport default class extends think.logic.base {\r\n    /**\r\n     * index action logic\r\n     * @return {} []\r\n     */\r\n    indexAction() {\r\n\r\n    }\r\n}"
     ]
 }

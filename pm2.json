@@ -2,7 +2,7 @@
   "apps": [{
     "name": "dcloud",
     "script": "www/production.js",
-    "cwd": "/root/www/dcloud",
+    "cwd": "/root/dCloud",
     "exec_mode": "cluster",
     "instances": 0,
     "max_memory_restart": "1G",

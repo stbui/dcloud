@@ -1,7 +1,5 @@
 'use strict';
 
 exports.__esModule = true;
-exports.default = {
-  test: '1'
-};
+exports.default = {};
 //# sourceMappingURL=en.js.map

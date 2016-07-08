@@ -63,6 +63,7 @@ var _class = function (_Base) {
         if (this.isPost()) {
             var _post = this.post();
 
+            //服务器身份标识
             _post.accessToken = think.uuid();
             this.model('server').add(_post);
 
@@ -101,7 +102,7 @@ var _class = function (_Base) {
     _class.prototype.delAction = function delAction() {
         var _get = this.get();
 
-        this.model('server').where(get).delete();
+        this.model('server').where(_get).delete();
 
         this.action('server', 'index');
     };

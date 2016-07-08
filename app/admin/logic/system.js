@@ -22,25 +22,21 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _class = function (_think$logic$base) {
-    (0, _inherits3.default)(_class, _think$logic$base);
+  (0, _inherits3.default)(_class, _think$logic$base);
 
-    function _class() {
-        (0, _classCallCheck3.default)(this, _class);
-        return (0, _possibleConstructorReturn3.default)(this, _think$logic$base.apply(this, arguments));
-    }
+  function _class() {
+    (0, _classCallCheck3.default)(this, _class);
+    return (0, _possibleConstructorReturn3.default)(this, _think$logic$base.apply(this, arguments));
+  }
 
-    /**
-     * index action logic
-     * @return {} []
-     */
+  /**
+   * index action logic
+   * @return {} []
+   */
 
-    _class.prototype.indexAction = function indexAction() {
-        var rules = {
-            name: 'required'
-        };
-    };
+  _class.prototype.indexAction = function indexAction() {};
 
-    return _class;
+  return _class;
 }(think.logic.base);
 
 exports.default = _class;

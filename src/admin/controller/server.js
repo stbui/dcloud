@@ -25,6 +25,7 @@ export default class extends Base {
         if (this.isPost()) {
             const _post = this.post();
 
+            //服务器身份标识
             _post.accessToken = think.uuid();
             this.model('server').add(_post);
 
@@ -61,7 +62,7 @@ export default class extends Base {
     delAction() {
         let _get = this.get();
 
-        this.model('server').where(get).delete();
+        this.model('server').where(_get).delete();
 
         this.action('server', 'index');
     }

@@ -51,7 +51,7 @@ var _class = function (_Base) {
 
     _class.prototype.pathlistAction = function () {
         var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-            var program, filelist, json;
+            var program;
             return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -61,48 +61,9 @@ var _class = function (_Base) {
 
                         case 2:
                             program = _context.sent;
-                            filelist = [];
+                            return _context.abrupt('return', this.success(program, this.locale('query_success')));
 
-
-                            program.forEach(function (v, k) {
-                                filelist.push({
-                                    name: v.name,
-                                    //path: v.path,
-                                    path: v.serverProbePath + '\\app\\' + v.id + '.bat',
-                                    //group:v.serverName,
-                                    group: v.serverAccessToken,
-                                    ext: 'oexe',
-                                    type: 'url',
-                                    icon: v.icon
-                                });
-                            });
-
-                            json = {
-                                "code": true,
-                                "use_time": this.locale(),
-                                "data": {
-                                    "folderlist": [],
-                                    "filelist": [],
-                                    "info": {
-                                        "path_type": "",
-                                        "role": "",
-                                        "id": "",
-                                        "name": ""
-                                    },
-                                    "path_read_write": "writeable",
-                                    "user_space": {
-                                        "size_max": 0.1,
-                                        "size_use": 1048576
-                                    }
-                                }
-                            };
-
-
-                            json.data.filelist = filelist;
-
-                            return _context.abrupt('return', this.json(json));
-
-                        case 8:
+                        case 4:
                         case 'end':
                             return _context.stop();
                     }
@@ -133,7 +94,7 @@ var _class = function (_Base) {
             "app_host": this.http.host,
             "myhome": think.ROOT_PATH,
             "upload_max": 2097152,
-            "version": "3.21",
+            "version": "1.0.0",
             "version_desc": "product",
             "json_data": "",
             "theme": "metro\/",

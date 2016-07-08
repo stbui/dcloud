@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\admin\\model\\user.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAUE,I,mBAAa;AAAA;;AAAA,sCAAL,IAAK;AAAL,UAAK;AAAA;;AACX,8DAAM,IAAN,mDAAc,IAAd;;AAEA,SAAK,QAAL,GAAgB;AACd,eAAS;AACP,cAAM,MAAM,KAAN,CAAY,QADX;AAEP,eAAO;AAFA;AADK,KAAhB;AAOD,G;;mBAGK,U;;UACA,I;;;;;;qBAAa,KAAK,KAAL,CAAW,SAAX,EAAsB,IAAtB,CAA2B;AAC1C,uBAAO,UADmC;AAE1C,oBAAG,CAAC,QAAD,EAAU,QAAV;AAFuC,eAA3B,C;;;AAAb,kB;;;;;;;;;;;;;;;;;;EApBqB,MAAM,KAAN,CAAY,Q",
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAUI,I,mBAAc;AAAA;;AAAA,0CAAN,IAAM;AAAN,gBAAM;AAAA;;AACV,kEAAM,IAAN,mDAAc,IAAd;;AAEA,aAAK,QAAL,GAAgB;AACZ,qBAAS;AACL,sBAAM,MAAM,KAAN,CAAY,QADb;AAEL,uBAAO;AAFF;AADG,SAAhB;AAOH,K;;qBAGK,U;;gBACE,I;;;;;;mCAAa,KAAK,KAAL,CAAW,SAAX,EAAsB,IAAtB,CAA2B;AACxC,uCAAO,UADiC;AAExC,oCAAI,CAAC,QAAD,EAAW,QAAX;AAFoC,6BAA3B,C;;;AAAb,gC;;;;;;;;;;;;;;;;;;EApBiB,MAAM,KAAN,CAAY,Q",
     "file": "..\\..\\..\\src\\admin\\model\\user.js",
     "sourcesContent": [
-        "'use strict';\n/**\n * relation model\n */\nexport default class extends think.model.relation {\n  /**\n   * init\n   * @param  {} args []\n   * @return {}         []\n   */\n  init(...args){\n    super.init(...args);\n\n    this.relation = {\n      applogs: {\n        type: think.model.HAS_MANY,\n        field: 'UserId'\n      }\n    }\n\n  }\n\n\n  async getAppLogs() {\n    let data = await this.model('applogs').join({\n      table: 'appusers',\n      on:['UserId','UserId']\n    })\n  }\n\n\n\n}"
+        "'use strict';\n/**\n * relation model\n */\nexport default class extends think.model.relation {\n    /**\n     * init\n     * @param  {} args []\n     * @return {}         []\n     */\n    init(...args) {\n        super.init(...args);\n\n        this.relation = {\n            applogs: {\n                type: think.model.HAS_MANY,\n                field: 'UserId'\n            }\n        }\n\n    }\n\n\n    async getAppLogs() {\n        let data = await this.model('applogs').join({\n            table: 'appusers',\n            on: ['UserId', 'UserId']\n        })\n    }\n\n\n}"
     ]
 }

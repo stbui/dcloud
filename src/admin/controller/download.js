@@ -6,7 +6,7 @@ import fs from 'fs';
 export default class extends Base {
 
     async clientAction() {
-        let filePath = think.ROOT_PATH + '/bin/probe.js';
+        let filePath = think.ROOT_PATH + '/bin/probe.asp';
         let probe = await this.probe();
 
         // 生成配置文件
@@ -21,27 +21,13 @@ export default class extends Base {
         return this.json(probe);
     }
 
-    async shellAction() {
-        const programData = await  this.model('program').where({id: 2}).find();
-
-        let buffer = this.getShellContent({
-            domain: 'http://:' + this.http.host,
-            appid: programData.id,
-            appName: '',
-            appPath: programData.path,
-            appUrl: programData.config,
-            proxy: false
-        });
-
-        return this.json(buffer);
-    }
 
     probe() {
         const configData = this.model('config').find();
 
         let options = {
             apiKey:configData.apiKey,
-            domain:'http://172.16.97.13:8361',
+            domain:think.http.host,
             url:'http://www.baidu.com',
             param:''
         };
@@ -61,7 +47,7 @@ Response.CharSet= "UTF-8"
 
 dim apiKey, domain
 apiKey = "${apiKey}"
-domain = "${domain}"    'http://172.16.97.13:8361/api/applog
+domain = "${domain}"
 
 dim shellName, shellPath
 
@@ -169,55 +155,6 @@ Function CreateFile(FileName,Content)
     end if
 End function
 %>
-        `;
-
-        return str;
-    }
-
-    getShellContent(options) {
-        let str = `
-@echo off
-
-set domain=${options.domain}
-set appid=${options.appid}
-
-rem 命令行参数
-set proxymode="%1"
-set proxyurl=%2
-set url=%3
-set apiKey=%4
-
-rem 探测桌面模式
-set isWeb=1
-if %url% equ desktop (
-	set url="about:blank"
-	set isWeb=0
-)
-
-rem 设置代理
-set proxypath="HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"
-reg add %proxypath% /v "ProxyEnable" /t REG_DWORD /d 0 /f>nul
-set proxydef=
-if %proxyurl% equ "" set proxydef=1
-if %proxyurl% equ default set proxydef=1
-if %proxyurl% equ "default" set proxydef=1
-if defined proxydef set proxyurl="http://%domain%/getHostsPac?name=%USERNAME%"
-if %proxymode% equ "noproxy" (
-	set proxyurl=""
-)
-if %proxyurl% neq "" (
-	rem 开启代理
-	reg add %proxypath% /v "AutoConfigURL" /d %proxyurl% /f >nul
-) else (
-	rem 关闭代理
-	reg delete %proxypath% /v "AutoConfigURL" /f > nul
-)
-
-rem 打开应用
-start /MAX "" "${options.appPath}" %url% %proxyParam%
-
-rem 打点统计
-start "" curl "http://%domain%/applog?userid=%USERNAME%&appid=%appid%&isweb=%isWeb%"
         `;
 
         return str;

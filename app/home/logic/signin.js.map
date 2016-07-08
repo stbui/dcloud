@@ -4,9 +4,9 @@
         "..\\..\\..\\src\\home\\logic\\signin.js"
     ],
     "names": [],
-    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAWE,W,0BAAa,CAEZ,C;;mBAED,c,6BAAkB;AAChB,SAAK,YAAL,GAAoB,MAApB;;AAEA,SAAK,KAAL,GAAa;AACX,cAAO,UADI;AAEX,sBAAe;AAFJ,KAAb;AAID,G;;mBAEK,wB;;UACE,Q;;;;;;qBAAiB,KAAK,OAAL,CAAa,UAAb,C;;;AAAjB,sB;;mBAEH,MAAM,OAAN,CAAc,QAAd,C;;;;;+CACM,KAAK,IAAL,CAAU,IAAV,EAAe,KAAK,MAAL,CAAY,cAAZ,CAAf,C;;;;;;;;;;;;;;;;;;EAtBgB,MAAM,KAAN,CAAY,I",
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAWI,W,0BAAc,CAEb,C;;qBAED,c,6BAAiB;AACb,aAAK,YAAL,GAAoB,MAApB;;AAEA,aAAK,KAAL,GAAa;AACT,oBAAQ,UADC;AAET,4BAAgB;AAFP,SAAb;AAIH,K;;;EAhBwB,MAAM,KAAN,CAAY,I",
     "file": "..\\..\\..\\src\\home\\logic\\signin.js",
     "sourcesContent": [
-        "'use strict';\n/**\n * logic\n * @param  {} []\n * @return {}     []\n */\nexport default class extends think.logic.base {\n  /**\n   * index action logic\n   * @return {} []\n   */\n  indexAction(){\n\n  }\n\n  registerAction () {\n    this.allowMethods = \"post\";\n\n    this.rules = {\n      UserId:\"required\",\n      RemotePassword:\"byteLength:6,32|required\"\n    };\n  }\n\n  async syncallremoteusersAction() {\n    const userInfo = await this.session('userInfo');\n\n    if(think.isEmpty(userInfo)) {\n      return this.fail(1001,this.locale('user_islogin'));\n    }\n  }\n\n}"
+        "'use strict';\n/**\n * logic\n * @param  {} []\n * @return {}     []\n */\nexport default class extends think.logic.base {\n    /**\n     * index action logic\n     * @return {} []\n     */\n    indexAction() {\n\n    }\n\n    registerAction() {\n        this.allowMethods = \"post\";\n\n        this.rules = {\n            UserId: \"required\",\n            RemotePassword: \"byteLength:6,32|required\"\n        };\n    }\n\n}"
     ]
 }

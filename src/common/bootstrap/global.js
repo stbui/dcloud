@@ -22,6 +22,7 @@ global.request = (url, formData, method) => {
     return fn({
         method: method || 'POST',
         url: url,
+        timeout:200,
         form: formData
     });
 };
@@ -30,7 +31,7 @@ global.setUrlParam = (obj)=> {
     let str = [];
 
     for (var i in obj) {
-        str.push(i + '=' + encodeURIComponent(obj[i]));
+        str.push(i + '=' + encodeURI(obj[i]));
     }
 
     return str.join('&');

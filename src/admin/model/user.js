@@ -3,31 +3,30 @@
  * relation model
  */
 export default class extends think.model.relation {
-  /**
-   * init
-   * @param  {} args []
-   * @return {}         []
-   */
-  init(...args){
-    super.init(...args);
+    /**
+     * init
+     * @param  {} args []
+     * @return {}         []
+     */
+    init(...args) {
+        super.init(...args);
 
-    this.relation = {
-      applogs: {
-        type: think.model.HAS_MANY,
-        field: 'UserId'
-      }
+        this.relation = {
+            applogs: {
+                type: think.model.HAS_MANY,
+                field: 'UserId'
+            }
+        }
+
     }
 
-  }
 
-
-  async getAppLogs() {
-    let data = await this.model('applogs').join({
-      table: 'appusers',
-      on:['UserId','UserId']
-    })
-  }
-
+    async getAppLogs() {
+        let data = await this.model('applogs').join({
+            table: 'appusers',
+            on: ['UserId', 'UserId']
+        })
+    }
 
 
 }

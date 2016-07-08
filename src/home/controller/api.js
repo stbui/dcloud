@@ -3,62 +3,40 @@
 import Base from './base.js';
 
 export default class extends Base {
-  /**
-   * index action
-   * @return {Promise} []
-   */
-  async indexAction(){
-    //const userInfo = await this.session('userInfo');
-    //
-    //let json = {
-    //  userId: userInfo.UserId,
-    //  ApiKey: userInfo.ApiKey,
-    //  version:'1.0.0'
-    //};
+    /**
+     * index action
+     * @return {Promise} []
+     */
+    async indexAction() {
+
+        return this.display();
+    }
 
 
-    return this.display();
-  }
+    /*
+     * 查询所有应用程序列表
+     * @return {json}
+     * */
+    async getallappAction() {
+        const program = await this.model('program').select();
+
+        return this.success(program, this.locale('query_success'));
+    }
 
 
-  async getallappAction() {
-    const program = await this.model('program').select();
+    /*
+     * 查询
+     * @return {json}
+     * */
+    getapikeyAction() {
 
-    return this.success(program);
-  }
+        return this.success({apiKey: think.uuid()});
+    }
 
 
-  createuserAction() {
-    return this.success();
-  }
-
-  sethostsAction() {
-    return this.success();
-  }
-
-  async gethostAction() {
-    const server = await this.model('server').select();
-
-    return this.success(server);
-  }
-
-  gethostpacAction() {
-
-    return this.success();
-  }
-
-  getapikeyAction() {
-
-    return this.success({apiKey:think.uuid()});
-  }
-
-  syncallremoteusersAction() {
-    return this.action('signin','syncallremoteusers');
-  }
-
-  pathlistAction() {
-    return this.action('desktop','pathlist');
-  }
+    pathlistAction() {
+        return this.action('desktop', 'pathlist');
+    }
 
 
 }

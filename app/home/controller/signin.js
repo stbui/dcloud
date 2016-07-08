@@ -109,7 +109,7 @@ var _class = function (_think$controller$bas) {
 
     _class.prototype.registerAction = function () {
         var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
-            var _post, appusers, userInfo;
+            var _post, appusers, userInfo, result;
 
             return _regenerator2.default.wrap(function _callee2$(_context2) {
                 while (1) {
@@ -123,26 +123,23 @@ var _class = function (_think$controller$bas) {
                             appusers = _context2.sent;
 
                             if (!(appusers.type != "exist")) {
-                                _context2.next = 11;
+                                _context2.next = 10;
                                 break;
                             }
 
                             // 客户端服务器账号同步
-                            // debug 在服务器没有开启时，json数据没有返回
-                            think.log('客户端服务器账号同步', 'WARNING');
                             userInfo = { UserId: _post.UserId, RemotePassword: _post.RemotePassword };
-                            _context2.next = 9;
+                            _context2.next = 8;
                             return this.syncallremoteusers(userInfo);
 
-                        case 9:
+                        case 8:
+                            result = _context2.sent;
+                            return _context2.abrupt('return', this.success(result, this.locale('query_success')));
 
-                            think.log('注册完成', 'WARNING');
-                            return _context2.abrupt('return', this.success(appusers, this.locale('query_success')));
+                        case 10:
+                            return _context2.abrupt('return', this.fail(5000, this.locale('user_isExist')));
 
                         case 11:
-                            return _context2.abrupt('return', this.error(5000, this.locale('query_fail')));
-
-                        case 12:
                         case 'end':
                             return _context2.stop();
                     }
@@ -272,41 +269,6 @@ var _class = function (_think$controller$bas) {
         return islogin;
     }();
 
-    _class.prototype.syncallremoteusersAction = function () {
-        var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6() {
-            var _userInfo, _syncallremoteusers;
-
-            return _regenerator2.default.wrap(function _callee6$(_context6) {
-                while (1) {
-                    switch (_context6.prev = _context6.next) {
-                        case 0:
-                            _context6.next = 2;
-                            return this.session('userInfo');
-
-                        case 2:
-                            _userInfo = _context6.sent;
-                            _context6.next = 5;
-                            return this.syncallremoteusers(_userInfo);
-
-                        case 5:
-                            _syncallremoteusers = _context6.sent;
-                            return _context6.abrupt('return', this.json(_syncallremoteusers));
-
-                        case 7:
-                        case 'end':
-                            return _context6.stop();
-                    }
-                }
-            }, _callee6, this);
-        }));
-
-        function syncallremoteusersAction() {
-            return ref.apply(this, arguments);
-        }
-
-        return syncallremoteusersAction;
-    }();
-
     /*
      * 同步当前用户，用户需要登陆
      *
@@ -314,78 +276,102 @@ var _class = function (_think$controller$bas) {
 
 
     _class.prototype.syncallremoteusers = function () {
-        var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee7(userInfo) {
-            var server, config, resultRemote, params, i, url, resultData;
-            return _regenerator2.default.wrap(function _callee7$(_context7) {
+        var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6(userInfo) {
+            var formData, _data, server, _config, remoteUserUrl, resultData, key, ip, url, result;
+
+            return _regenerator2.default.wrap(function _callee6$(_context6) {
                 while (1) {
-                    switch (_context7.prev = _context7.next) {
+                    switch (_context6.prev = _context6.next) {
                         case 0:
-                            _context7.next = 2;
+                            formData = {
+                                username: '',
+                                password: ''
+                            };
+
+
+                            if (think.isEmpty(userInfo)) {
+                                _data = this.post() || this.get();
+
+
+                                formData = {
+                                    username: _data,
+                                    password: _data
+                                };
+                            } else {
+                                formData = {
+                                    username: userInfo.UserId,
+                                    password: userInfo.RemotePassword
+                                };
+                            }
+
+                            _context6.next = 4;
                             return this.model('server').select();
 
-                        case 2:
-                            server = _context7.sent;
-                            _context7.next = 5;
-                            return this.model('config').find();
-
-                        case 5:
-                            config = _context7.sent;
-                            resultRemote = [];
-                            params = {
-                                key: config.apiKey,
-                                username: userInfo.UserId,
-                                password: userInfo.RemotePassword
-                            };
-                            _context7.t0 = _regenerator2.default.keys(server);
+                        case 4:
+                            server = _context6.sent;
+                            _config = this.config('api');
+                            remoteUserUrl = _config.remoteUserUrl;
+                            resultData = [];
+                            _context6.t0 = _regenerator2.default.keys(server);
 
                         case 9:
-                            if ((_context7.t1 = _context7.t0()).done) {
-                                _context7.next = 18;
+                            if ((_context6.t1 = _context6.t0()).done) {
+                                _context6.next = 19;
                                 break;
                             }
 
-                            i = _context7.t1.value;
-                            url = 'http://' + server[i].ip + ':' + server[i].port + '/setuser.asp?' + this.setUrlParam(params);
-                            _context7.next = 14;
-                            return this.getApiData(url);
+                            key = _context6.t1.value;
+                            ip = server[key].ip;
+                            url = remoteUserUrl.replace('${ip}', ip);
+                            _context6.next = 15;
+                            return global.request(url, formData).catch(function (e) {
+                                return e;
+                            });
 
-                        case 14:
-                            resultData = _context7.sent;
+                        case 15:
+                            result = _context6.sent;
 
 
-                            if (resultData.statusCode == 200) {
-                                resultRemote.push({
-                                    key: config.apiKey,
-                                    username: userInfo.UserId,
-                                    ip: server[i].ip,
-                                    status: false,
-                                    msg: this.locale('sync_success')
-                                });
+                            if (result.body) {
+                                result = JSON.parse(result.body);
 
-                                think.log('客户端服务器账号同步：' + server[i].ip + this.locale('sync_success'), 'WARNING');
+                                if (result.resultCode == 0) {
+                                    resultData.push({
+                                        code: result.resultCode,
+                                        msg: result.resultMsg,
+                                        ip: ip
+                                    });
+                                } else {
+                                    resultData.push({
+                                        code: result.resultCode,
+                                        msg: result.resultMsg,
+                                        ip: ip
+                                    });
+                                }
+
+                                think.log('客户端服务器账号同步：' + ip + this.locale('sync_success'), 'WARNING');
                             } else {
-                                resultRemote.push({
-                                    key: config.apiKey,
-                                    username: userInfo.UserId,
-                                    ip: server[i].ip,
-                                    status: false,
-                                    msg: this.locale('sync_fail')
+                                resultData.push({
+                                    code: result.code,
+                                    msg: result.code,
+                                    ip: ip
                                 });
 
-                                think.log('客户端服务器账号同步：' + server[i].ip + this.locale('sync_fail'), 'WARNING');
+                                think.log('客户端服务器账号同步：' + ip + this.locale('sync_fail'), 'WARNING');
                             }
-                            _context7.next = 9;
+
+                            _context6.next = 9;
                             break;
 
-                        case 18:
-                            return _context7.abrupt('return', this.success(resultRemote, this.locale('query_success')));
-
                         case 19:
+                            return _context6.abrupt('return', resultData);
+
+                        case 20:
                         case 'end':
-                            return _context7.stop();
+                            return _context6.stop();
                     }
                 }
-            }, _callee7, this);
+            }, _callee6, this);
         }));
 
         function syncallremoteusers(_x) {
@@ -394,26 +380,6 @@ var _class = function (_think$controller$bas) {
 
         return syncallremoteusers;
     }();
-
-    _class.prototype.setUrlParam = function setUrlParam(obj) {
-        var str = [];
-
-        for (var i in obj) {
-            str.push(i + '=' + encodeURIComponent(obj[i]));
-        }
-
-        return str.join('&');
-    };
-
-    _class.prototype.getApiData = function getApiData(url) {
-        var fn = think.promisify(_request2.default.get);
-        return fn({
-            url: url,
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) Chrome/47.0.2526.111 Safari/537.36"
-            }
-        });
-    };
 
     return _class;
 }(think.controller.base);

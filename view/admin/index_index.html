@@ -7,10 +7,11 @@
     <div class="padding-md">
         <div class="row">
             <div class="col-lg-12">
-                <a class="btn btn-primary" href="/api/server/start">启动服务</a>
-                <a class="btn btn-primary" href="/api/server/restart">重启服务</a>
-                <a class="btn btn-primary" href="/api/server/stop">停止服务</a>
-                <a id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole 配置文件</a>
+                <a id="start" class="btn btn-primary" href="/api/server/start">启动服务</a>
+                <a id="restart" class="btn btn-primary" href="/api/server/restart">重启服务</a>
+                <a id="stop" class="btn btn-primary" href="/api/server/stop">停止服务</a>
+                <a id="config" id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole
+                    配置文件</a>
             </div>
         </div>
         <div class="row">
@@ -21,6 +22,87 @@
     </div>
 
 </div>
+
+<script>
+    $('#start').on('click', function (e) {
+        e.preventDefault();
+
+        var $this = $(e.target);
+        var url = $this.attr('href');
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    $this.html('启动成功');
+                } else {
+                    $this.html('启动失败');
+                }
+
+            },
+            error: function () {
+                $this.val('启动失败');
+            }
+        });
+
+    });
+
+
+    $('#restart').on('click', function (e) {
+        e.preventDefault();
+
+        var $this = $(e.target);
+        var url = $this.attr('href');
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    $this.html('重启成功');
+                } else {
+                    $this.html('重启失败');
+                }
+
+            },
+            error: function () {
+                $this.val('重启失败');
+            }
+        });
+
+    });
+
+
+    $('#stop').on('click', function (e) {
+        e.preventDefault();
+
+        var $this = $(e.target);
+        var url = $this.attr('href');
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    $this.html('停止成功');
+                } else {
+                    $this.html('停止失败');
+                }
+
+            },
+            error: function () {
+                $this.val('停止失败');
+            }
+        });
+
+    });
+
+
+    $('#config').on('click', function (e) {
+
+
+    });
+
+
+</script>
 
 
 <% include common/footer.html %>

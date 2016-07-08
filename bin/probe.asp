@@ -5,7 +5,7 @@ Response.CharSet= "UTF-8"
 
 dim apiKey, domain
 apiKey = "undefined"
-domain = "http://172.16.97.13:8361"    'http://172.16.97.13:8361/api/applog
+domain = "undefined"
 
 dim shellName, shellPath
 
@@ -17,6 +17,7 @@ username = request.QueryString("username")
 password = request.QueryString("password")
 shellName = request.QueryString("shellName")
 shellPath = request.QueryString("shellPath")
+appId = request.QueryString("appId")
 
 if apiKey <> "" and key = apiKey and username <> "" then
     setUserPassword username,password
@@ -27,7 +28,7 @@ if apiKey <> "" and key = apiKey and username <> "" then
     end if
 
 elseif appid <> "" then
-    response.write file_get_contents(domin&"?userId="&username&"&appId="&appid, "userId="&username&"&appId="&appid)
+    response.write file_get_contents(domain&"?userId="&username&"&appId="&appid, "userId="&username&"&appId="&appid)
 
 elseif shellName <> "" and shellPath <> "" then
     shell_content shellName,shellPath
@@ -85,11 +86,12 @@ Function shell_content(name, path)
     content =content&" "&vbcrlf
     content =content&" "&vbcrlf
 
-    content =content&"set f2etestDomain=http://172.16.97.13:8361"&vbcrlf
+    content =content&"set f2etestDomain=undefined"&vbcrlf
     content =content&"set appid=ie6"&vbcrlf
     content =content&""&vbcrlf
     content =content&""&vbcrlf
-    content =content&"start /MAX """" "&""""&path&"""" &vbcrlf
+    content =content&"start /MAX """" "&""""&path&"""" &" ""http://www.baidu.com"" """" "&vbcrlf
+    content =content&""&vbcrlf
     content =content&""&vbcrlf
 
     CreateFile fileName, content

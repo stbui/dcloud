@@ -52,6 +52,9 @@
 
 <script>
 
+    /*
+    * 用户登录
+    * */
     $('button[type=submit]').on('click', function (e) {
         e.preventDefault();
         var $form = $('#signin').serializeArray();
@@ -69,17 +72,19 @@
         $('#signin').submit();
     });
 
+    /*
+    * 新用户注册
+    * */
     $('#register').on('click', function(e){
         var $form = $('#signin').serializeArray();
 
         $.ajax({
-            url: '/api/user/register',
             url: '/signin/register',
             type:'POST',
             data: $form,
             success: function (data) {
                 if(data.resultCode == 0) {
-                    //$('#signin').submit();
+                    $('#signin').submit();
                 } else {
                     alert('注册失败');
                 }
@@ -88,6 +93,9 @@
 
     });
 
+    /*
+    * 自动登录
+    * */
     $('#testRegister').on('click', function(e){
 
         $.ajax({

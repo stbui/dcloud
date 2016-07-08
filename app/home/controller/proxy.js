@@ -235,49 +235,12 @@ var _class = function (_think$controller$bas) {
         return remotegeneratecmdsingleAction;
     }();
 
-    _class.prototype.regaddAction = function () {
+    _class.prototype.pacAction = function () {
         var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
-            var proxyUrl, cmdStr, result;
+            var pacContent;
             return _regenerator2.default.wrap(function _callee3$(_context3) {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
-                        case 0:
-                            proxyUrl = 'http://dcloud.stbui.com';
-                            cmdStr = 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v AutoConfigURL /d ' + proxyUrl + ' /f >nul';
-                            _context3.next = 4;
-                            return this.exec(cmdStr).catch(function (e) {
-                                return e;
-                            });
-
-                        case 4:
-                            result = _context3.sent;
-
-
-                            if (think.isEmpty(result)) result = cmdStr;
-
-                            this.success(result, this.locale('query_success'));
-
-                        case 7:
-                        case 'end':
-                            return _context3.stop();
-                    }
-                }
-            }, _callee3, this);
-        }));
-
-        function regaddAction() {
-            return ref.apply(this, arguments);
-        }
-
-        return regaddAction;
-    }();
-
-    _class.prototype.pacAction = function () {
-        var ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
-            var pacContent;
-            return _regenerator2.default.wrap(function _callee4$(_context4) {
-                while (1) {
-                    switch (_context4.prev = _context4.next) {
                         case 0:
 
                             if (proxyServer == false) {
@@ -291,10 +254,10 @@ var _class = function (_think$controller$bas) {
 
                         case 3:
                         case 'end':
-                            return _context4.stop();
+                            return _context3.stop();
                     }
                 }
-            }, _callee4, this);
+            }, _callee3, this);
         }));
 
         function pacAction() {
@@ -412,7 +375,7 @@ var _class = function (_think$controller$bas) {
     };
 
     _class.prototype.getShellContent = function getShellContent(options) {
-        var str = '\n@echo off\n\nset domain=' + options.domain + '\nset appid=' + options.appid + '\n\nrem 命令行参数\nset proxymode="%1"\nset proxyurl=%2\nset url=%3\nset apiKey=%4\n\n\nrem 设置代理\nset proxypath="HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"\nreg add %proxypath% /v "ProxyEnable" /t REG_DWORD /d 0 /f>nul\nset proxydef=\nif %proxyurl% equ "" set proxydef=1\nif %proxyurl% equ default set proxydef=1\nif %proxyurl% equ "default" set proxydef=1\nif defined proxydef set proxyurl="http://%domain%/proxy?name=%USERNAME%"\nif %proxymode% equ "noproxy" (\n\tset proxyurl=""\n)\nif %proxyurl% neq "" (\n\trem 开启代理\n\treg add %proxypath% /v "AutoConfigURL" /d %proxyurl% /f >nul\n) else (\n\trem 关闭代理\n\treg delete %proxypath% /v "AutoConfigURL" /f > nul\n)\n\nrem 打开应用\nstart /MAX "" "' + options.appPath + '" %url% %proxyParam%\n\n        ';
+        var str = '\n@echo off\n\nset domain=' + options.domain + '\nset appid=' + options.appid + '\n\nrem 命令行参数\nset proxyurl=%2\nset url=%3\n\n\nrem 设置代理\nset proxypath="HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"\nreg add %proxypath% /v "ProxyEnable" /t REG_DWORD /d 0 /f>nul\nset proxyurl="http://%f2etestDomain%/proxy?name=%USERNAME%"\nreg add %proxypath% /v "AutoConfigURL" /d %proxyurl% /f >nul\n\nrem 打开应用\nstart /MAX "" "' + options.appPath + '" %url% %proxyParam%\n\n        ';
 
         return str;
     };

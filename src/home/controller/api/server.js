@@ -4,7 +4,21 @@ import Base from '../base.js';
 import fs from 'fs';
 import child_process from 'child_process';
 
-export default class extends Base {
+export default class extends think.controller.base {
+
+    indexAction() {
+        return this.success(undefined, this.locale('query_success'));
+    }
+
+    /*
+     * 查询所有服务器列表
+     * @return {json}
+     * */
+    async gethostAction() {
+        const server = await this.model('server').select();
+
+        return this.success(server, this.locale('query_success'));
+    }
 
     runstatusAction() {
 
@@ -15,21 +29,21 @@ export default class extends Base {
         this.cli('server', ['tomcat', 'restart']);
         this.cli('server', ['guacd', 'restart']);
 
-        return this.success(null, this.locale('query_success'));
+        return this.success(undefined, this.locale('query_success'));
     }
 
     startAction() {
         this.cli('server', ['tomcat', 'start']);
         this.cli('server', ['guacd', 'start']);
 
-        return this.success(null, this.locale('query_success'));
+        return this.success(undefined, this.locale('query_success'));
     }
 
     stopAction() {
         this.cli('server', ['tomcat', 'stop']);
         this.cli('server', ['guacd', 'stop']);
 
-        return this.success(null, this.locale('query_success'));
+        return this.success(undefined, this.locale('query_success'));
     }
 
     /*
@@ -62,14 +76,17 @@ export default class extends Base {
             }
 
             buffer = fs.readFileSync(config.guacamoleConfig, 'utf-8');
+
+            return this.success(buffer, this.locale('query_success'));
         } catch (err) {
-            fs.writeFileSync(think.ROOT_PATH+'/bin/noauth-config.xml', configs, 'utf-8');
-            buffer =`配置文件写入失败，请在项目根目录中的 bin/noauth-config.xml 找到配置文件，并手动覆盖配置文件\r\n${configs}`;
+            fs.writeFileSync(think.ROOT_PATH + '/bin/noauth-config.xml', configs, 'utf-8');
+            buffer = `配置文件写入失败，请手动修改 ${config.guacamoleConfig} 配置文件\r\n或者在项目根目录中的 bin/noauth-config.xml 配置文件覆盖\r\n\r\n${configs}`;
+
+            return this.json(buffer);
         }
 
-
-        return this.json(buffer);
     }
+
 
     readconfigAction(path) {
         if (think.isEmpty(path)) {
@@ -80,6 +97,7 @@ export default class extends Base {
 
         this.json(buffer);
     }
+
 
     writeconfigAction(path) {
         if (think.isEmpty(path)) {
@@ -101,6 +119,7 @@ export default class extends Base {
 
     }
 
+
     cli(command, option) {
         const {spawn} = child_process;
 
@@ -120,5 +139,21 @@ export default class extends Base {
         cli.on('close', () => {
 
         });
+    }
+
+
+    async addAction() {
+        // 后期考虑加入accessToken校验
+        const _post = this.post();
+
+        //服务器身份标识
+        _post.accessToken = think.uuid();
+        let serverData = await this.model('server').thenAdd(_post, {ip: _post.ip});
+
+        if (serverData.type == "exist") {
+            return this.fail(1001, '添加失败');
+        }
+
+        return this.success(undefined, '添加成功');
     }
 }

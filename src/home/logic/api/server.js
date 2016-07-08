@@ -12,4 +12,13 @@ export default class extends think.logic.base {
   indexAction(){
    
   }
+
+  addAction() {
+    this.allowMethods = "post";
+
+    this.rules = {
+      ip:"required|ip",
+      //port:"maxLength:5"
+    };
+  }
 }

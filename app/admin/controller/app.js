@@ -26,10 +26,6 @@ var _base = require('./base.js');
 
 var _base2 = _interopRequireDefault(_base);
 
-var _request = require('request');
-
-var _request2 = _interopRequireDefault(_request);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _class = function (_Base) {
