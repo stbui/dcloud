@@ -37,6 +37,7 @@ export default class extends Base {
 
         appusersData.forEach((item)=> {
             // win2003 密码字符不能大于14
+            // todo socket 发送数据
             let {UserId,RemotePassword} = item;
             let formData = {username: UserId, password: RemotePassword};
             global.request(url, formData);

@@ -151,7 +151,11 @@ export default class extends think.controller.base {
         let serverData = await this.model('server').thenAdd(_post, {ip: _post.ip});
 
         if (serverData.type == "exist") {
-            return this.fail(1001, '添加失败');
+            delete _post.accessToken;
+
+            let res = await this.model('server').where({ip: _post.ip}).update(_post);
+            console.log(res);
+            return this.fail(1001, '已重新同步');
         }
 
         return this.success(undefined, '添加成功');

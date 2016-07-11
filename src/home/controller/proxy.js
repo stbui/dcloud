@@ -19,11 +19,12 @@ export default class extends think.controller.base {
 
     /**
      * 远程部署[ 所有 ]记录启动应用命令
+     * todo socket
      *
      * @return {Promise} []
      */
     async remotegeneratecmdAction() {
-        const {remoteProgramUrl} = this.config('api');
+        const {remoteProgramUrl,remoteProbePath} = this.config('api');
         const programData = await this.model('program').getList();
         let result = [];
 
@@ -36,9 +37,9 @@ export default class extends think.controller.base {
                 appPath: path
             };
 
-            let remotePath = serverProbePath + '/app/' + id + '.bat';
-            let formData = {cmd: this.getShellContent(options), path: remotePath};
+            let remotePath = remoteProbePath.replace('${dir}', serverProbePath).replace('${name}', id);
             let url = remoteProgramUrl.replace('${ip}', serverIp);
+            let formData = {cmd: this.getShellContent(options), path: remotePath};
 
             let _result = await this.getApiData(url, formData).catch((e)=> {
                 think.log(e, 'WARNING');
@@ -129,7 +130,7 @@ export default class extends think.controller.base {
     getUserHosts(hostname) {
 
         let hosts = [
-            {'192.168.159.137': 'dcloud.stbui.com'},
+            {'127.0.0.1': 'dcloud.stbui.com'},
             {'127.0.0.1': 'www.stbui.com'}
         ];
 

@@ -18,6 +18,7 @@ global.test = obj => {
 };
 
 global.request = (url, formData, method) => {
+
     let fn = think.promisify(request);
     return fn({
         method: method || 'POST',

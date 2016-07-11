@@ -49,7 +49,8 @@
                                    class="label label-danger serverStatus">离线</a>
                                 <% } %>
                             </td>
-                            <td><a href="/admin/user/syncAllRemoteUsers?ip=<%= item.ip %>">同步</a> 更新于:
+                            <td><a class="sysncUsers" href="/admin/user/syncAllRemoteUsers?ip=<%= item.ip %>">同步</a>
+                                更新于:
                                 <% if(item.syncUserDate) { %>
                                 <%=think.datetime(item.syncUserDate, "YYYY-MM-DD HH:mm:ss") %>
                                 <% } else { %>
@@ -84,6 +85,23 @@
             success: function (data) {
                 if (data.resultCode == 0) {
                     $this.removeClass('label-danger').addClass('label-info').text('在线');
+                }
+            }
+        });
+    });
+
+
+    $('.sysncUsers').on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+
+        var url = $this.attr('href');
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    $this.text('已同步');
                 }
             }
         });

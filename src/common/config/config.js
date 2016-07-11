@@ -9,6 +9,7 @@ export default {
 
     api: {
         remoteProgramUrl: 'http://${ip}:3000/app/add',
-        remoteUserUrl: 'http://${ip}:3000/user/add'
+        remoteUserUrl: 'http://${ip}:3000/user/add',
+        remoteProbePath:'${dir}/app/${name}.bat',
     }
 };
