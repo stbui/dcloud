@@ -1,0 +1,63 @@
+
+.taskbar {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 35px;
+
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #ACADAE;
+    box-shadow: 0 -3px 6px rgba(35, 39, 48, 0.46);
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.taskbar-left {
+    float: left;
+    line-height: 35px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.taskbar-right {
+    float: right;
+    line-height: 35px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.taskbar-start {
+    padding: 11px 15px;
+    background: #077ED4;
+    cursor: default;
+}
+
+.taskbar-start:hover {
+    background: rgb(51, 159, 236);
+}
+
+.taskbar-time {
+    margin-right: 5px;
+}
+
+.taskbar-desktop {
+    width: 23px;
+    height: 34px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    float: right;
+    background: rgba(255, 255, 255, 0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255,255,255,0.5)', endColorstr='rgba(255,255,255,0)');
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}

@@ -8,11 +8,13 @@ export default class extends Base {
      * @return {Promise} []
      */
     indexAction() {
-        return this.display();
+        return this.display('apps/index');
     }
 
 
     async pathlistAction() {
+        this.setCorsHeader();
+
         const program = await this.model('program').getList({'program.status': 1});
 
         return this.success(program, this.locale('query_success'));
@@ -49,5 +51,13 @@ export default class extends Base {
 
 
         return this.json(json);
+    }
+
+
+    setCorsHeader(){
+        this.header("Access-Control-Allow-Origin", this.header("origin") || "*");
+        this.header("Access-Control-Allow-Headers", "x-requested-with");
+        this.header("Access-Control-Request-Method", "GET,POST,PUT,DELETE");
+        this.header("Access-Control-Allow-Credentials", "true");
     }
 }

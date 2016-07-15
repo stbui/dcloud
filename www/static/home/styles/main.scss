@@ -1,0 +1,130 @@
+@import 'custom/custom';
+
+#main {
+  background: url("../images/desktop.jpg");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+  background-size: 100% 100%;
+}
+
+.startmenu {
+  position: fixed;
+  width: 350px;
+  left: 0;
+  bottom: 35px;
+  height: 300px;
+
+  border: solid 1px #102a3e;
+  height: 404px;
+  width: 390px;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+  -webkit-border-radius: 5px;
+  position: absolute;
+  box-shadow: inset 0 0 1px #fff;
+  -webkit-box-shadow: inset 0 0 1px #fff;
+  background-color: #619bb9;
+  background: -webkit-gradient(linear, center top, center bottom, from(#327aa4), color-stop(45%, #2e4b5a), to(#5cb0dc));
+  background: rgba(0, 0, 0, 0.5);
+
+  display: none;
+}
+
+.startmenu.active,
+.startmenu.open {
+  display: none;
+}
+
+.programs {
+  float: left;
+  padding: 0;
+  list-style: none;
+  position: relative;
+
+  background: #fff;
+  border: solid 1px #365167;
+  height: 385px;
+  margin: 7px 0 7px 7px;
+  box-shadow: 0 0 1px #fff;
+  width: 250px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -moz-box-shadow: 0 0 1px #fff;
+}
+
+.programs a {
+  border: solid 1px transparent;
+  display: block;
+  padding-left: 3px;
+  height: 30px;
+  line-height: 30px;
+  margin: 3px 10px;
+  color: #4b4b4b;
+  text-decoration: none;
+  min-width: 200px;
+}
+
+.programs a:hover {
+  border: solid 1px #7da2ce;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px #fff;
+  -moz-box-shadow: inset 0 0 1px #fff;
+  box-shadow: inset 0 0 1px #fff;
+  background-color: #cfe3fd;
+  background: -webkit-gradient(linear, center top, center bottom, from(#dcebfd), to(#c2dcfd));
+}
+
+.startmenu-quick {
+  float: left;
+  padding: 0;
+  list-style: none;
+  position: relative;
+
+  margin: 5px;
+}
+
+.startmenu-quick a {
+  border: solid 1px transparent;
+  display: block;
+  margin: 5px 0;
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  min-width: 120px;
+  padding: 5px;
+  padding-left: 10px;
+  display: block;
+}
+
+.startmenu-quick a:hover,
+.startmenu-logout:hover {
+  border: solid 1px #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -moz-box-shadow: 0 0 1px #fff;
+  box-shadow: 0 0 1px #fff;
+  background-color: #658da0;
+  background: -webkit-gradient(linear, 0% 100%, 100% 100%, from(#517384), color-stop(50%, #79a3b8), to(#517384));
+}
+
+.startmenu-logout {
+  position: absolute;
+  bottom: 40px;
+  right: 10px;
+  padding: 5px;
+  color: #fff;
+  width: 110px;
+  min-width: 110px;
+}

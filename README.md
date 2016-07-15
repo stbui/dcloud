@@ -1,7 +1,6 @@
 # web云桌面
 
-HTML5 远程桌面解决方案，通过浏览器就能操作远程服务器，适用于Chrome、Firefox、IE9+等浏览器（浏览器需要支持HTML5）， 由于使
-用 HTML5只要在一个服务器安装成功，你访问你的桌面就是访问一个 web 浏览器
+HTML5 远程桌面解决方案，通过访问浏览器就能操作远程服务器。
 
 ### 效果图
 ![image](https://raw.githubusercontent.com/stbui/dcloud/master/bin/desktop.jpg)
@@ -46,11 +45,12 @@ https://github.com/stbui/dcloud-probe
 ```
 
 ### 开源项目
+- [x] nw
 - [x] socketio
 - [x] bootstrap
-- [x] seajs
-- [x] jquery
-- [x] nw
+- [x] react
+- [x] thinkjs
+- [x] express
 
 
 ### 打赏我
@@ -64,7 +64,7 @@ https://github.com/stbui/dcloud-probe
 - [x] 应用程序远程执行
 - [x] Guacamole 服务管理
 - [x] Guacamole 配置文件管理
-- [ ] 服务器探针
+- [x] 服务器探针
 - [ ] jslint
 - [ ] webdrive
 - [ ] ssh
@@ -73,10 +73,3 @@ https://github.com/stbui/dcloud-probe
 ### help
 查看
 intro.md
-
-
-### 参考
-- https://thinkjs.org/
-- https://github.com/quietshu/cssosx
-- https://github.com/os-js/OS.js
-- http://www.kancloud.cn/kancloud/create-voting-app/63976

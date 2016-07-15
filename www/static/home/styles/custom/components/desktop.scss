@@ -1,0 +1,48 @@
+.desktop {
+
+}
+
+.desktop-app {
+    width: 80px;
+    overflow: hidden;
+    height: 100px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+    text-shadow: 0px 0px 0px #fff, 0px 0px 2px #000, 0px 0px 4px #000;
+}
+
+.desktop-app:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-app.active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.desktop-icon {
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0 auto;
+    margin-top: 4px;
+    margin-bottom: 3px;
+    display: block !important;
+    border-radius: 5px;
+    background-size: contain;
+}
+
+.desktop-name {
+    width: 80px;
+    text-align: center;
+    word-break: break-all;
+    font-size: 12px;
+    margin: 0 auto;
+    line-height: 1.4em;
+    color: #fff;
+    transition: all 0.3s;
+    text-shadow: 0px 0px 0px #fff, 0px 0px 2px #000, 0px 0px 4px #000;
+}
