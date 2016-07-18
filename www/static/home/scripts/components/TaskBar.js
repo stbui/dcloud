@@ -1,29 +1,30 @@
 import React, { Component, PropTypes } from 'react';
+import Trigger from 'rc-trigger';
 
 import {changeStartMenu} from '../actions/startmenu';
+import StartMenu from '../components/StartMenu';
 
-
-const propTypes = {};
 
 class TaskBar extends Component {
     constructor(props) {
         super(props);
 
-        this.onStartMenuClick = this.onStartMenuClick.bind(this);
 
         this.state = {
             isOpen: false,
             timer: ''
         }
-
-
     }
 
-    onStartMenuClick(e) {
-        this.setState({isOpen: !this.state.isOpen});
+    componentDidMount() {
+        this.onTimer();
+    }
 
-        const { dispatch } = this.props;
-        dispatch(changeStartMenu(this.state));
+    componentDidUpdate() {
+    }
+
+    onClose() {
+
     }
 
     onTimer() {
@@ -33,13 +34,10 @@ class TaskBar extends Component {
             m: now.getMinutes(),
         }
 
+        this.onClose = this.onClose.bind(this);
+
         this.setState({timer: `${f.h}:${f.m}`});
     }
-
-    componentDidMount() {
-        this.onTimer();
-    }
-
 
     render() {
         const {timer} = this.state;
@@ -47,7 +45,16 @@ class TaskBar extends Component {
         return (
             <div className="taskbar">
                 <div className="taskbar-left">
-                    <sapn className="taskbar-start" onClick={this.onStartMenuClick}>开始</sapn>
+                    <Trigger
+                        action={['click']}
+                        popupAlign={{
+                          points: ['tl', 'cc'],
+                          offset: [-29, 16]
+                        }}
+                        popup={<StartMenu />}
+                    >
+                        <sapn className="taskbar-start">开始</sapn>
+                    </Trigger>
                 </div>
                 <div className="taskbar-right">
                     <sapn className="taskbar-time">{timer}</sapn>
@@ -58,7 +65,6 @@ class TaskBar extends Component {
     }
 }
 
-TaskBar.propTypes = propTypes;
 
 export default TaskBar;
 

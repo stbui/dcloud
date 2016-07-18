@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDom from 'react-dom';
 
 import { constructDesktopAppDomainUrl } from '../utils/DesktopUtils.js';
 
@@ -19,8 +20,6 @@ class AppCard extends Component {
     }
 
     handleMouseClick(e) {
-        const desktopAppElement = ReactDOM.findDOMNode(this.refs.deskTopApp);
-        //console.log(desktopAppElement)
     }
 
     handleMouseDoubleClick(e) {

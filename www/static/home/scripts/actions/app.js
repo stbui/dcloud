@@ -1,17 +1,27 @@
 import * as types from '../constants/ActionTypes';
+import Cookies from 'js-cookie';
+
 import { constructDesktopAppListUrl } from '../utils/DesktopUtils.js';
 
-export function fetchApps() {
 
-    return dispatch =>
-        fetch(constructDesktopAppListUrl())
-            .then(response => response.json())
-            .then(json => {
-                dispatch(receiveAppList(json));
-            })
-            .catch(err => {
-                throw err;
-            });
+const COOKIE_PATH = 'accessToken';
+export function fetchApps() {
+    const accessToken = Cookies.get(COOKIE_PATH);
+
+    // 登陆
+    if (accessToken) {
+        return dispatch =>
+            fetch(constructDesktopAppListUrl())
+                .then(response => response.json())
+                .then(json => {
+                    dispatch(receiveAppList(json));
+                })
+                .catch(err => {
+                    throw err;
+                });
+    }
+
+    return dispatch=>receiveAppList({});
 }
 
 

@@ -15,7 +15,7 @@ function mapStateToProps(state) {
     const {applists, startmenu} = state;
     return {
         applists,
-        startmenu
+        startmenu,
     }
 }
 
