@@ -5,13 +5,13 @@
         <param name="enable-drive" value="true" />
         <param name="drive-path" value="/home/guacdshare" />
     </config>
-    <config name="WMXj9u6ftkrv6TjRe1S5TnQ7UcmFsPbG" protocol="rdp">
-        <param name="hostname" value="172.16.97.14" />
+    <config name="7BCNs_6zlE16jC02G5YBwvhKJLnMt3gy" protocol="rdp">
+        <param name="hostname" value="172.16.97.13" />
         <param name="port" value="3389" />
         <param name="enable-drive" value="true" />
         <param name="drive-path" value="/home/guacdshare" />
     </config>
-    <config name="t_NX20erY_6y5aLYESXSJIcFjh1J19li" protocol="rdp">
+    <config name="JtNXo8D0Ajn5P7OZJb32utFbz0Qi9j8i" protocol="rdp">
         <param name="hostname" value="127.0.0.1" />
         <param name="port" value="3389" />
         <param name="enable-drive" value="true" />

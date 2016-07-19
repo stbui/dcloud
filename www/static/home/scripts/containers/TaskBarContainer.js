@@ -15,10 +15,13 @@ class TaskBarContainer extends Component {
 TaskBarContainer.propTypes = propTypes;
 
 function mapStateToProps(state) {
-    const {applists, startmenu} = state;
+    const {applists, startmenu, authed,proxys} = state;
+
     return {
         applists,
-        startmenu
+        startmenu,
+        authed,
+        proxys
     }
 }
 

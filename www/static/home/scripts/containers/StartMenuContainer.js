@@ -12,10 +12,12 @@ class StartMenuContainer extends Component {
 
 
 function mapStateToProps(state) {
-    const {applists, startmenu} = state;
+    const {applists, startmenu,authed} = state;
+
     return {
         applists,
         startmenu,
+        authed
     }
 }
 

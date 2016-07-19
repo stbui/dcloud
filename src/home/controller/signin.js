@@ -7,9 +7,11 @@ export default class extends think.controller.base {
     async indexAction() {
         let is_login = await this.islogin();
 
+        // 用户已经登陆，跳转到应用页面
         if (is_login) {
             this.redirect('/desktop');
         }
+
 
         if (this.isPost()) {
 
@@ -22,17 +24,23 @@ export default class extends think.controller.base {
                 this.session('userInfo', appusers);
             }
 
-            return this.redirect('/desktop');
+
+            const {UserId,NickName} = appusers;
+            let userInfo = {
+                UserId,
+                NickName
+            }
+
+            if(think.isEmpty(appusers)) {
+                return this.fail(this.locale('user_isloginFail'));
+            }
+
+            return this.success(userInfo, this.locale('query_success'));
         }
 
-        let userInfo = {
-            UserId: '',
-            RemotePassword: ''
-        };
-
-
-        this.assign('userInfo', userInfo);
-        return this.display();
+        if (!this.isAjax()) {
+            return this.display();
+        }
     }
 
     /*
@@ -61,7 +69,17 @@ export default class extends think.controller.base {
         const appusers = await this.model('appusers').autoLogin();
         await this.session('userInfo', appusers);
 
-        return this.success(appusers, this.locale('query_success'));
+        const {UserId,NickName} = appusers;
+        let userInfo = {
+            UserId,
+            NickName
+        }
+
+        if(think.isEmpty(appusers)) {
+            return this.fail(this.locale('user_isloginFail'));
+        }
+
+        return this.success(userInfo, this.locale('query_success'));
     }
 
     /*

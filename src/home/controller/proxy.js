@@ -11,9 +11,67 @@ import request from 'request';
 var proxyServer = false;
 export default class extends think.controller.base {
 
-    indexAction() {
+    async indexAction() {
+        this.setCorsHeader();
 
-        this.success();
+        // 当前用户信息
+        const userInfo = await this.session('userInfo');
+
+        if (think.isEmpty(userInfo)) {
+            return this.fail(this.locale('user_islogin'))
+        }
+
+        const proxyData = await this.model('proxy').getList({['proxy.userId']: userInfo.UserId});
+
+        this.success(proxyData);
+    }
+
+
+    async addAction() {
+        this.setCorsHeader();
+
+        const {hosts} = this.post();
+
+        // 当前用户信息
+        const userInfo = await this.session('userInfo');
+
+        if (think.isEmpty(userInfo) || think.isEmpty(hosts)) {
+            return this.fail(this.locale('user_islogin'))
+        }
+
+        let data = {
+            userId: userInfo.UserId,
+            hosts
+        }
+
+        const proxyData = await this.model('proxy').thenAdd(data, {hosts});
+
+        if (proxyData.type == 'exist') {
+            return this.fail(this.locale('user_isExist'));
+        }
+
+        this.success(proxyData, this.locale('query_success'));
+    }
+
+    async delAction() {
+        this.setCorsHeader();
+
+        const {id} = this.get();
+        // 当前用户信息
+        const userInfo = await this.session('userInfo');
+
+        if (think.isEmpty(userInfo)) {
+            return this.fail(this.locale('user_islogin'))
+        }
+
+        let data = {
+            userId: userInfo.UserId,
+            id
+        }
+
+        const proxyData = await this.model('proxy').where(data).delete();
+
+        this.success(proxyData, this.locale('query_success'));
     }
 
 
@@ -268,5 +326,13 @@ start /MAX "" "${options.appPath}" %url% %proxyParam%
         `;
 
         return str;
+    }
+
+
+    setCorsHeader() {
+        this.header("Access-Control-Allow-Origin", this.header("origin") || "*");
+        this.header("Access-Control-Allow-Headers", "x-requested-with");
+        this.header("Access-Control-Request-Method", "GET,POST,PUT,DELETE");
+        this.header("Access-Control-Allow-Credentials", "true");
     }
 }

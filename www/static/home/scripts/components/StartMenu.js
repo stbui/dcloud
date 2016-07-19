@@ -2,12 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import Dialog from 'rc-dialog';
 import Switch from 'rc-switch';
 
+import * as types from '../constants/StartMenu';
 import Proxy from './Proxy';
 
 
 class StartMenu extends Component {
     constructor(props) {
         super(props);
+
 
         this.onHandleProxyClick = this.onHandleProxyClick.bind(this);
         this.onHandleHelpClick = this.onHandleHelpClick.bind(this);
@@ -24,8 +26,6 @@ class StartMenu extends Component {
 
     onHandleProxyClick(e) {
         e.preventDefault();
-
-        console.log(e.target.innerHTML)
 
         this.setState({
             visible: true,
@@ -64,7 +64,8 @@ class StartMenu extends Component {
     renderDialogContent() {
         const {visible,width,title} = this.state;
 
-        if (title == '代理设置') {
+
+        if (title == types.USER_PROFILES_PROXY) {
             return (
                 <Dialog style={{width:width}} title={title} onClose={this.onClose} visible={visible}>
                     <Switch onChange={this.onChange}
@@ -72,10 +73,10 @@ class StartMenu extends Component {
                             checkedChildren={'开'}
                             unCheckedChildren={'关'}
                     />
-                    <Proxy />
+                    <Proxy {...this.props} />
                 </Dialog>
             );
-        } else if (title == '使用帮助') {
+        } else if (title == types.USER_PROFILES_HELP) {
             return (
                 <Dialog style={{width:width}} title={title} onClose={this.onClose} visible={visible}>
 
@@ -90,27 +91,38 @@ class StartMenu extends Component {
         }
     }
 
+    renderLists() {
+        const START_MENU_LISTS = types.START_MENU_LISTS;
+        let data = [];
+
+        START_MENU_LISTS.map((value, key)=> {
+            data.push(<li key={key}><a href={value.link}>{value.name}</a></li>);
+        });
+
+        return data;
+    }
+
 
     render() {
+        const {authed} = this.props;
+        const {accessToken,user} = authed;
 
         return (
             <div className={`startmenu open`}>
                 <ul className="programs">
-                    <li><a href="/jslint">JSlint</a></li>
-                    <li><a href="/">自测云</a></li>
-                    <li><a href="/wdriver">WDriver</a></li>
+                    {this.renderLists()}
                 </ul>
                 <ul className="startmenu-quick">
                     <li className="startmenu-profile">
                         <div className="startmenu-icon"></div>
-                        <div className="startmenu-name">administrator</div>
+                        <div className="startmenu-name">{accessToken}</div>
                     </li>
-                    <li><a href="/profile/proxy" onClick={this.onHandleProxyClick}>代理设置</a></li>
-                    <li><a href="/admin">系统设置</a></li>
-                    <li><a href="/help" onClick={this.onHandleHelpClick}>使用帮助</a></li>
+                    <li><a href="/profile/proxy" onClick={this.onHandleProxyClick}>{types.USER_PROFILES_PROXY}</a></li>
+                    <li><a href="/admin">{types.USER_PROFILES_SYSTEM}</a></li>
+                    <li><a href="/help" onClick={this.onHandleHelpClick}>{types.USER_PROFILES_HELP}</a></li>
                 </ul>
 
-                <a className="startmenu-logout" href={`/signin/logout`}>退出</a>
+                <a className="startmenu-logout" href={types.START_MENU_EXIT.link}>{types.START_MENU_EXIT.name}</a>
 
                 {this.renderDialogContent()}
             </div>

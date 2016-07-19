@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,49 @@
     <meta name="author" content="">
 
     <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/css/ionicons.min.css" rel="stylesheet">
-    <link href="/static/css/simplify.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-size: 13px;
+            background-color: #f5f5f5;
+            font-family: Raleway, sans-serif;
+            color: #666;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .sign-in-wrapper {
+            padding-top: 80px;
+        }
+
+        .sign-in-inner {
+            width: 370px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sign-in-wrapper .login-brand {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .text-skin {
+            color: #2baab1;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            font-size: 20px !important;
+            height: 44px;
+        }
+    </style>
 </head>
 
-<body class="overflow-hidden light-background">
-<div class="wrapper no-navigation preload">
+<body>
+
+<div class="wrapper">
     <div class="sign-in-wrapper">
         <div class="sign-in-inner">
             <div class="login-brand text-center">
@@ -24,13 +59,13 @@
 
             <form method="post" id="signin">
                 <div class="form-group m-bottom-md">
-                    <input type="text" class="form-control" name="UserId" placeholder="用户账号" value="<%=userInfo.UserId%>">
+                    <input type="text" class="form-control" name="UserId" placeholder="用户账号" value="">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="RemotePassword" placeholder="用户密码" value="<%=userInfo.RemotePassword%>">
+                    <input type="text" class="form-control" name="RemotePassword" placeholder="用户密码" value="">
                 </div>
 
-                <div class="m-top-md p-top-sm">
+                <div class="form-group" style="text-align: center;">
                     <button type="submit" class="btn btn-success">登录</button>
                     <button type="button" id="register" class="btn">注册</button>
                     <button type="button" id="testRegister" class="btn">免注册</button>
@@ -41,50 +76,56 @@
     </div>
 </div>
 
-<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
-
-
 <script src="/static/lib/jquery-1.11.1.min.js"></script>
-<script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
-
-<script src='/static/lib/jquery.slimscroll.min.js'></script>
-<script src='/static/lib/jquery.popupoverlay.min.js'></script>
-
+<script src="/static/lib/js.cookie.js"></script>
 <script>
 
     /*
-    * 用户登录
-    * */
+     * 用户登录
+     * */
     $('button[type=submit]').on('click', function (e) {
         e.preventDefault();
         var $form = $('#signin').serializeArray();
 
-        if($form[0].value == '') {
+        if ($form[0].value == '') {
             alert('登陆失败');
             return false;
         }
 
-        if($form[1].value == '') {
+        if ($form[1].value == '') {
             alert('登陆失败');
             return false;
         }
 
-        $('#signin').submit();
+        $.ajax({
+            url: '/signin',
+            type: 'POST',
+            data: $form,
+            success: function (data) {
+                if (data.resultCode == 0) {
+                    Cookies.set('accessToken', data.data.UserId);
+                    window.location.href = "/desktop";
+                } else {
+                    alert('登陆失败');
+                }
+            }
+        });
+
     });
 
     /*
-    * 新用户注册
-    * */
-    $('#register').on('click', function(e){
+     * 新用户注册
+     * */
+    $('#register').on('click', function (e) {
         var $form = $('#signin').serializeArray();
 
         $.ajax({
             url: '/signin/register',
-            type:'POST',
+            type: 'POST',
             data: $form,
             success: function (data) {
-                if(data.resultCode == 0) {
-                    $('#signin').submit();
+                if (data.resultCode == 0) {
+                    alert('注册成功');
                 } else {
                     alert('注册失败');
                 }
@@ -94,15 +135,16 @@
     });
 
     /*
-    * 自动登录
-    * */
-    $('#testRegister').on('click', function(e){
+     * 自动登录
+     * */
+    $('#testRegister').on('click', function (e) {
 
         $.ajax({
             url: '/signin/autologin',
-            type:'POST',
+            type: 'POST',
             success: function (data) {
-                if(data.resultCode == 0) {
+                if (data.resultCode == 0) {
+                    Cookies.set('accessToken', data.data.UserId);
                     window.location.href = '/desktop';
                 }
             }

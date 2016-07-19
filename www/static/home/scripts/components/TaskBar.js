@@ -51,7 +51,7 @@ class TaskBar extends Component {
                           points: ['tl', 'cc'],
                           offset: [-29, 16]
                         }}
-                        popup={<StartMenu />}
+                        popup={<StartMenu {...this.props} />}
                     >
                         <sapn className="taskbar-start">开始</sapn>
                     </Trigger>

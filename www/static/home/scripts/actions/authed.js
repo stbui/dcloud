@@ -5,10 +5,11 @@ import Cookies from 'js-cookie';
 const COOKIE_PATH = 'accessToken';
 
 export function loginUser() {
-    Cookies.set(COOKIE_PATH, 1);
     //Cookies.remove(COOKIE_PATH)
+    let accessToken = Cookies.get(COOKIE_PATH);
 
     return {
-        type: types.RECEIVE_ACCESS_TOKEN
+        type: types.RECEIVE_ACCESS_TOKEN,
+        accessToken
     };
 }

@@ -6,9 +6,8 @@ import { loginUser } from '../actions/authed';
 
 import DesktopContainer from '../containers/DesktopContainer';
 import TaskBarContainer from '../containers/TaskBarContainer';
-import StartMenuContainer from '../containers/StartMenuContainer';
+//import StartMenuContainer from '../containers/StartMenuContainer';
 
-const propTypes = {};
 
 class App extends Component {
     componentDidMount() {
@@ -19,7 +18,7 @@ class App extends Component {
 
     renderContent() {
         const { path } = this.props;
-        console.log(path)
+        //console.log(path)
         switch (path[0]) {
             case 'desktop':
                 break;
@@ -42,16 +41,16 @@ class App extends Component {
     }
 }
 
-App.propTypes = propTypes;
 
 function mapStateToProps(state) {
-    const { applists,startmenu,navigator } = state;
+    const { applists,startmenu,navigator,authed } = state;
     const {path} = navigator.route;
 
     return {
         applists,
         startmenu,
-        path
+        path,
+        authed,
     };
 }
 
