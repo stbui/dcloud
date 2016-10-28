@@ -1,6 +1,6 @@
 {
-  "name": "thinkjs-application",
-  "description": "application created by thinkjs",
+  "name": "dcloud",
+  "description": "",
   "version": "1.0.0",
   "scripts": {
     "start": "node www/development.js",

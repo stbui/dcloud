@@ -4,6 +4,10 @@ import Base from './base.js';
 import child_process from 'child_process'
 
 export default class extends Base {
+    __before() {
+        this.navType = 'install';
+    }
+
     /**
      * index action
      * @return {Promise} []
@@ -51,8 +55,8 @@ export default class extends Base {
     }
 
     /*
-     * @param {string} command ÃüÁî¹Ø¼ü×Ö
-     * @param {array} option ÃüÁî²ÎÊý
+     * @param {string} command ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½
+     * @param {array} option ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * @return {json}
      */
     async cli(command, option) {
@@ -86,7 +90,7 @@ export default class extends Base {
     }
 
     launcherAction(self) {
-        const {socket,data} = self.http;
+        const {socket, data} = self.http;
         const {spawn} = child_process;
         const cwd = think.ROOT_PATH + '/bin';
 

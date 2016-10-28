@@ -1,6 +1,5 @@
 'use strict';
 
-import request from 'request';
 
 export default class extends think.controller.base {
 
@@ -12,35 +11,30 @@ export default class extends think.controller.base {
             this.redirect('/desktop');
         }
 
-
         if (this.isPost()) {
+            let post = this.post();
+            let {UserId, RemotePassword} = post;
 
-            const _post = this.post();
-            const appusers = await this.model('appusers').where(_post).find();
+            RemotePassword = think.md5(RemotePassword);
+            let usersModel = this.model('appusers');
+            let result = await usersModel.where({UserId, RemotePassword}).find();
 
-            if (appusers) {
-                this.model('appusers').where(_post).update({LastTime: think.datetime(), LastIp: this.ip()});
-
-                this.session('userInfo', appusers);
+            if (think.isEmpty(result)) {
+                return this.fail(this.locale('user_password_error'));
             }
 
-
-            const {UserId,NickName} = appusers;
-            let userInfo = {
-                UserId,
-                NickName
+            let {LastTime, LastIp} = {
+                LastTime: think.datetime(),
+                LastIp: this.ip()
             }
 
-            if(think.isEmpty(appusers)) {
-                return this.fail(this.locale('user_isloginFail'));
-            }
+            usersModel.where({UserId, RemotePassword}).update({LastTime, LastIp});
+            this.session('userInfo', result);
 
-            return this.success(userInfo, this.locale('query_success'));
+            return this.success({UserId, LastTime, LastIp}, this.locale('query_success'));
         }
 
-        if (!this.isAjax()) {
-            return this.display();
-        }
+        return this.display();
     }
 
     /*
@@ -48,12 +42,14 @@ export default class extends think.controller.base {
      *
      * */
     async registerAction() {
-        const _post = this.post();
+        let _post = this.post();
+        let {UserId, RemotePassword} = _post;
+        _post.RemotePassword = think.md5(RemotePassword);
+
         const appusers = await this.model('appusers').thenAdd(_post, _post);
         if (appusers.type != "exist") {
             // 客户端服务器账号同步
-            let userInfo = {UserId: _post.UserId, RemotePassword: _post.RemotePassword};
-            let result = await this.syncallremoteusers(userInfo);
+            let result = await this.syncallremoteusers({UserId, RemotePassword});
 
             return this.success(result, this.locale('query_success'));
         }
@@ -69,13 +65,13 @@ export default class extends think.controller.base {
         const appusers = await this.model('appusers').autoLogin();
         await this.session('userInfo', appusers);
 
-        const {UserId,NickName} = appusers;
+        const {UserId, NickName} = appusers;
         let userInfo = {
             UserId,
             NickName
         }
 
-        if(think.isEmpty(appusers)) {
+        if (think.isEmpty(appusers)) {
             return this.fail(this.locale('user_isloginFail'));
         }
 

@@ -1,33 +1,42 @@
-<% include common/header.html %>
-<% include common/silder-menu.html %>
-
-
-<div class="main-container">
-
-    <div class="padding-md">
-        服务端
-        <div class="row">
-            <div class="col-lg-12">
-                <a id="start" class="btn btn-primary" href="/api/server/start">启动服务</a>
-                <a id="restart" class="btn btn-primary" href="/api/server/restart">重启服务</a>
-                <a id="stop" class="btn btn-primary" href="/api/server/stop">停止服务</a>
-                <a id="config" id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole
-                    配置文件</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="stbui.com">
+    <% include common/style.html %>
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <% include common/silder-menu.html %>
+    <div class="main-container">
+        <div class="padding-md">
+            服务端
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="start" class="btn btn-primary" href="/api/server/start">启动服务</a>
+                    <a id="restart" class="btn btn-primary" href="/api/server/restart">重启服务</a>
+                    <a id="stop" class="btn btn-primary" href="/api/server/stop">停止服务</a>
+                    <a id="config" id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole
+                        配置文件</a>
+                </div>
             </div>
-        </div>
-        <br>
-        客户端
-        <div class="row">
-            <div class="col-lg-12">
-                <a id="" class="btn btn-primary" href="/proxy/remoteGenerateCmd">同步应用程序</a>
-                <a id="" class="btn btn-primary" href="/admin/user/syncAllRemoteUsers?ip=192.168.159.137">同步账号</a>
+            <br>
+            客户端
+            <div class="row">
+                <div class="col-lg-12">
+                    <a id="" class="btn btn-primary" href="/proxy/remoteGenerateCmd">同步应用程序</a>
+                    <a id="" class="btn btn-primary" href="/admin/user/syncAllRemoteUsers?ip=192.168.159.137">同步账号</a>
+                </div>
             </div>
+
         </div>
 
     </div>
-
+    <% include common/footer.html %>
 </div>
-
+<% include common/script.html %>
 <script>
     $('#start').on('click', function (e) {
         e.preventDefault();
@@ -106,8 +115,6 @@
 
     });
 
-
 </script>
-
-
-<% include common/footer.html %>
+</body>
+</html>

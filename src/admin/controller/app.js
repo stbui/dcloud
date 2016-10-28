@@ -3,10 +3,10 @@
 import Base from './base.js';
 
 export default class extends Base {
-    /**
-     * index action
-     * @return {Promise} []
-     */
+    __before() {
+        this.navType = 'app';
+    }
+
     async indexAction() {
         let program = await this.model('program').getList();
 
@@ -31,10 +31,8 @@ export default class extends Base {
 
         if (this.isPost()) {
             const _post = this.post();
-            // 更新数据
             this.model('program').where(_get).update(_post);
 
-            // 在客户端服务器生成命令文件
             this.action('home/proxy', 'remotegeneratecmdsingle');
             this.redirect('/admin/app/index');
         }
@@ -55,9 +53,6 @@ export default class extends Base {
         this.redirect('/admin/app/index');
     }
 
-    /*
-     *  应用显示状态
-     * */
     async shownAction() {
         const _get = this.get();
 
@@ -76,6 +71,4 @@ export default class extends Base {
 
         return this.success(row.status, this.locale('query_success'));
     }
-
-
 }

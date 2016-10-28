@@ -1,5 +1,15 @@
-<% include common/header.html %>
-<% include common/silder-menu.html %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="stbui.com">
+    <% include common/style.html %>
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <% include common/silder-menu.html %>
 
 <link rel="stylesheet" href="/static/lib/xterm/xterm.css"/>
 <!--<link rel="stylesheet" href="/static/lib/xterm/addons/fullscreen/fullscreen.css"/>-->
@@ -14,19 +24,19 @@
         <a id="allApp" class="btn btn-primary" href="/admin/install/all">安装所有应用</a>
         <a id="allApp" class="btn btn-primary" href="/api/server/config?type=write">生成 Guacamole 配置文件</a>
 
-
         <div style="margin-top: 10px" id="terminal-container"></div>
     </div>
 
 </div>
 
+    <% include common/footer.html %>
+</div>
+<% include common/script.html %>
 <script src="/static/admin/js/socket.io.js"></script>
 <script src="/static/lib/xterm/xterm.js"></script>
 <!--<script src="/static/lib/xterm/addons/attach/attach.js"></script>-->
 <!--<script src="/static/lib/xterm/addons/fit/fit.js"></script>-->
 <!--<script src="/static/lib/xterm/addons/fullscreen/fullscreen.js"></script>-->
-
-
 <script>
 
     var terminalContainer = document.getElementById('terminal-container');
@@ -122,8 +132,5 @@
     }
 </script>
 
-<script>
-
-</script>
-
-<% include common/footer.html %>
+</body>
+</html>

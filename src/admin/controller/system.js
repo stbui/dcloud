@@ -3,19 +3,19 @@
 import Base from './base.js';
 
 export default class extends Base {
-    /**
-     * index action
-     * @return {Promise} []
-     */
-    indexAction(){
+    __before() {
+        this.navType = 'system';
+    }
 
-        if(this.isPost()) {
+    indexAction() {
+
+        if (this.isPost()) {
             const data = this.post();
-            this.model('config').where({id:1}).update(data);
+            this.model('config').where({id: 1}).update(data);
         }
 
         const configData = this.model('config').find();
-        this.assign('config',configData);
+        this.assign('config', configData);
 
         return this.display();
     }

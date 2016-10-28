@@ -4,10 +4,10 @@ import Base from './base.js';
 
 
 export default class extends Base {
-    /**
-     * index action
-     * @return {Promise} []
-     */
+    __before() {
+        this.navType = 'user';
+    }
+
     indexAction() {
         let user = this.model('appusers').select();
 
@@ -23,7 +23,7 @@ export default class extends Base {
         this.redirect('/admin/user');
     }
 
-    /*
+    /**
      * 单台客户端服务器用户同步
      * @param ip
      * @return json
@@ -37,8 +37,8 @@ export default class extends Base {
 
         appusersData.forEach((item)=> {
             // win2003 密码字符不能大于14
-            // todo socket 发送数据
-            let {UserId,RemotePassword} = item;
+            // todo socket 发送数据, 将用户数据提交高agent查询处理
+            let {UserId, RemotePassword} = item;
             let formData = {username: UserId, password: RemotePassword};
             global.request(url, formData);
         });

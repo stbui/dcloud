@@ -8,6 +8,8 @@ export default {
   "user_islogin":"用户没有登陆",
   "user_isExist":"数据已存在",
   "user_isloginFail":"登陆失败",
+  "user_username_error":"用户错误",
+  "user_password_error":"密码错误",
   "add_success":"添加成功",
   "add_fail":"添加失败",
   "share_can_upload": "\u5141\u8bb8\u4e0a\u4f20",

@@ -1,66 +1,78 @@
-<% include common/header.html %>
-<% include common/silder-menu.html %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="stbui.com">
+    <% include common/style.html %>
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <% include common/silder-menu.html %>
 
-<div class="main-container">
+    <div class="main-container">
 
-    <div class="padding-md">
+        <div class="padding-md">
 
-        <div class="smart-widget widget-dark-blue">
-            <div class="smart-widget-header">
-                应用程序
-                <span class="smart-widget-option">
+            <div class="smart-widget widget-dark-blue">
+                <div class="smart-widget-header">
+                    应用程序
+                    <span class="smart-widget-option">
                     <a href="/proxy/remoteGenerateCmd"><i class="fa fa-refresh"></i> 部署应用</a>
                     <a href="/admin/app/add"><i class="fa fa-windows"></i> 添加应用程序</a>
                 </span>
-            </div>
-            <div class="smart-widget-inner">
-                <div class="smart-widget-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>图标</th>
-                            <th>应用名称</th>
-                            <th>所属服务</th>
-                            <th style="width: 30%">程序路径</th>
-                            <th>显示</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% app.forEach(function(item){ %>
-                        <tr>
-                            <td><%= item.id%></td>
-                            <td><img src="<%=item.icon%>" width="16" alt=""/></td>
-                            <td><%= item.name%></td>
-                            <td><%= item.serverName%></td>
-                            <td><%= item.path%></td>
-                            <td>
-                                <%if (item.status== 1) { %>
-                                <a href="/admin/app/shown?id=<%= item.id %>"
-                                   class="label label-info status">显示</a>
-                                <% } else { %>
-                                <a href="/admin/app/shown?id=<%= item.id %>" class="label status">隐藏</a>
-                                <% } %>
-                            </td>
-                            <td>
-                                <a class="label" href="/admin/app/edit?id=<%= item.id %>">修改</a>
-                                <a class="label label-warning" href="/admin/app/del?id=<%= item.id %>">删除</a>
-                            </td>
-                        </tr>
-                        <% }) %>
-                        </tbody>
-                    </table>
+                </div>
+                <div class="smart-widget-inner">
+                    <div class="smart-widget-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>图标</th>
+                                <th>应用名称</th>
+                                <th>所属服务</th>
+                                <th style="width: 30%">程序路径</th>
+                                <th>显示</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% app.forEach(function(item){ %>
+                            <tr>
+                                <td><%= item.id%></td>
+                                <td><img src="<%=item.icon%>" width="16" alt=""/></td>
+                                <td><%= item.name%></td>
+                                <td><%= item.serverName%></td>
+                                <td><%= item.path%></td>
+                                <td>
+                                    <%if (item.status== 1) { %>
+                                    <a href="/admin/app/shown?id=<%= item.id %>"
+                                       class="label label-info status">显示</a>
+                                    <% } else { %>
+                                    <a href="/admin/app/shown?id=<%= item.id %>" class="label status">隐藏</a>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <a class="label" href="/admin/app/edit?id=<%= item.id %>">修改</a>
+                                    <a class="label label-warning" href="/admin/app/del?id=<%= item.id %>">删除</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 
+    <% include common/footer.html %>
 </div>
-
-
+<% include common/script.html %>
 <script>
     $('.status').on('click',function(e){
         e.preventDefault();
@@ -83,5 +95,7 @@
 
 
 </script>
+</body>
+</html>
 
-<% include common/footer.html %>
+

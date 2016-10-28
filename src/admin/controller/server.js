@@ -1,14 +1,13 @@
 'use strict';
 
 import Base from './base.js';
-import http from 'http';
 
 
 export default class extends Base {
-    /**
-     * index action
-     * @return {Promise} []
-     */
+    __before() {
+        this.navType = 'server';
+    }
+
     indexAction() {
         let server = this.model('server').select();
         this.assign('server', server);
@@ -21,7 +20,6 @@ export default class extends Base {
      * @return {Promise} []
      */
     addAction() {
-
         if (this.isPost()) {
             const _post = this.post();
 
@@ -29,7 +27,7 @@ export default class extends Base {
             _post.accessToken = think.uuid();
             this.model('server').add(_post);
 
-            this.redirect('/admin/server/index');
+            this.redirect('/admin/server/index.html');
         }
 
         return this.display();
@@ -37,57 +35,57 @@ export default class extends Base {
 
     editAction() {
         const _get = this.get();
+        let {id} = _get;
 
         if (this.isPost()) {
             const _post = this.post();
 
-            if (!think.isEmpty(_get.id)) {
-                this.model('server').where(_get).update(_post);
+            if (!think.isEmpty(id)) {
+                this.model('server').where({id}).update(_post);
             }
 
-            this.redirect('/admin/server/index');
+            this.redirect('/admin/server/index.html');
         }
 
-        const serverData = this.model('server').where(_get).find();
+        const serverData = this.model('server').where({id}).find();
 
         this.assign('server', serverData);
 
         return this.display();
     }
 
-    /*
+    /**
      * del action
-     *
-     * */
+     * @return
+     */
     delAction() {
         let _get = this.get();
+        let {id} = _get;
 
-        this.model('server').where(_get).delete();
-
-        this.action('server', 'index');
+        this.model('server').where({id}).delete();
+        this.redirect('/admin/server/index.html');
     }
 
-    /*
+    /**
      * 检测客户端服务器运行状态
      *
-     * */
+     */
     async checkremoteserverstateAction() {
         const _get = this.get();
-        const serverData = await this.model('server').where(_get).find();
-        const {ip,port} = serverData;
-
+        let {id} = _get;
+        const serverData = await this.model('server').where({id}).find();
+        const {ip, port} = serverData;
 
         let url = 'http://' + ip + ':' + port;
         let resultData = await global.request(url).catch((e)=> {
             return e
         });
 
-
         if (resultData.code == 'ETIMEDOUT') {
-            this.model('server').where(_get).update({status: 1});
+            this.model('server').where({id}).update({status: 0});
             return this.fail(this.locale('query_fail'), undefined);
         } else {
-            this.model('server').where(_get).update({status: 0});
+            this.model('server').where({id}).update({status: 1});
             return this.success(undefined, this.locale('query_success'));
         }
     }

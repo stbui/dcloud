@@ -12,7 +12,7 @@ export default class extends Base {
         // 生成配置文件
         fs.writeFileSync(filePath, probe, 'utf-8');
 
-        this.download(filePath,'probe.asp');
+        this.download(filePath, 'probe.asp');
     }
 
     async probeAction() {
@@ -26,10 +26,10 @@ export default class extends Base {
         const configData = this.model('config').find();
 
         let options = {
-            apiKey:configData.apiKey,
-            domain:think.http.host,
-            url:'http://www.baidu.com',
-            param:''
+            apiKey: configData.apiKey,
+            domain: think.http.host,
+            url: 'http://stbui.com',
+            param: ''
         };
 
         return this.getProbeContent(options);
@@ -37,7 +37,7 @@ export default class extends Base {
 
 
     getProbeContent(options) {
-        let {apiKey,domain,url,param} = options;
+        let {apiKey, domain, url, param} = options;
 
 
         let str = `

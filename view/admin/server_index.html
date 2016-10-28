@@ -1,78 +1,91 @@
-<% include common/header.html %>
-<% include common/silder-menu.html %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="stbui.com">
+    <% include common/style.html %>
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <% include common/silder-menu.html %>
 
-<div class="main-container">
+    <div class="main-container">
 
-    <div class="padding-md">
+        <div class="padding-md">
 
-        <div class="smart-widget widget-dark-blue">
-            <div class="smart-widget-header">
-                客户端服务器配置
-                <span class="smart-widget-option">
+            <div class="smart-widget widget-dark-blue">
+                <div class="smart-widget-header">
+                    客户端服务器配置
+                    <span class="smart-widget-option">
                     <a href="/admin/server/add"><i class="fa fa-desktop"></i> 添加服务器</a>
                 </span>
-            </div>
-            <div class="smart-widget-inner">
+                </div>
+                <div class="smart-widget-inner">
 
-                <div class="smart-widget-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>服务器名称</th>
-                            <th>服务器IP</th>
-                            <th>服务器端口</th>
-                            <th>服务器状态</th>
-                            <th>同步用户</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% server.forEach(function(item){ %>
-                        <tr>
-                            <td><%= item.id%></td>
-                            <td><%= item.name%></td>
-                            <td><%= item.ip %></td>
-                            <td>
-                                <%if (item.port== 80) { %>
-                                <label class="label"><%= item.port %></label>
-                                <% } else { %>
-                                <label class="label label-primary"><%= item.port %></label>
-                                <% } %>
-                            </td>
-                            <td>
-                                <%if (item.status== 1) { %>
-                                <a href="/admin/server/checkRemoteServerstate?id=<%= item.id %>"
-                                   class="label label-info serverStatus">在线</a>
-                                <% } else { %>
-                                <a href="/admin/server/checkRemoteServerstate?id=<%= item.id %>"
-                                   class="label label-danger serverStatus">离线</a>
-                                <% } %>
-                            </td>
-                            <td><a class="sysncUsers" href="/admin/user/syncAllRemoteUsers?ip=<%= item.ip %>">同步</a>
-                                更新于:
-                                <% if(item.syncUserDate) { %>
-                                <%=think.datetime(item.syncUserDate, "YYYY-MM-DD HH:mm:ss") %>
-                                <% } else { %>
-                                -
-                                <% } %>
-                            </td>
-                            <td><a class="label" href="/admin/server/edit?id=<%= item.id %>">修改</a> <a
-                                    class="label label-warning" href="/admin/server/del?id=<%= item.id %>">删除</a></td>
-                        </tr>
-                        <% }) %>
+                    <div class="smart-widget-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>服务器名称</th>
+                                <th>服务器IP</th>
+                                <th>服务器端口</th>
+                                <th>服务器状态</th>
+                                <th>同步用户</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% server.forEach(function(item){ %>
+                            <tr>
+                                <td><%= item.id%></td>
+                                <td><%= item.name%></td>
+                                <td><%= item.ip %></td>
+                                <td>
+                                    <%if (item.port== 80) { %>
+                                    <label class="label"><%= item.port %></label>
+                                    <% } else { %>
+                                    <label class="label label-primary"><%= item.port %></label>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <%if (item.status== 1) { %>
+                                    <a href="/admin/server/checkRemoteServerstate?id=<%= item.id %>"
+                                       class="label label-info serverStatus">在线</a>
+                                    <% } else { %>
+                                    <a href="/admin/server/checkRemoteServerstate?id=<%= item.id %>"
+                                       class="label label-danger serverStatus">离线</a>
+                                    <% } %>
+                                </td>
+                                <td><a class="sysncUsers" href="/admin/user/syncAllRemoteUsers?ip=<%= item.ip %>">同步</a>
+                                    更新于:
+                                    <% if(item.syncUserDate) { %>
+                                    <%=think.datetime(item.syncUserDate, "YYYY-MM-DD HH:mm:ss") %>
+                                    <% } else { %>
+                                    -
+                                    <% } %>
+                                </td>
+                                <td><a class="label" href="/admin/server/edit?id=<%= item.id %>">修改</a> <a
+                                        class="label label-warning" href="/admin/server/del?id=<%= item.id %>">删除</a></td>
+                            </tr>
+                            <% }) %>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 
+    <% include common/footer.html %>
 </div>
-
+<% include common/script.html %>
 <script>
     $('.serverStatus').on('click', function (e) {
         e.preventDefault();
@@ -85,6 +98,8 @@
             success: function (data) {
                 if (data.resultCode == 0) {
                     $this.removeClass('label-danger').addClass('label-info').text('在线');
+                } else {
+                    $this.removeClass('label-info').addClass('label-danger').text('离线');
                 }
             }
         });
@@ -108,6 +123,5 @@
     });
 
 </script>
-
-
-<% include common/footer.html %>
+</body>
+</html>

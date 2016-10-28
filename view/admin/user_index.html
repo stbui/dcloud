@@ -1,73 +1,86 @@
-<% include common/header.html %>
-<% include common/silder-menu.html %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dCloud Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="stbui.com">
+    <% include common/style.html %>
+</head>
+<body class="overflow-hidden">
+<div class="wrapper preload">
+    <% include common/silder-menu.html %>
 
-<div class="main-container">
+    <div class="main-container">
 
-    <div class="padding-md">
+        <div class="padding-md">
 
-        <div class="smart-widget widget-dark-blue">
-            <div class="smart-widget-header">
-                用户管理
-							<!--<span class="smart-widget-option">-->
-                                <!--<a href="#" class="widget-refresh-option">-->
-                                    <!--<i class="fa fa-refresh"></i> 同步账号-->
-                                <!--</a>-->
-                                <!--同步时间：- -->
-	                        <!--</span>-->
-            </div>
-            <div class="smart-widget-inner">
+            <div class="smart-widget widget-dark-blue">
+                <div class="smart-widget-header">
+                    用户管理
+                    <!--<span class="smart-widget-option">-->
+                    <!--<a href="#" class="widget-refresh-option">-->
+                    <!--<i class="fa fa-refresh"></i> 同步账号-->
+                    <!--</a>-->
+                    <!--同步时间：- -->
+                    <!--</span>-->
+                </div>
+                <div class="smart-widget-inner">
 
-                <div class="smart-widget-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>UserId</th>
-                            <th>用户名</th>
-                            <th>部门/职位</th>
-                            <th>最后登录时间</th>
-                            <th>最后访问IP</th>
-                            <!--<th>客户端服务器账户</th>-->
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% user.forEach(function(item){ %>
-                        <tr>
-                            <td><%=item.UserId%></td>
-                            <td><%=item.NickName%></td>
-                            <td>
-                                <% if(item.Job) {
+                    <div class="smart-widget-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>UserId</th>
+                                <th>用户名</th>
+                                <th>部门/职位</th>
+                                <th>最后登录时间</th>
+                                <th>最后访问IP</th>
+                                <!--<th>客户端服务器账户</th>-->
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% user.forEach(function(item){ %>
+                            <tr>
+                                <td><%=item.UserId%></td>
+                                <td><%=item.NickName%></td>
+                                <td>
+                                    <% if(item.Job) {
 
-                                %>
-                                <%=item.Department%>/<%=item.Job%>
-                                <% } else { %>
-                                <%=item.Department %>
-                                <% } %>
-                            </td>
-                            <td>
-                                <% if(item.LastTime) { %>
-                                <%=think.datetime(item.LastTime, "YYYY-MM-DD HH:mm:ss") %>
-                                <% } else { %>
-                                未登陆
-                                <% } %>
-                            </td>
-                            <td><%= item.LastIp %></td>
-                            <!--<td>更新 更新于：<%=think.datetime()%></td>-->
-                            <td><a class="label label-warning" href="/admin/user/del?UserId=<%=item.UserId%>">删除</a>
-                            </td>
-                        </tr>
-                        <% }) %>
+                                    %>
+                                    <%=item.Department%>/<%=item.Job%>
+                                    <% } else { %>
+                                    <%=item.Department %>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if(item.LastTime) { %>
+                                    <%=think.datetime(item.LastTime, "YYYY-MM-DD HH:mm:ss") %>
+                                    <% } else { %>
+                                    未登陆
+                                    <% } %>
+                                </td>
+                                <td><%= item.LastIp %></td>
+                                <!--<td>更新 更新于：<%=think.datetime()%></td>-->
+                                <td><a class="label label-warning" href="/admin/user/del?UserId=<%=item.UserId%>">删除</a>
+                                </td>
+                            </tr>
+                            <% }) %>
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 
+    <% include common/footer.html %>
 </div>
-
-<% include common/footer.html %>
+</body>
+</html>

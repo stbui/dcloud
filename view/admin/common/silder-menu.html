@@ -19,85 +19,75 @@
     <div class="sidebar-inner scrollable-sidebar">
         <div class="main-menu">
             <ul class="accordion">
-                <li class="menu-header">
-                    Main Menu
-                </li>
-                <li class="bg-palette1 active">
+                <li class="menu-header">主菜单</li>
+                <li class="bg-palette1 <%=controller.navType=='index'?'active':''%>">
                     <a href="index.html">
-									<span class="menu-content block">
-										<span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
-										<span class="text m-left-sm">主页</span>
-									</span>
-									<span class="menu-content-hover block">
-										主页
-									</span>
+                        <span class="menu-content block">
+                            <span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
+                            <span class="text m-left-sm">主页</span>
+                        </span>
+                        <span class="menu-content-hover block">主页</span>
                     </a>
                 </li>
 
-                <li class="bg-palette2">
+                <li class="bg-palette2 <%=controller.navType=='system'?'active':''%>">
                     <a href="/admin/system">
-									<span class="menu-content block">
-										<span class="menu-icon"><i class="block fa fa-cogs fa-lg"></i></span>
-										<span class="text m-left-sm">系统配置</span>
-									</span>
-									<span class="menu-content-hover block">
-										系统配置
-									</span>
+                        <span class="menu-content block">
+                            <span class="menu-icon"><i class="block fa fa-cogs fa-lg"></i></span>
+                            <span class="text m-left-sm">系统配置</span>
+                        </span>
+                        <span class="menu-content-hover block">系统配置</span>
                     </a>
                 </li>
-                <li class="bg-palette2">
+                <li class="bg-palette2 <%=controller.navType=='server'?'active':''%>">
                     <a href="/admin/server">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-desktop fa-lg"></i></span>
 										<span class="text m-left-sm">服务器</span>
 									</span>
-									<span class="menu-content-hover block">
+                        <span class="menu-content-hover block">
 										服务器配置
 									</span>
                     </a>
                 </li>
-                <li class="bg-palette2">
+                <li class="bg-palette2 <%=controller.navType=='app'?'active':''%>">
                     <a href="/admin/app">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-windows fa-lg"></i></span>
 										<span class="text m-left-sm">应用程序</span>
 									</span>
-									<span class="menu-content-hover block">
+                        <span class="menu-content-hover block">
 										应用程序配置
 									</span>
                     </a>
                 </li>
-                <li class="bg-palette2">
+                <li class="bg-palette2 <%=controller.navType=='user'?'active':''%>">
                     <a href="/admin/user">
-									<span class="menu-content block">
-										<span class="menu-icon"><i class="block fa fa-users fa-lg"></i></span>
-										<span class="text m-left-sm">用户管理</span>
-									</span>
-									<span class="menu-content-hover block">
-										用户管理
-									</span>
+                        <span class="menu-content block">
+                            <span class="menu-icon"><i class="block fa fa-users fa-lg"></i></span>
+                            <span class="text m-left-sm">用户管理</span>
+                        </span>
+                        <span class="menu-content-hover block">用户管理</span>
                     </a>
                 </li>
                 <!--<li class="bg-palette2">-->
-                    <!--<a href="/admin/count">-->
-									<!--<span class="menu-content block">-->
-										<!--<span class="menu-icon"><i class="block fa fa-bar-chart-o fa-lg"></i></span>-->
-										<!--<span class="text m-left-sm">使用统计</span>-->
-									<!--</span>-->
-									<!--<span class="menu-content-hover block">-->
-										<!--使用统计-->
-									<!--</span>-->
-                    <!--</a>-->
+                <!--<a href="/admin/count">-->
+                <!--<span class="menu-content block">-->
+                <!--<span class="menu-icon"><i class="block fa fa-bar-chart-o fa-lg"></i></span>-->
+                <!--<span class="text m-left-sm">使用统计</span>-->
+                <!--</span>-->
+                <!--<span class="menu-content-hover block">-->
+                <!--使用统计-->
+                <!--</span>-->
+                <!--</a>-->
                 <!--</li>-->
-                <li class="bg-palette2">
+                <li class="bg-palette2 <%=controller.navType=='install'?'active':''%>">
                     <a href="/admin/install">
 									<span class="menu-content block">
 										<span class="menu-icon"><i class="block fa fa-times-circle fa-lg"></i></span>
 										<span class="text m-left-sm">初始化安装</span>
 									</span>
-									<span class="menu-content-hover block">
-										初始化安装
-									</span>
+                        <span class="menu-content-hover block">初始化安装</span>
                     </a>
                 </li>
 

@@ -8,7 +8,7 @@ export default class extends Base {
    * @return {Promise} []
    */
   indexAction(){
-    return this.display();
+    return this.redirect('/signin.html');
   }
 
 }
