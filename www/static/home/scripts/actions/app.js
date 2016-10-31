@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import Cookies from 'js-cookie';
 
-import { constructDesktopAppListUrl,constructProxyListUrl } from '../utils/DesktopUtils.js';
+import {constructDesktopAppListUrl, constructProxyListUrl} from '../utils/DesktopUtils.js';
 
 
 const COOKIE_PATH = 'accessToken';
@@ -52,7 +52,7 @@ export function receiveProxysList(entities) {
 export function fetchProxysAdd(data) {
 
     return dispatch =>
-        fetch(constructProxyListUrl() + '/add', {
+        fetch(constructProxyListUrl() + '/add.html', {
             method: "POST",
             headers: {"Content-Type": "application/x-www-form-urlencoded"},
             credentials: 'include',
@@ -81,7 +81,7 @@ export function fetchProxysDel(id) {
 
     return dispatch =>
         fetch(constructProxyListUrl() + '/del?id=' + id, {
-            credentials: 'include',
+            credentials: 'include'
         })
             .then(response => response.json())
             .then(json => {
@@ -97,6 +97,27 @@ export function fetchProxysDel(id) {
 export function receiveProxysDel(entities) {
     return {
         type: types.RECEIVE_PROXY_DEL,
-        entities,
+        entities
+    };
+}
+
+/*
+ * 请求pac服务
+ * */
+export function fetchProxyStatus() {
+    return dispath => fetch(constructProxyPac(), {credentials: 'include'})
+        .then(response=> response.json())
+        .then(json=> {
+            dispatch(receiveProxyStatus(json))
+        })
+        .catch(err=> {
+            throw err
+        });
+}
+
+export function receiveProxyStatus(entities) {
+    return {
+        type: types.RECEIVE_PROXY_STATUS,
+        entities
     };
 }

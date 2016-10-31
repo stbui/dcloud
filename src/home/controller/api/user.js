@@ -21,7 +21,6 @@ export default class extends think.controller.base {
 
 
     async registerAction() {
-
         this.action('home/user', 'register');
     }
 

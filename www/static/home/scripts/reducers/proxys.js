@@ -30,6 +30,9 @@ export default function proxys(state = initialState, action) {
                 del: action.entities.data,
             });
 
+        case types.RECEIVE_PROXY_STATUS:
+            return Object.assign({}, state, {status: action.entities.data});
+
         default:
             return state;
     }

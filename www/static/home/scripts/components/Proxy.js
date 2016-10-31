@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 
-import {fetchProxys,fetchProxysAdd,fetchProxysDel} from '../actions/app';
+import {fetchProxys, fetchProxysAdd, fetchProxysDel} from '../actions/app';
 
 
 class Proxy extends Component {
     constructor(props) {
         super(props);
 
-        const {dispatch} = props;
-        dispatch(fetchProxys());
+        // const {dispatch} = props;
+        // dispatch(fetchProxys());
 
         this.onHandleAddProxyClick = this.onHandleAddProxyClick.bind(this);
         this.onHandleDelProxyClick = this.onHandleDelProxyClick.bind(this);
@@ -19,30 +19,28 @@ class Proxy extends Component {
         }
     }
 
+    componentDidMount() {
+    }
+
     componentWillMount() {
-        console.log('componentWillMount', this.props);
+        const {dispatch} = this.props;
+        dispatch(fetchProxys());
     }
 
     componentWillReceiveProps() {
-        console.log('componentWillReceiveProps', this.props);
-
     }
 
     shouldComponentUpdate() {
-        console.log('shouldComponentUpdate', this.props);
-
         return true;
     }
 
     componentWillUpdate() {
-        console.log('componentWillUpdate', this.props.proxys);
-
     }
 
-    onHandleAddProxyClick(e) {
+    onHandleAddProxyClick() {
         let ip = this.refs.ip.value;
         let domain = this.refs.domain.value;
-        let hosts = `hosts=${ip} ${domain}`
+        let hosts = `target=${ip}&source=${domain}`
 
         const {dispatch} = this.props;
         dispatch(fetchProxysAdd(hosts));
@@ -67,13 +65,11 @@ class Proxy extends Component {
         let result = [];
 
         data.map((value, key)=> {
-            let hosts = value.hosts.split(' ');
-
             result.push(
                 <tr key={key}>
-                    <td>{hosts[0]}</td>
-                    <td>{hosts[1]}</td>
-                    <td style={{'cursor':'default'}} id={value.id} onClick={this.onHandleDelProxyClick}>x</td>
+                    <td>{value.target}</td>
+                    <td>{value.source}</td>
+                    <td style={{'cursor': 'default'}} id={value.id} onClick={this.onHandleDelProxyClick}>x</td>
                 </tr>
             );
         });
@@ -97,7 +93,7 @@ class Proxy extends Component {
                 <tr>
                     <td><input className="form-control" ref="ip" type="text"/></td>
                     <td><input className="form-control" ref="domain" type="text"/></td>
-                    <td style={{'cursor':'default'}} onClick={this.onHandleAddProxyClick}>√</td>
+                    <td style={{'cursor': 'default'}} onClick={this.onHandleAddProxyClick}>√</td>
                 </tr>
                 </tbody>
             </table>
@@ -106,3 +102,13 @@ class Proxy extends Component {
 }
 
 export default Proxy;
+
+
+
+
+
+
+
+
+
+

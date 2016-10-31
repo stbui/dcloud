@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-07-15 19:27:01
+Date: 2016-10-31 17:07:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,26 +65,27 @@ CREATE TABLE `appusers` (
 -- ----------------------------
 -- Records of appusers
 -- ----------------------------
-INSERT INTO `appusers` VALUES ('12301', '123456', null, '2016-06-24 20:26:29', '2016-06-24 20:26:30', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12302', '123465', null, '2016-06-24 20:26:48', '2016-06-24 20:26:49', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12303', '123456', null, '2016-06-24 20:27:48', '2016-06-27 12:33:44', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12305', '123465', null, '2016-06-24 20:29:16', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12306', '123465', null, '2016-06-24 20:29:54', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12307', '123456', null, '2016-06-24 20:36:51', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12308', '123456', null, '2016-06-24 20:37:40', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12309', '123456', null, '2016-06-24 20:38:01', '2016-06-24 13:47:11', '192.168.159.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12310', '123456', null, '2016-06-24 20:38:06', '2016-06-27 12:34:03', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12311', '123456', null, '2016-06-24 20:38:09', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12312', '123456', null, '2016-06-24 20:38:12', '2016-06-24 20:38:18', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12313', '123465', null, '2016-06-24 20:39:37', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12314', '123465', null, '2016-06-24 20:39:46', '2016-06-24 20:39:47', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12315', '123456', null, '2016-06-24 20:55:00', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12316', '123456', null, '2016-06-24 20:55:24', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12317', '123456', null, '2016-06-24 20:55:28', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12318', '123465', null, '2016-06-24 20:56:26', '2016-06-24 13:56:27', '192.168.159.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12319', '123456', null, '2016-06-24 20:57:24', '2016-06-24 13:57:25', '192.168.159.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('12320', '123456', null, '2016-06-24 20:58:06', '2016-06-24 21:01:28', '127.0.0.1', null, null, null, null, null, null, null, null);
-INSERT INTO `appusers` VALUES ('User1467362486321', '123456', '2db107c5f586d5d8b78311a04dc774c1', '2016-07-01 16:41:26', '2016-07-01 20:03:43', '127.0.0.1', 'stbui', null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12301', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:26:29', '2016-07-19 11:29:43', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12302', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:26:48', '2016-06-24 20:26:49', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12303', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:27:48', '2016-06-27 12:33:44', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12305', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:29:16', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12306', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:29:54', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12307', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:36:51', '2016-10-28 10:08:15', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12308', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:37:40', '2016-10-26 11:39:27', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12309', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:38:01', '2016-06-24 13:47:11', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12310', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:38:06', '2016-06-27 12:34:03', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12311', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:38:09', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12312', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:38:12', '2016-06-24 20:38:18', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12313', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:39:37', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12314', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:39:46', '2016-06-24 20:39:47', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12315', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:55:00', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12316', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:55:24', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12317', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:55:28', null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12318', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:56:26', '2016-06-24 13:56:27', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12319', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:57:24', '2016-06-24 13:57:25', '192.168.159.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('12320', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-06-24 20:58:06', '2016-09-28 08:39:56', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('demo', 'e10adc3949ba59abbe56e057f20f883e', null, '2016-10-26 11:36:27', '2016-10-31 08:57:37', '127.0.0.1', null, null, null, null, null, null, null, null);
+INSERT INTO `appusers` VALUES ('User1467362486321', 'e10adc3949ba59abbe56e057f20f883e', '2db107c5f586d5d8b78311a04dc774c1', '2016-07-01 16:41:26', '2016-07-01 20:03:43', '127.0.0.1', 'stbui', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for config
@@ -123,12 +124,12 @@ CREATE TABLE `program` (
 -- Records of program
 -- ----------------------------
 INSERT INTO `program` VALUES ('1', 'IE 6', 'iexplore', '/static/home/images/IE 6.png', '1', '1');
-INSERT INTO `program` VALUES ('2', 'IE 7', '', '/static/home/images/ie7.png', '1', '0');
-INSERT INTO `program` VALUES ('3', 'IE 8', '', '/static/home/images/ie8.png', '1', '0');
-INSERT INTO `program` VALUES ('4', 'IE 9', '', '/static/home/images/ie9.png', '1', '0');
-INSERT INTO `program` VALUES ('5', 'IE 10', '', '/static/home/images/ie10.png', '1', '0');
-INSERT INTO `program` VALUES ('6', 'IE 11', '', '/static/home/images/ie11.png', '1', '0');
-INSERT INTO `program` VALUES ('7', 'chrome', '', '/static/home/images/chrome.png', '1', '0');
+INSERT INTO `program` VALUES ('2', 'IE 7', 'iexplore', '/static/home/images/IE 7.png', '1', '1');
+INSERT INTO `program` VALUES ('3', 'IE 8', 'iexplore', '/static/home/images/IE 8.png', '1', '1');
+INSERT INTO `program` VALUES ('4', 'IE 9', 'iexplore', '/static/home/images/IE 9.png', '1', '1');
+INSERT INTO `program` VALUES ('5', 'IE 10', 'iexplore', '/static/home/images/IE 10.png', '1', '1');
+INSERT INTO `program` VALUES ('6', 'IE 11', 'iexplore', '/static/home/images/IE 11.png', '1', '1');
+INSERT INTO `program` VALUES ('7', 'chrome', '', '/static/home/images/chrome.png', '1', '1');
 INSERT INTO `program` VALUES ('8', 'firefox', 'C:\\Program Files\\Mozilla Firefox\\firefox.exe', '/static/home/images/firefox.png', '1', '1');
 INSERT INTO `program` VALUES ('9', 'opera', '', '/static/home/images/opera.png', '1', '1');
 INSERT INTO `program` VALUES ('10', '360浏览器', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\360Chrome\\Chrome\\Application\\360chrome.exe', '/static/home/images/360浏览器.png', '1', '1');
@@ -141,6 +142,31 @@ INSERT INTO `program` VALUES ('16', '搜狗浏览器', 'C:\\Documents and Settin
 INSERT INTO `program` VALUES ('17', '2345浏览器', 'C:\\Program Files\\2345Soft\\2345Explorer\\2345Explorer.exe', '/static/home/images/2345浏览器.png', '1', '1');
 INSERT INTO `program` VALUES ('18', '世界之窗', 'C:\\Documents and Settings\\Administrator\\Local Settings\\Application Data\\TheWorld6\\Application\\TheWorld.exe', '/static/home/images/世界之窗.png', '1', '1');
 INSERT INTO `program` VALUES ('19', '我的桌面', '', '', '0', '0');
+
+-- ----------------------------
+-- Table structure for proxy
+-- ----------------------------
+DROP TABLE IF EXISTS `proxy`;
+CREATE TABLE `proxy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` varchar(255) NOT NULL,
+  `hosts` varchar(255) NOT NULL,
+  `source` varchar(255) NOT NULL,
+  `target` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of proxy
+-- ----------------------------
+INSERT INTO `proxy` VALUES ('29', 'demo', '127.0.0.1 www.baidu.com', 'stbui.com', '127.0.0.1');
+INSERT INTO `proxy` VALUES ('37', 'demo', '2 2', 'www.baidu.com', '127.0.0.1');
+INSERT INTO `proxy` VALUES ('33', 'demo', '1', 'test.com', '127.0.0.1');
+INSERT INTO `proxy` VALUES ('38', '12307', ' ', '', '');
+INSERT INTO `proxy` VALUES ('36', '12307', '22 22', '', '');
+INSERT INTO `proxy` VALUES ('30', '12307', '12307 www.baidu', '', '');
+INSERT INTO `proxy` VALUES ('28', '2', '2', '', '');
+INSERT INTO `proxy` VALUES ('31', '12307', '11111', '', '');
 
 -- ----------------------------
 -- Table structure for server
@@ -156,14 +182,16 @@ CREATE TABLE `server` (
   `syncUserDate` datetime DEFAULT NULL,
   `status` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=gbk;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of server
 -- ----------------------------
-INSERT INTO `server` VALUES ('1', 'netname-86dfa86', '192.168.159.137', '3000', 'YFtTew6WoBU5BWuFBQwOKg9zTN2GD6UY', 'C:\\release', '2016-07-11 16:34:56', '1');
-INSERT INTO `server` VALUES ('2', 'DESKTOP-SE7CR98', '172.16.97.13', '3000', '7BCNs_6zlE16jC02G5YBwvhKJLnMt3gy', 'C:\\Users\\431103.com\\AppData\\Roaming\\npm\\node_modules\\nw\\nwjs', '2016-07-11 11:09:12', '1');
+INSERT INTO `server` VALUES ('1', 'netname-86dfa86', '192.168.159.137', '3000', 'YFtTew6WoBU5BWuFBQwOKg9zTN2GD6UY', 'C:\\release', '2016-07-11 16:34:56', '0');
+INSERT INTO `server` VALUES ('45', 'RG5MUBFRXYKZW5F', '192.168.159.142', '3000', '68KtEHak18m90ULC2SE74TRoBKecRIeY', 'C:\\Documents and Settings\\Administrator\\桌面\\release', '2016-10-26 10:46:32', '0');
+INSERT INTO `server` VALUES ('2', 'DESKTOP-SE7CR98', '172.16.97.13', '3000', '7BCNs_6zlE16jC02G5YBwvhKJLnMt3gy', 'E:\\431103\\dcloud-probe\\release', '2016-07-11 11:09:12', '0');
 INSERT INTO `server` VALUES ('3', 'demo', '127.0.0.1', '3000', 'JtNXo8D0Ajn5P7OZJb32utFbz0Qi9j8i', 'E:\\', '2016-07-11 11:09:13', '0');
+INSERT INTO `server` VALUES ('46', 'IE8Win7', '192.168.159.134', '3000', 'dJNy75NGNx9TcvzueqamAPnEglmKKZ8H', 'C:\\Users\\IEUser\\Desktop\\release', '2016-10-26 11:19:45', '0');
 
 -- ----------------------------
 -- Table structure for wd_browsers

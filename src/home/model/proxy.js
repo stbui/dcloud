@@ -5,8 +5,11 @@
 export default class extends think.model.base {
 
     getList(data) {
+        let table = this.getTableName() + '.*';
+        let appusersTablePrefix = 'appusers.';
+        let userId = appusersTablePrefix + 'UserId as userId';
 
-        return this.field(['proxy.*', 'appusers.UserId as userId']).join({
+        return this.field([table, userId]).join({
             table: 'appusers',
             join: 'left',
             on: ['UserId', 'UserId']
@@ -14,7 +17,12 @@ export default class extends think.model.base {
     }
 
     getSingleList(data) {
-        return this.field(['program.*', 'appusers.UserId as userId']).join({
+        let table = this.getTableName() + '.*';
+
+        let appusersTablePrefix = 'appusers.';
+        let userId = appusersTablePrefix + 'UserId as userId';
+
+        return this.field([table, userId]).join({
             table: 'appusers',
             join: 'left',
             on: ['UserId', 'UserId']

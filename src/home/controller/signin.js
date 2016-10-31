@@ -8,7 +8,7 @@ export default class extends think.controller.base {
 
         // 用户已经登陆，跳转到应用页面
         if (is_login) {
-            this.redirect('/desktop');
+            this.redirect('/desktop.html');
         }
 
         if (this.isPost()) {
@@ -88,7 +88,7 @@ export default class extends think.controller.base {
             this.session('userInfo', null);
         }
 
-        this.redirect('/signin');
+        this.redirect('/signin.html');
     }
 
     /*

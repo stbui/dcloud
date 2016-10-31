@@ -8,5 +8,9 @@ export function constructDesktopAppListUrl() {
 }
 
 export function constructProxyListUrl() {
-    return `//127.0.0.1:8361/proxy`;
+    return `//127.0.0.1:8361/api/hosts`;
+}
+
+export function constructProxyPac() {
+    return `//127.0.0.1:8361/proxy/pac`;
 }

@@ -16,7 +16,7 @@ let config = {
 export default class extends think.controller.base {
 
     async indexAction() {
-        this.setCorsHeader();
+        global.setCorsHeader(this);
 
         // 当前用户信息
         const userInfo = await this.session('userInfo');
@@ -31,7 +31,7 @@ export default class extends think.controller.base {
     }
 
     async addAction() {
-        this.setCorsHeader();
+        global.setCorsHeader(this);
 
         const {hosts} = this.post();
 
@@ -57,7 +57,7 @@ export default class extends think.controller.base {
     }
 
     async delAction() {
-        this.setCorsHeader();
+        global.setCorsHeader(this);
 
         const {id} = this.get();
         // 当前用户信息
@@ -366,11 +366,4 @@ start /MAX "" "${options.appPath}" %url% %proxyParam%
         return str;
     }
 
-
-    setCorsHeader() {
-        this.header("Access-Control-Allow-Origin", this.header("origin") || "*");
-        this.header("Access-Control-Allow-Headers", "x-requested-with");
-        this.header("Access-Control-Request-Method", "GET,POST,PUT,DELETE");
-        this.header("Access-Control-Allow-Credentials", "true");
-    }
 }

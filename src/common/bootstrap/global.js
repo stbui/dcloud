@@ -33,9 +33,9 @@ global.setUrlParam = (obj)=> {
     return str.join('&');
 };
 
-//global.setCorsHeade= (self) =>{
-//    this.header("Access-Control-Allow-Origin", this.header("origin") || "*");
-//    this.header("Access-Control-Allow-Headers", "x-requested-with");
-//    this.header("Access-Control-Request-Method", "GET,POST,PUT,DELETE");
-//    this.header("Access-Control-Allow-Credentials", "true");
-//};
+global.setCorsHeader= (self) =>{
+    self.header("Access-Control-Allow-Origin", self.header("origin") || "*");
+    self.header("Access-Control-Allow-Headers", "x-requested-with");
+    self.header("Access-Control-Request-Method", "GET,POST,PUT,DELETE");
+    self.header("Access-Control-Allow-Credentials", "true");
+};

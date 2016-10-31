@@ -2,9 +2,9 @@
 
 # centos 32
 
-# µ¼ÈëµÚÈı·½Èí¼şÔ´
+# å¯¼å…¥ç¬¬ä¸‰æ–¹è½¯ä»¶æº
 
-# °²×°ÒÀÀµÈí¼ş°ü
+# å®‰è£…ä¾èµ–è½¯ä»¶åŒ…
 
 yum install cairo-devel libpng-devel uuid-devel freerdp* libvncserver-devel openssl-devel
 
@@ -26,20 +26,20 @@ ldconfig
 chkconfig --add guacd
 chkconfig guacd on
 
-# ÏÂÔØGuacamole¿Í»§¶Ë
+# ä¸‹è½½Guacamoleå®¢æˆ·ç«¯
 
 wget http://jaist.dl.sourceforge.net/project/guacamole/current/binary/guacamole-0.9.7.war
 mkdir /var/lib/guacamole
 mv /root/Downloads/guacamole-0.9.7.war /var/lib/guacamole/guacamole.war
 
-# ĞÂ½¨GuacamoleÅäÖÃÎÄ¼ş
+# æ–°å»ºGuacamoleé…ç½®æ–‡ä»¶
 mkdir /etc/guacamole
 mkdir /root/.guacamole
 cp /root/Downloads/guacamole/doc/example/guacamole.properties /etc/guacamole/guacamole.properties
 cp /root/Downloads/guacamole/doc/example/user-mapping.xml /etc/guacamole/user-mapping.xml
 ln -s /etc/guacamole/guacamole.properties /root/.guacamole/
 
-# ÅäÖÃguacamole.propertiesÎÄ¼ş
+# é…ç½®guacamole.propertiesæ–‡ä»¶
 # vi /etc/guacamole/noauth-config.xml
 # <configs>
 #    <config name="f2etest-ie6" protocol="rdp">
@@ -50,13 +50,13 @@ ln -s /etc/guacamole/guacamole.properties /root/.guacamole/
 #    </config>
 # </configs>
 
-# ²¿ÊğGuacamole¿Í»§¶Ë
+# éƒ¨ç½²Guacamoleå®¢æˆ·ç«¯
 ln -s /var/lib/guacamole/guacamole.war /usr/local/Tomcat/webapps
 
-# ÖØÆôTomcat
+# é‡å¯Tomcat
 
-# Æô¶¯guacd
+# å¯åŠ¨guacd
 
-# ÑéÖ¤Guacamole°²×°
+# éªŒè¯Guacamoleå®‰è£…
 
 echo "http://127.0.0.1:8080/guacamole/"

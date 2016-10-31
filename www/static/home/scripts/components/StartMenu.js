@@ -3,6 +3,7 @@ import Dialog from 'rc-dialog';
 import Switch from 'rc-switch';
 
 import * as types from '../constants/StartMenu';
+import {fetchProxyStatus} from '../actions/app';
 import Proxy from './Proxy';
 
 
@@ -56,7 +57,9 @@ class StartMenu extends Component {
     }
 
     onChange() {
-
+        console.log(this.props)
+        const {dispatch} = this.props;
+        dispatch(fetchProxyStatus());
     }
 
 

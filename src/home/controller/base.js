@@ -12,7 +12,7 @@ export default class extends think.controller.base {
         let is_login = await this.islogin();
 
         if (!is_login) {
-            return this.redirect('/signin');
+            return this.redirect('/signin.html');
         }
 
         this.userInfo = await this.session('userInfo');

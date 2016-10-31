@@ -34,7 +34,7 @@ http://127.0.0.1:8361
 
 ## pm2 管理
 ```
-pm2 startOrReload pm2.json
+pm2 start pm2.json
 ```
 
 ### 关联项目
@@ -54,11 +54,6 @@ https://github.com/stbui/dcloud-probe
 - [x] scss
 
 
-### 打赏我
-
-### 关于我
-
-
 ### 即将实现
 - [x] 初始化安装
 - [x] 服务器账号同步
@@ -72,5 +67,4 @@ https://github.com/stbui/dcloud-probe
 
 
 ### help
-查看
-intro.md
+查看bin目录
